@@ -12,6 +12,9 @@
 
 int main() {
 
+    // Definição de listas ligadas:
+
+
 
 
     return 0;
