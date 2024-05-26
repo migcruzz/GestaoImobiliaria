@@ -1,13 +1,11 @@
 # ninja log v5
 0	34	1715853062059263796	CMakeFiles/Programa.dir/Funcoes/Funcoes.c.o	23a71ba07292770c
-34	70	1715853062095128170	Programa	72ae390eee8c23f8
-0	34	1715853062059386105	CMakeFiles/Programa.dir/main.c.o	2b648ddcad3a5c5a
-0	40	1715855356959540475	build.ninja	d661c2566e8ceaf9
-0	28	1715855356992662721	CMakeFiles/Programa.dir/Funcoes/Administrador/adm.c.o	f35f14c4ff837f1
+0	35	1715855357002175129	CMakeFiles/Programa.dir/main.c.o	2b648ddcad3a5c5a
+0	40	1716040913566603348	build.ninja	d661c2566e8ceaf9
 1	30	1715855356996441352	CMakeFiles/Programa.dir/Funcoes/Login/login.c.o	3bcf8bf8aa31ca31
+0	28	1715855356992662721	CMakeFiles/Programa.dir/Funcoes/Administrador/adm.c.o	f35f14c4ff837f1
+47	78	1715855357044752035	Programa	d3d4b4a76cb1ffbe
 1	31	1715855356998182755	CMakeFiles/Programa.dir/Funcoes/Clientes/clientes.c.o	edf54e6a952fcc50
 2	32	1715855356998696905	CMakeFiles/Programa.dir/Funcoes/Propriedades/propriedades.c.o	2d4dc487f5a61c6
-0	35	1715855357002175129	CMakeFiles/Programa.dir/main.c.o	2b648ddcad3a5c5a
 0	37	1715855357004751797	CMakeFiles/Programa.dir/Funcoes/AgentesImobiliarios/agentes_imobiliarios.c.o	ea9acbaba91bbe4
 29	47	1715855357015212717	CMakeFiles/Programa.dir/Funcoes/Visitas/visitas.c.o	e2992b889f46b0b1
-47	78	1715855357044752035	Programa	d3d4b4a76cb1ffbe
