@@ -62,8 +62,6 @@ void imprime_todos_clientes (LISTA_CLIENTE *iniLista) {
 int editar_cliente(LISTA_CLIENTE **iniLista, CLIENTE editado) {
 
     int contador = 0;
-    char verdade[] = "verdade";
-    char falso[] = "falso";
 
     LISTA_CLIENTE *aux = NULL;
 
@@ -97,6 +95,44 @@ int editar_cliente(LISTA_CLIENTE **iniLista, CLIENTE editado) {
 }
 
 
+// Troca os elementos da lista a para a frente do b
+void aux_troca_elementos_lista(LISTA_CLIENTE *a, LISTA_CLIENTE *b){
+
+ LISTA_CLIENTE *aux_seguinte = NULL;
+ LISTA_CLIENTE *aux_anterior = NULL;
+
+
+
+
+
+
+}
+
+int ordena_cliente_alfabeto_bubble_sort(LISTA_CLIENTE **iniLista, LISTA_CLIENTE **fimLista){
+
+    int contador =0;
+    int i;
+    LISTA_CLIENTE *aux = NULL;
+
+    for (aux = *iniLista; aux != NULL; aux = aux->seguinte) {
+        contador ++;
+    }
+
+    for(aux = *iniLista; aux != NULL; aux = aux->seguinte){
+        for(i =0; i < contador; i++){
+
+
+
+        }
+    }
+
+
+
+
+}
+
+
+
 int remover_cliente(LISTA_CLIENTE *iniLista,int cliente_id) {
 
     LISTA_CLIENTE *aux = NULL;
@@ -112,7 +148,7 @@ int remover_cliente(LISTA_CLIENTE *iniLista,int cliente_id) {
 
     for(aux = iniLista; aux != NULL; aux = aux->seguinte){
 
-        if(aux ->cliente.id_propriedade == propriedade_id){
+        if(aux ->cliente.id_cliente == cliente_id){
             contador ++;
 
             NoSeguinte = aux -> seguinte;
