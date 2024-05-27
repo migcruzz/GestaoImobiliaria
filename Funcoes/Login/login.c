@@ -1,3 +1,5 @@
-//
-// Created by Miguel Cruz on 16/05/2024.
-//
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+#include "../../TiposDados/TiposDados.h"

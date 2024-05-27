@@ -9,4 +9,5 @@ add_executable(Programa main.c
         Funcoes/Clientes/clientes.c
         Funcoes/Login/login.c
         Funcoes/Propriedades/propriedades.c
-        Funcoes/Visitas/visitas.c)
+        Funcoes/Visitas/visitas.c
+        Funcoes/Menu/Menu.c)

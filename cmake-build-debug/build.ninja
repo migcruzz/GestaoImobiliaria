@@ -91,6 +91,12 @@ build CMakeFiles/Programa.dir/Funcoes/Visitas/visitas.c.o: C_COMPILER__Programa_
   OBJECT_DIR = CMakeFiles/Programa.dir
   OBJECT_FILE_DIR = CMakeFiles/Programa.dir/Funcoes/Visitas
 
+build CMakeFiles/Programa.dir/Funcoes/Menu/Menu.c.o: C_COMPILER__Programa_unscanned_Debug /Users/miguelcruz/Desktop/ProjetoC/Programa/Funcoes/Menu/Menu.c || cmake_object_order_depends_target_Programa
+  DEP_FILE = CMakeFiles/Programa.dir/Funcoes/Menu/Menu.c.o.d
+  FLAGS = -g -std=gnu11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/Programa.dir
+  OBJECT_FILE_DIR = CMakeFiles/Programa.dir/Funcoes/Menu
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Programa
@@ -99,7 +105,7 @@ build CMakeFiles/Programa.dir/Funcoes/Visitas/visitas.c.o: C_COMPILER__Programa_
 #############################################
 # Link the executable Programa
 
-build Programa: C_EXECUTABLE_LINKER__Programa_Debug CMakeFiles/Programa.dir/main.c.o CMakeFiles/Programa.dir/Funcoes/Administrador/adm.c.o CMakeFiles/Programa.dir/Funcoes/AgentesImobiliarios/agentes_imobiliarios.c.o CMakeFiles/Programa.dir/Funcoes/Clientes/clientes.c.o CMakeFiles/Programa.dir/Funcoes/Login/login.c.o CMakeFiles/Programa.dir/Funcoes/Propriedades/propriedades.c.o CMakeFiles/Programa.dir/Funcoes/Visitas/visitas.c.o
+build Programa: C_EXECUTABLE_LINKER__Programa_Debug CMakeFiles/Programa.dir/main.c.o CMakeFiles/Programa.dir/Funcoes/Administrador/adm.c.o CMakeFiles/Programa.dir/Funcoes/AgentesImobiliarios/agentes_imobiliarios.c.o CMakeFiles/Programa.dir/Funcoes/Clientes/clientes.c.o CMakeFiles/Programa.dir/Funcoes/Login/login.c.o CMakeFiles/Programa.dir/Funcoes/Propriedades/propriedades.c.o CMakeFiles/Programa.dir/Funcoes/Visitas/visitas.c.o CMakeFiles/Programa.dir/Funcoes/Menu/Menu.c.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk
   OBJECT_DIR = CMakeFiles/Programa.dir
   POST_BUILD = :

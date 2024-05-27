@@ -1,11 +1,15 @@
 # ninja log v5
 0	34	1715853062059263796	CMakeFiles/Programa.dir/Funcoes/Funcoes.c.o	23a71ba07292770c
-0	35	1715855357002175129	CMakeFiles/Programa.dir/main.c.o	2b648ddcad3a5c5a
-0	40	1716040913566603348	build.ninja	d661c2566e8ceaf9
-1	30	1715855356996441352	CMakeFiles/Programa.dir/Funcoes/Login/login.c.o	3bcf8bf8aa31ca31
-0	28	1715855356992662721	CMakeFiles/Programa.dir/Funcoes/Administrador/adm.c.o	f35f14c4ff837f1
-47	78	1715855357044752035	Programa	d3d4b4a76cb1ffbe
-1	31	1715855356998182755	CMakeFiles/Programa.dir/Funcoes/Clientes/clientes.c.o	edf54e6a952fcc50
-2	32	1715855356998696905	CMakeFiles/Programa.dir/Funcoes/Propriedades/propriedades.c.o	2d4dc487f5a61c6
-0	37	1715855357004751797	CMakeFiles/Programa.dir/Funcoes/AgentesImobiliarios/agentes_imobiliarios.c.o	ea9acbaba91bbe4
-29	47	1715855357015212717	CMakeFiles/Programa.dir/Funcoes/Visitas/visitas.c.o	e2992b889f46b0b1
+0	31	1716805333769026536	CMakeFiles/Programa.dir/main.c.o	2b648ddcad3a5c5a
+0	40	1716805848430885228	build.ninja	d661c2566e8ceaf9
+1	32	1716805333771869268	CMakeFiles/Programa.dir/Funcoes/Login/login.c.o	3bcf8bf8aa31ca31
+0	36	1716805333775073825	CMakeFiles/Programa.dir/Funcoes/Administrador/adm.c.o	f35f14c4ff837f1
+53	81	1716805333821928996	Programa	d3d4b4a76cb1ffbe
+1	23	1716805333763461446	CMakeFiles/Programa.dir/Funcoes/Clientes/clientes.c.o	edf54e6a952fcc50
+1	40	1716805333780985074	CMakeFiles/Programa.dir/Funcoes/Propriedades/propriedades.c.o	2d4dc487f5a61c6
+0	37	1716805333777386984	CMakeFiles/Programa.dir/Funcoes/AgentesImobiliarios/agentes_imobiliarios.c.o	ea9acbaba91bbe4
+24	52	1716805333793076317	CMakeFiles/Programa.dir/Funcoes/Visitas/visitas.c.o	e2992b889f46b0b1
+1	20	1716805897113216593	CMakeFiles/Programa.dir/Funcoes/Menu/Menu.c.o	189ee2f577b2ec06
+1	31	1716805897124459053	CMakeFiles/Programa.dir/main.c.o	2b648ddcad3a5c5a
+1	33	1716805897126904332	CMakeFiles/Programa.dir/Funcoes/Propriedades/propriedades.c.o	2d4dc487f5a61c6
+33	65	1716805897158932207	Programa	396cdd8573c83967

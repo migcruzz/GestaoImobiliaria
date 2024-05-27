@@ -1,6 +1,7 @@
 #ifndef PROGRAMA_TIPOSDADOS_H
 #define PROGRAMA_TIPOSDADOS_H
 
+
 //// Tipos de dados:
 
 // Array
@@ -13,7 +14,7 @@ typedef struct agente{
     char data_nascimento [10]; // 9 caracteres mais o \0
     int role;
     char palavra_passe [21]; // 20 caracteres mais o \0
-    bool disponibilidade;
+    int disponibilidade;
 }AGENTE;
 
 // Lista ligada
@@ -39,7 +40,7 @@ typedef struct admin{
 typedef struct propriedade{
     float preco;
     int tipo;
-    bool popular;
+    int popular;
     unsigned int id_propriedade;
 }PROPRIEDADE;
 
@@ -54,7 +55,8 @@ typedef struct visita{
     int duracao; // em minutos tendo em atenção que um dia tem 1440 minutos.
     int hora_marcacao; // em minutos tendo em atenção que um dia tem 1440 minutos.
     char relatorio [3000];
-    bool casa_aberta;
+    char detalhes_intresse_cliente [3000];
+    int casa_aberta;
 }VISITA;
 
 //// Listas Ligadas:
@@ -76,7 +78,5 @@ typedef struct lista_visita{
     struct elem *seguinte;
     struct elem *anterior;
 }LISTA_VISITA;
-
-
 
 #endif //PROGRAMA_TIPOSDADOS_H
