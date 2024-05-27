@@ -13,3 +13,8 @@
 1	31	1716805897124459053	CMakeFiles/Programa.dir/main.c.o	2b648ddcad3a5c5a
 1	33	1716805897126904332	CMakeFiles/Programa.dir/Funcoes/Propriedades/propriedades.c.o	2d4dc487f5a61c6
 33	65	1716805897158932207	Programa	396cdd8573c83967
+2	36	1716806680538553069	CMakeFiles/Programa.dir/Funcoes/Propriedades/propriedades.c.o	2d4dc487f5a61c6
+1	37	1716806680538552527	CMakeFiles/Programa.dir/Funcoes/AgentesImobiliarios/agentes_imobiliarios.c.o	ea9acbaba91bbe4
+37	68	1716806680569334221	Programa	396cdd8573c83967
+2	44	1716808155424528623	CMakeFiles/Programa.dir/Funcoes/AgentesImobiliarios/agentes_imobiliarios.c.o	ea9acbaba91bbe4
+44	77	1716808155456570811	Programa	396cdd8573c83967

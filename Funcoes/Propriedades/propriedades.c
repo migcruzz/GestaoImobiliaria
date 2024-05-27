@@ -3,7 +3,7 @@
 #include <string.h>
 #include "../../TiposDados/TiposDados.h"
 
-int criar_propriedades(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista, PROPRIEDADE propriedade_nova){
+int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista, PROPRIEDADE propriedade_nova){
 
     LISTA_PROPRIEDADE *novo = NULL;
 
@@ -62,7 +62,6 @@ void imprime_todas_propriedades (LISTA_PROPRIEDADE *iniLista) {
         printf("-------------------------------");
     }
 }
-
 
 int editar_propriedade(LISTA_PROPRIEDADE **iniLista, PROPRIEDADE editada){
 
@@ -144,8 +143,7 @@ int remover_propriedade(LISTA_PROPRIEDADE *iniLista,int propriedade_id){
     return 0;
 }
 
-
-void limpar_memoria_lista_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista){
+void limpar_memoria_lista_propriedades(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista){
 
     LISTA_PROPRIEDADE *aux = NULL;
     LISTA_PROPRIEDADE *proximo = NULL;
