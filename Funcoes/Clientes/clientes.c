@@ -94,18 +94,52 @@ int editar_cliente(LISTA_CLIENTE **iniLista, CLIENTE editado) {
     }
 }
 
-
 // Troca os elementos da lista a para a frente do b
-void aux_troca_elementos_lista(LISTA_CLIENTE *a, LISTA_CLIENTE *b){
 
- LISTA_CLIENTE *aux_seguinte = NULL;
- LISTA_CLIENTE *aux_anterior = NULL;
+void aux_troca_elementos_lista(LISTA_CLIENTE *a, LISTA_CLIENTE *b, LISTA_CLIENTE **iniLista){
 
+    LISTA_CLIENTE *b_aux = NULL;
+    LISTA_CLIENTE *a_aux= NULL;
+    LISTA_CLIENTE *bb_aux = NULL;
+    LISTA_CLIENTE *aa_aux = NULL;
 
+    LISTA_CLIENTE *bb = NULL;
+    LISTA_CLIENTE *aa = NULL;
 
+    // Auxiliares apenas para guardar dados para serem mais trde acedidos, de forma a garantir que não se perde segurança no procedimento de troca de elementos.
+    //Podia ser mais rápido de outra forma usando apenas os apontadores importantes mas a segurança é mais importante.
 
+    a_aux = a;
+    b_aux = b;
+    aa_aux = a -> anterior;
+    bb_aux = b -> seguinte;
 
+    // Dados a serem alterados assim como os argumentos a e b da função.
+    aa = a -> anterior;
+    bb = b -> seguinte;
 
+    if(a -> anterior == NULL){
+        a ->seguinte = bb_aux;
+        bb -> anterior = a_aux;
+        *iniLista = b_aux;
+        b -> seguinte = a_aux;
+        a-> anterior = b_aux;
+    }
+    else if(b -> seguinte == NULL){
+        aa -> seguinte = b_aux;
+        b -> seguinte = a_aux;
+        a -> seguinte = NULL;
+        a ->anterior  = b_aux;
+        b -> anterior = aa_aux;
+    }
+    else{
+        aa -> seguinte = b_aux;
+        b -> seguinte = b_aux -> anterior;
+        a -> seguinte = bb_aux;
+        bb -> anterior = a_aux;
+        a -> anterior = b_aux;
+        b -> anterior = aa_aux;
+    }
 }
 
 int ordena_cliente_alfabeto_bubble_sort(LISTA_CLIENTE **iniLista, LISTA_CLIENTE **fimLista){
@@ -118,19 +152,17 @@ int ordena_cliente_alfabeto_bubble_sort(LISTA_CLIENTE **iniLista, LISTA_CLIENTE 
         contador ++;
     }
 
-    for(aux = *iniLista; aux != NULL; aux = aux->seguinte){
-        for(i =0; i < contador; i++){
 
+    for(i =0; i < contador; i++){
 
+        for(aux = *iniLista; aux != NULL; aux = aux->seguinte){
 
+            if(strcmp(aux -> cliente.nome, aux -> seguinte ->cliente.nome) > 0){
+                aux_troca_elementos_lista(aux, aux ->seguinte, iniLista);
+            }
         }
     }
-
-
-
-
 }
-
 
 
 int remover_cliente(LISTA_CLIENTE *iniLista,int cliente_id) {

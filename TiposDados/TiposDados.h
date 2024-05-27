@@ -63,20 +63,20 @@ typedef struct visita{
 
 typedef struct lista_cliente{
     CLIENTE cliente;
-    struct elem *seguinte;
-    struct elem *anterior;
+    struct lista_cliente *seguinte;
+    struct lista_cliente *anterior;
 }LISTA_CLIENTE;
 
 typedef struct lista_propriedade{
     PROPRIEDADE propriedade;
-    struct elem *seguinte;
-    struct elem * anterior;
+    struct lista_propriedade *seguinte;
+    struct lista_propriedade *anterior;
 }LISTA_PROPRIEDADE;
 
 typedef struct lista_visita{
     VISITA visita;
-    struct elem *seguinte;
-    struct elem *anterior;
+    struct lista_visita *seguinte;
+    struct lista_visita *anterior;
 }LISTA_VISITA;
 
 #endif //PROGRAMA_TIPOSDADOS_H

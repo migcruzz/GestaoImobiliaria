@@ -4,4 +4,3 @@
 #include <stdbool.h>
 #include "../../TiposDados/TiposDados.h"
 
-
