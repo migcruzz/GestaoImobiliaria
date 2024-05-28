@@ -10,4 +10,5 @@ add_executable(Programa main.c
         Funcoes/Login/login.c
         Funcoes/Propriedades/propriedades.c
         Funcoes/Visitas/visitas.c
-        Funcoes/Menu/menu.c)
+        Funcoes/Menu/menu.c
+        InteracaoUtilizador/interacao_utilizador.c)
