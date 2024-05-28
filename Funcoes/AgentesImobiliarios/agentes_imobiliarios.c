@@ -21,6 +21,25 @@ int inserir_agente_imobiliario(AGENTE agente_imobiliario[], AGENTE novo_agente, 
 
 }
 
+int imprimir_agente_imobiliario(AGENTE agente_imobiliario[], int posicaoImprimir) {
+
+    printf("-------------------------------------------------------------------------");
+    printf("-------------------------------------------------------------------------");
+
+    printf("\n O agente com o nome %s tem os seguintes dados:\n",agente_imobiliario[posicaoImprimir].nome);
+    printf("-------------------------------------------------------------------------");
+    printf("\nO ID do agente e %d\n",agente_imobiliario[posicaoImprimir].id_agente);
+    printf("\nO do agente e %s\n",agente_imobiliario[posicaoImprimir].NIF);
+    printf("\nO do agente e %s\n",agente_imobiliario[posicaoImprimir].morada);
+    printf("\nO do agente e %s\n",agente_imobiliario[posicaoImprimir].telefone);
+    printf("\nO do agente e %s\n",agente_imobiliario[posicaoImprimir].palavra_passe);
+    printf("\nO do agente e %d\n",agente_imobiliario[posicaoImprimir].role);
+    printf("\nO do agente e %d\n",agente_imobiliario[posicaoImprimir].disponibilidade);
+    printf("-------------------------------------------------------------------------");
+    return 0;
+
+}
+
 
 int criar_agente_imobiliario(AGENTE agente_imobiliario[], AGENTE novo_agente) {
 
@@ -100,15 +119,61 @@ int remover_agente_imobiliario(AGENTE agente_imobiliario[],int id_procura){
 
 int listar_agente_imobiliario_alfabeto(AGENTE agente_imobiliario[]){
 
+    int num_agentes =0;
 
+    for(int i =0; i<15; i++){
+        if(agente_imobiliario[i].id_agente != 0){
+            num_agentes ++;
+        }
+    }
+    if(num_agentes != 0){
 
-    return 0;
+    AGENTE *agente_imobiliario_ordenar = NULL;
+
+    agente_imobiliario_ordenar = (AGENTE *) calloc(num_agentes, sizeof (AGENTE));
+
+    // Uso do algoritmo Selection sort:
+
+        int i = 0, j = 0, min = 0;
+        char aux[30];
+
+        for (i = 0; i < num_agentes; i++) {
+            min = i;
+
+            for (j = i + 1; j < num_agentes; j++) {
+                if (strcmp(agente_imobiliario_ordenar[j].nome, agente_imobiliario_ordenar[min].nome) < 0) {
+                    min = j;
+                }
+            }
+
+            if (min != i) {
+                strcpy(aux, agente_imobiliario_ordenar[min].nome);
+                strcpy(agente_imobiliario_ordenar[min].nome, agente_imobiliario_ordenar[i].nome);
+                strcpy(agente_imobiliario_ordenar[i].nome, aux);
+            }
+        }
+
+        for(int a =0; a < num_agentes; a++){
+            imprimir_agente_imobiliario(agente_imobiliario_ordenar,a);
+        }
+
+        free(agente_imobiliario_ordenar);
+
+        return 0;
+
+    }else{
+        printf("\nNao existem agentes !\n");
+    return -1;
+}
+
 }
 
 int listar_agente_imobiliario_idade(){
 
     return 0;
 }
+
+// True = 1; False = 0;
 
 int mudar_estado_agente_imobiliario(){
 
