@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../../VariaveisGlobais/variaveis_globais.h"
 #include "../../TiposDados/TiposDados.h"
 
 
@@ -48,13 +49,13 @@ void imprime_todos_clientes (LISTA_CLIENTE *iniLista) {
     for (aux = iniLista; aux != NULL; aux = aux->seguinte) {
         contador ++;
 
-        printf("------------------------------------------------------------------");
+        printf("------------------------------------------------------------------\n");
         printf("Nome do Cliente: %s\n",aux->cliente.nome);
         printf("NIF do cliente: %s\n",aux -> cliente.NIF);
         printf("Telefone do Cliente: %s\n", aux -> cliente.telefone);
         printf("ID do Cliente: %d\n", aux -> cliente.id_cliente);
         printf("Palavra passe: %s", aux -> cliente.palavra_passe);
-        printf("------------------------------------------------------------------");
+        printf("------------------------------------------------------------------\n");
     }
 }
 
@@ -92,6 +93,7 @@ int editar_cliente(LISTA_CLIENTE **iniLista, CLIENTE editado) {
         }
         return 0;
     }
+    return 0;
 }
 
 // Troca os elementos da lista a para a frente do b
@@ -162,6 +164,7 @@ int ordena_cliente_alfabeto_bubble_sort(LISTA_CLIENTE **iniLista, LISTA_CLIENTE 
             }
         }
     }
+    return 0;
 }
 
 

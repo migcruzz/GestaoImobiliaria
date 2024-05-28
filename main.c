@@ -8,10 +8,8 @@
 #include "Funcoes/Login/login.h"
 #include "Funcoes/Propriedades/propriedades.h"
 #include "Funcoes/Visitas/visitas.h"
-#include "Funcoes/Menu/Menu.h"
+#include "Funcoes/Menu/menu.h"
 
-#define MAX_AGENTES_IMOBILIARIOS 15
-#define  MAX_ADMINISTRADORES 3
 
 int main() {
 
@@ -29,11 +27,12 @@ int main() {
     //// Definição de arrays para  Agentes imobiliarios e administrador (iniciação apenas):
 
     // apontador para o inicio do array.
-    ADMIN *administradores = NULL;
+    ADMIN *administrador = NULL;
     AGENTE *agente_imobiliario = NULL;
 
-    administradores = (ADMIN *) calloc(1,sizeof (ADMIN));
+    administrador = (ADMIN *) calloc(1,sizeof (ADMIN));
     agente_imobiliario = (AGENTE *) calloc(1,sizeof (AGENTE));
+
 
 
 
