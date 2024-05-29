@@ -57,7 +57,8 @@ void imprime_todas_propriedades (LISTA_PROPRIEDADE *iniLista) {
         }
 
         printf("Preço da propriedade: %.2f\n",aux->propriedade.preco);
-        printf("Tipo da propriedade: %d\n",aux -> propriedade.tipo);
+        printf("Tipo da propriedade: %d\n",aux -> propriedade.tipo_comercial);
+        printf("Tipo da propriedade: %d\n",aux -> propriedade.tipo_imovel);
         printf("ID da propriedade: %d\n", aux -> propriedade.id_propriedade);
 
         printf("-------------------------------");
@@ -81,9 +82,10 @@ int editar_propriedade(LISTA_PROPRIEDADE **iniLista, PROPRIEDADE editada){
 
         if(aux -> propriedade.id_propriedade == editada.id_propriedade){
 
-            aux -> propriedade.tipo = editada.tipo;
+            aux -> propriedade.tipo_imovel = editada.tipo_imovel;
+            aux -> propriedade.tipo_comercial = editada.tipo_comercial;
             aux -> propriedade.preco = editada.preco;
-            aux -> propriedade.popular = editada.tipo;
+            aux -> propriedade.popular = editada.popular;
 
         }
         contador ++;
@@ -97,7 +99,8 @@ int editar_propriedade(LISTA_PROPRIEDADE **iniLista, PROPRIEDADE editada){
         }
 
         printf("Preço da propriedade: %.2f\n",aux->propriedade.preco);
-        printf("Tipo da propriedade: %d\n",aux -> propriedade.tipo);
+        printf("Tipo da propriedade: %d\n",aux -> propriedade.tipo_comercial);
+        printf("Tipo da propriedade: %d\n",aux -> propriedade.tipo_imovel);
         printf("ID da propriedade: %d\n", aux -> propriedade.id_propriedade);
 
         printf("------------------------------------------------------------------");
