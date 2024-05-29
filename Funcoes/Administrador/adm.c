@@ -120,19 +120,10 @@ int carregar_do_ficheiro(ADMIN administrador[]){
                   &administrador_lido.role,
                   &administrador_lido.id_admin,
                   administrador_lido.palavra_passe) == 5) {
-        inserir_administrador(administrador, administrador_lido,administrador_lido.id_admin -1);
-        imprimir_administrador(administrador,administrador_lido.id_admin -1);
+        inserir_administrador(administrador, administrador_lido,administrador_lido.id_admin);
     }
 
     fclose(ficheiro_administrador);
-
-    /*
-    char nome [30];
-    char NIF [10]; // 9 caracteres mais o \0
-    int role;
-    int id_admin;
-    char palavra_passe [21]; // 20 caracteres mais o \0
-*/
 
     return 0;
 }
