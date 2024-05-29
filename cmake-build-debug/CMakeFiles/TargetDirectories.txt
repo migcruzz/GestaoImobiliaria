@@ -1,3 +1,0 @@
-/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/CMakeFiles/Programa.dir
-/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/CMakeFiles/rebuild_cache.dir
