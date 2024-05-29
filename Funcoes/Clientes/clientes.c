@@ -59,7 +59,6 @@ void imprime_todos_clientes (LISTA_CLIENTE *iniLista) {
     }
 }
 
-
 int editar_cliente(LISTA_CLIENTE **iniLista, CLIENTE editado) {
 
     int contador = 0;
@@ -71,7 +70,7 @@ int editar_cliente(LISTA_CLIENTE **iniLista, CLIENTE editado) {
         return -1;
     }
 
-    for (aux = *iniLista; aux != NULL; aux = aux->seguinte) {
+    for (aux = *iniLista; aux != NULL; aux = aux ->seguinte) {
 
         if (aux->cliente.id_cliente == editado.id_cliente) {
 
@@ -144,7 +143,7 @@ void aux_troca_elementos_lista(LISTA_CLIENTE *a, LISTA_CLIENTE *b, LISTA_CLIENTE
     }
 }
 
-int ordena_cliente_alfabeto_bubble_sort(LISTA_CLIENTE **iniLista, LISTA_CLIENTE **fimLista){
+void ordena_cliente_alfabeto_bubble_sort(LISTA_CLIENTE **iniLista){
 
     int contador =0;
     int i;
@@ -164,9 +163,7 @@ int ordena_cliente_alfabeto_bubble_sort(LISTA_CLIENTE **iniLista, LISTA_CLIENTE 
             }
         }
     }
-    return 0;
 }
-
 
 int remover_cliente(LISTA_CLIENTE **iniLista,int cliente_id) {
 
@@ -207,7 +204,6 @@ int remover_cliente(LISTA_CLIENTE **iniLista,int cliente_id) {
     printf("Cliente com ID %d não encontrado.\n", cliente_id);
     return -1;
 
-    return 0;
 }
 
 void limpar_memoria_lista_clientes(LISTA_CLIENTE **iniLista, LISTA_CLIENTE **fimLista) {
@@ -227,4 +223,57 @@ void limpar_memoria_lista_clientes(LISTA_CLIENTE **iniLista, LISTA_CLIENTE **fim
 
         aux = proximo;
     }
+}
+
+void ordena_cliente_NIF_bubble_sort(LISTA_CLIENTE **iniLista, LISTA_CLIENTE **fimLista){
+
+    int contador =0;
+    int i;
+    LISTA_CLIENTE *aux = NULL;
+
+    for (aux = *iniLista; aux != NULL; aux = aux->seguinte) {
+        contador ++;
+    }
+
+    for(i =0; i < contador; i++){
+
+        for(aux = *iniLista; aux != NULL; aux = aux->seguinte){
+
+            if(strcmp(aux -> cliente.NIF, aux -> seguinte ->cliente.NIF) > 0){
+                aux_troca_elementos_lista(aux, aux ->seguinte, iniLista);
+            }
+        }
+    }
+}
+
+//// Primeiro executar a função acima na main para facilitar procura.
+int apresenta_informacao_dado_NIF(LISTA_CLIENTE **iniLista, char NIF[]){
+
+    CLIENTE cliente_encontrado;
+
+    int contador = 0;
+
+    LISTA_CLIENTE *aux = NULL;
+
+    if (iniLista == NULL) {
+        printf("Lista Vazia\n");
+        return -1;
+    }
+
+    for (aux = *iniLista; aux != NULL; aux = aux ->seguinte) {
+
+        if (strcmp(aux->cliente.NIF , NIF) == 0) {
+
+            strcpy(cliente_encontrado.nome,aux->cliente.nome );
+            strcpy(cliente_encontrado.NIF, aux->cliente.NIF);
+            strcpy(cliente_encontrado.telefone, aux->cliente.telefone );
+            strcpy( cliente_encontrado.palavra_passe, aux->cliente.palavra_passe);
+            cliente_encontrado.id_cliente = aux ->cliente.id_cliente;
+
+        }
+        return 0;
+    }
+    return 0;
+
+
 }
