@@ -6,5 +6,6 @@
 void menuAgente();
 void submenupropriedadeAgente();
 void submenuagentes();
+void menuAdmin();
 void sair();
 #endif //PROGRAMA_MENU_H
