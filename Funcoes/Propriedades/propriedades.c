@@ -39,6 +39,7 @@ int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista
         return -1;
     }
 
+
     novo -> propriedade = propriedade_nova;
 
     novo -> seguinte = NULL;
