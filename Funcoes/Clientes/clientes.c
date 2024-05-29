@@ -168,41 +168,44 @@ int ordena_cliente_alfabeto_bubble_sort(LISTA_CLIENTE **iniLista, LISTA_CLIENTE 
 }
 
 
-int remover_cliente(LISTA_CLIENTE *iniLista,int cliente_id) {
+int remover_cliente(LISTA_CLIENTE **iniLista,int cliente_id) {
 
-    LISTA_CLIENTE *aux = NULL;
+    LISTA_CLIENTE *aux = *iniLista;
     LISTA_CLIENTE *NoSeguinte = NULL;
     LISTA_CLIENTE  *NoAnterior = NULL;
     int contador =0;
 
 
-    if(iniLista == NULL){
-        printf("Lista vazia\n");
-        return 0;
+    if (aux == NULL) {
+        printf("Lista vazia.\n");
+        return -1;
     }
 
-    for(aux = iniLista; aux != NULL; aux = aux->seguinte){
+    while (aux != NULL) {
+        if (aux->cliente.id_cliente == cliente_id) {
 
-        if(aux ->cliente.id_cliente == cliente_id){
-            contador ++;
+            NoSeguinte = aux->seguinte;
+            NoAnterior = aux->anterior;
 
-            NoSeguinte = aux -> seguinte;
-            NoAnterior = aux -> anterior;
+            if (NoAnterior != NULL) {
+                NoAnterior->seguinte = NoSeguinte;
+            } else {
+                *iniLista = NoSeguinte;
+            }
 
-            NoAnterior ->seguinte = aux -> seguinte;
-            NoSeguinte ->anterior = aux -> anterior;
+            if (NoSeguinte != NULL) {
+                NoSeguinte->anterior = NoAnterior;
+            }
 
             free(aux);
-
-            printf("\nPropriedade apagada !\n");
-            break;
+            printf("Cliente removido.\n");
+            return 0;
         }
-
-        if(contador == 0){
-            printf("\nPropriedade nao encontrada !\n");
-            return -1;
-        }
+        aux = aux->seguinte;
     }
+
+    printf("Cliente com ID %d não encontrado.\n", cliente_id);
+    return -1;
 
     return 0;
 }

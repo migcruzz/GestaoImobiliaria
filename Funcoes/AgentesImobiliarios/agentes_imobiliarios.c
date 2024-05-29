@@ -26,20 +26,22 @@ int inserir_agente_imobiliario(AGENTE agente_imobiliario[], AGENTE novo_agente, 
 
 int imprimir_agente_imobiliario(AGENTE agente_imobiliario[], int posicaoImprimir) {
 
-    printf("-------------------------------------------------------------------------");
-    printf("-------------------------------------------------------------------------");
+    if(posicaoImprimir != 0){
+        printf("-------------------------------------------------------------------------");
+        printf("-------------------------------------------------------------------------");
+        printf("\n O agente com o nome %s tem os seguintes dados:\n",agente_imobiliario[posicaoImprimir].nome);
+        printf("-------------------------------------------------------------------------");
+        printf("\nO ID do agente e %d\n",agente_imobiliario[posicaoImprimir].id_agente);
+        printf("\nO NIF do agente e %s\n",agente_imobiliario[posicaoImprimir].NIF);
+        printf("\nA morada do agente e %s\n",agente_imobiliario[posicaoImprimir].morada);
+        printf("\nO telefone do agente e %s\n",agente_imobiliario[posicaoImprimir].telefone);
+        printf("\nA palavra passe do agente e %s\n",agente_imobiliario[posicaoImprimir].palavra_passe);
+        printf("\nA role do agente e %d\n",agente_imobiliario[posicaoImprimir].role);
+        printf("\nA disponibilidade do agente e %d\n",agente_imobiliario[posicaoImprimir].disponibilidade);
+        printf("\nA data de nascimento do agente e %d-%d-%d, (dd-mm-aaaa)\n",agente_imobiliario[posicaoImprimir].dia_nascimento,agente_imobiliario[posicaoImprimir].mes_nascimento,agente_imobiliario[posicaoImprimir].ano_nascimento);
+        printf("-------------------------------------------------------------------------");
+    }
 
-    printf("\n O agente com o nome %s tem os seguintes dados:\n",agente_imobiliario[posicaoImprimir].nome);
-    printf("-------------------------------------------------------------------------");
-    printf("\nO ID do agente e %d\n",agente_imobiliario[posicaoImprimir].id_agente);
-    printf("\nO NIF do agente e %s\n",agente_imobiliario[posicaoImprimir].NIF);
-    printf("\nA morada do agente e %s\n",agente_imobiliario[posicaoImprimir].morada);
-    printf("\nO telefone do agente e %s\n",agente_imobiliario[posicaoImprimir].telefone);
-    printf("\nA palavra passe do agente e %s\n",agente_imobiliario[posicaoImprimir].palavra_passe);
-    printf("\nA role do agente e %d\n",agente_imobiliario[posicaoImprimir].role);
-    printf("\nA disponibilidade do agente e %d\n",agente_imobiliario[posicaoImprimir].disponibilidade);
-    printf("\nA data de nascimento do agente e %d-%d-%d, (dd-mm-aaaa)\n",agente_imobiliario[posicaoImprimir].dia_nascimento,agente_imobiliario[posicaoImprimir].mes_nascimento,agente_imobiliario[posicaoImprimir].ano_nascimento);
-    printf("-------------------------------------------------------------------------");
     return 0;
 }
 
