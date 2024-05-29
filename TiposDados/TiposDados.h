@@ -11,7 +11,10 @@ typedef struct agente{
     char morada [50];
     char telefone [10]; // 9 caracteres mais o \0
     int id_agente;
-    char data_nascimento [10]; // 9 caracteres mais o \0
+    //char data_nascimento [10]; // 9 caracteres mais o \0
+    int dia_nascimento;
+    int mes_nascimento;
+    int ano_nascimento;
     int role;
     char palavra_passe [21]; // 20 caracteres mais o \0
     int disponibilidade;
