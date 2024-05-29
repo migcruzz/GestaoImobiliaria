@@ -1,5 +1,5 @@
 # Ignorar a diretoria make-build-debug
-make-build-debug/
+cmake-build-debug/
 
 # Ignorar arquivos e diretórios DS_Store
 .DS_Store
