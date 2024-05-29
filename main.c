@@ -46,8 +46,34 @@ int main() {
     free(administrador);
     free(agente_imobiliario);
 
+    ///Menu
+
+    int opcao;
+
+        while (1) {
+            menu();
+            scanf("%d", &opcao);
+
+            switch (opcao) {
+                case 1:
+                    submenupropriedade();
+                    break;
+                case 2:
+                    submenuagentes();
+                    break;
+                case 3:
+                    sair();
+                    break;
+                default:
+                    printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+            }
+            printf("\n");
+        }
+
+
 
     //// FIM DO PROGRAMA
 
     return 0;
 }
+

@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Programa::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Programa-Debug-dfe51f9f217650e6d119.json",
+					"jsonFile" : "target-Programa-Debug-3db1dc6f3b675179fcac.json",
 					"name" : "Programa",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/miguelcruz/Desktop/ProjetoC/Programa/cmake-build-debug",
-		"source" : "/Users/miguelcruz/Desktop/ProjetoC/Programa"
+		"build" : "/Users/ruicarvalho/Desktop/EI/1\u00baano/2\u00basemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug",
+		"source" : "/Users/ruicarvalho/Desktop/EI/1\u00baano/2\u00basemestre/Prog1/TrabalhoFinal/GestaoImobiliaria"
 	},
 	"version" : 
 	{

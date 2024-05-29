@@ -1,4 +1,19 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -G Ninja -S /Users/miguelcruz/Desktop/ProjetoC/Programa -B /Users/miguelcruz/Desktop/ProjetoC/Programa/cmake-build-debug
--- Configuring done (0.0s)
+/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria -B /Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug
+CMake Deprecation Warning:
+  Support for "Extra Generators" like
+
+    CodeBlocks
+
+  is deprecated and will be removed from a future version of CMake.  IDEs may
+  use the cmake-file-api(7) to view CMake-generated project build trees.
+
+
+-- The C compiler identification is AppleClang 15.0.0.15000309
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Configuring done (1.2s)
 -- Generating done (0.0s)
--- Build files have been written to: /Users/miguelcruz/Desktop/ProjetoC/Programa/cmake-build-debug
+-- Build files have been written to: /Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Programa"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Programa">
+				<Option output="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/Programa" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/Makefile&quot;  VERBOSE=1 Programa"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Programa/fast">
+				<Option output="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/Programa" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/Makefile&quot;  VERBOSE=1 Programa/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/Funcoes/Administrador/adm.c">
+			<Option target="Programa"/>
+		</Unit>
+		<Unit filename="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/Funcoes/Administrador/adm.h">
+			<Option target="Programa"/>
+		</Unit>
+		<Unit filename="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/Funcoes/AgentesImobiliarios/agentes_imobiliarios.c">
+			<Option target="Programa"/>
+		</Unit>
+		<Unit filename="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/Funcoes/AgentesImobiliarios/agentes_imobiliarios.h">
+			<Option target="Programa"/>
+		</Unit>
+		<Unit filename="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/Funcoes/Clientes/clientes.c">
+			<Option target="Programa"/>
+		</Unit>
+		<Unit filename="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/Funcoes/Clientes/clientes.h">
+			<Option target="Programa"/>
+		</Unit>
+		<Unit filename="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/Funcoes/Login/login.c">
+			<Option target="Programa"/>
+		</Unit>
+		<Unit filename="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/Funcoes/Login/login.h">
+			<Option target="Programa"/>
+		</Unit>
+		<Unit filename="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/Funcoes/Menu/menu.c">
+			<Option target="Programa"/>
+		</Unit>
+		<Unit filename="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/Funcoes/Menu/menu.h">
+			<Option target="Programa"/>
+		</Unit>
+		<Unit filename="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/Funcoes/Propriedades/propriedades.c">
+			<Option target="Programa"/>
+		</Unit>
+		<Unit filename="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/Funcoes/Propriedades/propriedades.h">
+			<Option target="Programa"/>
+		</Unit>
+		<Unit filename="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/Funcoes/Visitas/visitas.c">
+			<Option target="Programa"/>
+		</Unit>
+		<Unit filename="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/Funcoes/Visitas/visitas.h">
+			<Option target="Programa"/>
+		</Unit>
+		<Unit filename="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/InteracaoUtilizador/interacao_utilizador.c">
+			<Option target="Programa"/>
+		</Unit>
+		<Unit filename="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/InteracaoUtilizador/interacao_utilizador.h">
+			<Option target="Programa"/>
+		</Unit>
+		<Unit filename="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/main.c">
+			<Option target="Programa"/>
+		</Unit>
+		<Unit filename="/Users/ruicarvalho/Desktop/EI/1ºano/2ºsemestre/Prog1/TrabalhoFinal/GestaoImobiliaria/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
