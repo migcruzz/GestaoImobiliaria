@@ -42,9 +42,10 @@ typedef struct admin{
 // Lista Ligada
 typedef struct propriedade{
     float preco;
-    int tipo;
+    int tipo_imovel;
     int popular;
     int id_propriedade;
+    int tipo_comercial;
 }PROPRIEDADE;
 
 // Lista Ligada

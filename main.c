@@ -48,27 +48,56 @@ int main() {
 
     ///Menu
 
-    int opcao;
+    int opcao, opcaoSub;
 
-        while (1) {
-            menu();
-            scanf("%d", &opcao);
 
-            switch (opcao) {
-                case 1:
-                    submenupropriedade();
-                    break;
-                case 2:
-                    submenuagentes();
-                    break;
-                case 3:
-                    sair();
-                    break;
-                default:
-                    printf("Opção inválida. Por favor, escolha uma opção válida.\n");
-            }
-            printf("\n");
+    while (1) {
+        menuAgente();
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                PROPRIEDADE novaPropriedade;
+
+                submenupropriedadeAgente();
+                scanf("%d", &opcao);
+
+                switch (opcao) {
+                    case 1:
+                     //Criar Propriedade
+
+                        printf("Digite os dados da nova propriedade:\n");
+                        printf("Endereço: ");
+                        scanf("%s", novaPro);
+
+
+
+
+
+
+                        break;
+                    case 2:
+                        // Código para a segunda opção do submenu
+                        printf("Opção 2 do submenu escolhida.\n");
+                        break;
+                    default:
+                        printf("Opção inválida no submenu. Por favor, escolha uma opção válida.\n");
+                        break;
+                }
+                break;
+            case 2:
+                submenuagentes();
+                break;
+            case 3:
+                sair();
+                return 0; // Sair do loop e terminar o programa
+            default:
+                printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+                break;
         }
+        printf("\n");
+    }
+
 
 
 

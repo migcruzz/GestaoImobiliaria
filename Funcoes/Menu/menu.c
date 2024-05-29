@@ -5,9 +5,8 @@
 
 
 
-void submenupropriedade() {
-    int opcao;
-    while (1) {
+
+void submenupropriedadeAgente() {
         printf("Gerir tipos de propriedades:\n");
         printf("1. Criar propriedade\n");
         printf("2. Editar propriedade\n");
@@ -15,27 +14,7 @@ void submenupropriedade() {
         printf("4. Listar propriedades\n");
         printf("5. Sair\n");
         printf("Escolha uma opção: ");
-        scanf("%d", &opcao);
-
-        switch (opcao) {
-            case 1:
-                printf(" escolheu a Sub-opção 1.1.\n");
-                break;
-            case 2:
-                printf(" escolheu a Sub-opção 1.2.\n");
-                break;
-            case 3:
-                printf(" escolheu a Sub-opção 1.3.\n");
-                break;
-
-            case 4:
-                printf(" escolheu a Sub-opção 1.4.\n");
-                break;
-            default:
-                printf("Opção inválida. Por favor, escolha uma opção válida.\n");
-        }
         printf("\n");
-    }
 }
 
 void submenuagentes() {
@@ -69,11 +48,18 @@ void sair() {
     exit(0);
 }
 
-void menu() {
+//Menu /agente imobiliario
+
+void menuAgente() {
     printf("Menu Principal:\n");
     printf("1. Gerir tipos de propriedades\n");
     printf("2. Gerir agentes\n");
-    printf("2. Gerir agentes\n");
+    printf("3. Listar agentes por ordem alfabética \n");
+    printf("4. Listar agentes por idade ascendente \n");
+    printf("5. Listar todas as visitas do dia por hora ascendente\n");
+    printf("6. Saber o historico de visitas de uma determinada propriedade\n");
+    printf("7. Simular a realização de uma visita\n");
+    printf("8. Simular a realização de uma visita\n");
     printf("3. Sair\n");
     printf("Escolha uma opção: ");
 }
