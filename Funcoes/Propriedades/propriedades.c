@@ -17,10 +17,10 @@ int procuraMaiorID(LISTA_PROPRIEDADE **iniLista){
         }
     }
 
-    if (maiorID == 0){
-        return 1;
-    }else{
+    if (maiorID != 0){
         return maiorID;
+    }else{
+        return 1;
     }
 
 }
