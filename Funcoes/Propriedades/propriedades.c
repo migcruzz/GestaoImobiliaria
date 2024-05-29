@@ -4,6 +4,7 @@
 #include "../../VariaveisGlobais/variaveis_globais.h"
 #include "../../TiposDados/TiposDados.h"
 
+//// fazer função para todos para procurar o maior ID !!!!
 int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista, PROPRIEDADE propriedade_nova){
 
     LISTA_PROPRIEDADE *novo = NULL;
