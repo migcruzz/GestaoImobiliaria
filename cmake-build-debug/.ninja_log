@@ -1,0 +1,11 @@
+# ninja log v5
+0	45	1716978900830031708	CMakeFiles/Programa.dir/Funcoes/Login/login.c.o	3bcf8bf8aa31ca31
+0	47	1716978900830989958	CMakeFiles/Programa.dir/Funcoes/Administrador/adm.c.o	f35f14c4ff837f1
+0	48	1716978900833026617	CMakeFiles/Programa.dir/main.c.o	2b648ddcad3a5c5a
+0	51	1716978900835962154	CMakeFiles/Programa.dir/Funcoes/Clientes/clientes.c.o	edf54e6a952fcc50
+1	51	1716978900836388427	CMakeFiles/Programa.dir/Funcoes/Propriedades/propriedades.c.o	2d4dc487f5a61c6
+0	52	1716978900837379216	CMakeFiles/Programa.dir/Funcoes/AgentesImobiliarios/agentes_imobiliarios.c.o	ea9acbaba91bbe4
+48	69	1716978900854153682	CMakeFiles/Programa.dir/InteracaoUtilizador/interacao_utilizador.c.o	4d62c6de5518c27f
+45	76	1716978900861435526	CMakeFiles/Programa.dir/Funcoes/Visitas/visitas.c.o	e2992b889f46b0b1
+47	78	1716978900863710926	CMakeFiles/Programa.dir/Funcoes/Menu/menu.c.o	d42d1eaab7001a94
+78	111	1716978900896304149	Programa	f83da3d1628abb2b
