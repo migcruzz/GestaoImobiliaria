@@ -30,7 +30,7 @@ int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista
 
     LISTA_PROPRIEDADE *novo = NULL;
 
-    propriedade_nova.id_propriedade = procuraMaiorID(iniLista);
+    propriedade_nova.id_propriedade = procuraMaiorID(iniLista) + 1 ;
 
     novo = (LISTA_PROPRIEDADE *) calloc(1,sizeof(LISTA_PROPRIEDADE));
 
