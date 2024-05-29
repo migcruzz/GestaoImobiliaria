@@ -109,44 +109,44 @@ int editar_propriedade(LISTA_PROPRIEDADE **iniLista, PROPRIEDADE editada){
     return 0;
 }
 
-int remover_propriedade(LISTA_PROPRIEDADE *iniLista,int propriedade_id){
-
-    LISTA_PROPRIEDADE *aux = NULL;
+int remover_propriedade(LISTA_PROPRIEDADE **iniLista, int propriedade_id) {
+    LISTA_PROPRIEDADE *aux = *iniLista;
     LISTA_PROPRIEDADE *NoSeguinte = NULL;
-    LISTA_PROPRIEDADE  *NoAnterior = NULL;
-    int contador =0;
+    LISTA_PROPRIEDADE *NoAnterior = NULL;
 
 
-    if(iniLista == NULL){
-        printf("Lista vazia\n");
-        return 0;
+    if (aux == NULL) {
+        printf("Lista vazia.\n");
+        return -1;
     }
 
-    for(aux = iniLista; aux != NULL; aux = aux->seguinte){
+    while (aux != NULL) {
+        if (aux->propriedade.id_propriedade == propriedade_id) {
 
-        if(aux ->propriedade.id_propriedade == propriedade_id){
-            contador ++;
+            NoSeguinte = aux->seguinte;
+            NoAnterior = aux->anterior;
 
-            NoSeguinte = aux -> seguinte;
-            NoAnterior = aux -> anterior;
+            if (NoAnterior != NULL) {
+                NoAnterior->seguinte = NoSeguinte;
+            } else {
+                *iniLista = NoSeguinte;
+            }
 
-            NoAnterior ->seguinte = aux -> seguinte;
-            NoSeguinte ->anterior = aux -> anterior;
+            if (NoSeguinte != NULL) {
+                NoSeguinte->anterior = NoAnterior;
+            }
 
             free(aux);
-
-            printf("\nPropriedade apagada !\n");
-            break;
+            printf("Propriedade removida.\n");
+            return 0;
         }
-
-        if(contador == 0){
-            printf("\nPropriedade nao encontrada !\n");
-            return -1;
-        }
+        aux = aux->seguinte;
     }
 
-    return 0;
+    printf("Propriedade com ID %d não encontrada.\n", propriedade_id);
+    return -1;
 }
+
 
 void limpar_memoria_lista_propriedades(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista){
 

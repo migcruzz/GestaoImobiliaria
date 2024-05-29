@@ -218,16 +218,28 @@ int main() {
                         break;
 
                     case 3:
-                        submenuagentes(); // Supondo que esta opção também redireciona para o submenu
-                        break;
+                        printf("Digite o ID da propriedade que deseja remover: ");
+                        scanf("%d", &id_propriedade);
+
+
+                        if (id_propriedade <= 0) {
+                            printf("ID da propriedade inválido. Por favor, insira um ID válido.\n");
+                        } else {
+                            // Chama a função para remover a propriedade apenas se o ID for válido
+                            if (remover_propriedade(&ini_lista_propriedade, id_propriedade) == 0) {
+                                printf("Propriedade removida com sucesso.\n");
+                            } else {
+                                printf("Erro ao remover propriedade.\n");
+                            }
+                        }
 
                     case 4:
                         imprime_todas_propriedades(ini_lista_propriedade);
                         break;
 
                     case 5:
-                        sair();
-                        return 0; // Sair do loop e terminar o programa
+                       break;
+
 
                     default:
                         printf("Opção inválida. Por favor, escolha uma opção válida.\n");
