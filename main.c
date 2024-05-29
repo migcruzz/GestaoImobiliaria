@@ -41,15 +41,10 @@ int main() {
         return -1;
     }
 
-    //// DEALOCAÇÃO DE MOMÓRIA DAS VARIÁVEIS
-
-    free(administrador);
-    free(agente_imobiliario);
-
     ///Menu
 
     int opcao, opcaoSub;
-
+    PROPRIEDADE novaPropriedade;
 
     while (1) {
         menuAgente();
@@ -57,8 +52,6 @@ int main() {
 
         switch (opcao) {
             case 1:
-                PROPRIEDADE novaPropriedade;
-
                 submenupropriedadeAgente();
                 scanf("%d", &opcao);
 
@@ -66,9 +59,14 @@ int main() {
                     case 1:
                      //Criar Propriedade
 
-                        printf("Digite os dados da nova propriedade:\n");
-                        printf("Endereço: ");
-                        scanf("%s", novaPro);
+                        printf("Dados da nova propriedade:\n");
+                        printf("Nome da propriedade: ");
+                        scanf("%s", novaPropriedade.nome);
+                        printf("Tipo de comercio: \n");
+                        printf("1. Vender");
+                        printf("2. Arrendar")
+                        scanf("%d", novaPropriedade.tipo_comercial);
+
 
 
 
@@ -102,7 +100,10 @@ int main() {
 
 
     //// FIM DO PROGRAMA
+    //// DEALOCAÇÃO DE MOMÓRIA DAS VARIÁVEIS
 
+    free(administrador);
+    free(agente_imobiliario);
     return 0;
 }
 

@@ -44,10 +44,10 @@ typedef struct propriedade{
     float preco;
     char morada [101]; // 100 para letras e 1 para 0 \0
     char nome [51]; // 50 para letras e 1 para 0 \0
-    int tipo_imovel;
+    char tipo_imovel[101];
     int popular;
     int id_propriedade;
-    int tipo_comercial;
+    char tipo_comercial[101];
 }PROPRIEDADE;
 
 // Lista Ligada
