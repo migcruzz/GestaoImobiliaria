@@ -6,56 +6,45 @@
 #include "../../TiposDados/TiposDados.h"
 
 
-int inserir_agente_imobiliario(ADMIN administrador[], AGENTE novo_agente, int posicaoInserir) {
+int inserir_administrador(ADMIN administrador[], ADMIN novo_administrador, int posicaoInserir) {
 
-    if(agente_imobiliario[posicaoInserir].id_agente != posicaoInserir + 1){agente_imobiliario[posicaoInserir].id_agente = posicaoInserir + 1;}
-    if (strcmp(agente_imobiliario[posicaoInserir].nome, novo_agente.nome) != 0){strcpy(agente_imobiliario[posicaoInserir].nome, novo_agente.nome);}
-    if (strcmp(agente_imobiliario[posicaoInserir].NIF, novo_agente.NIF) != 0){strcpy(agente_imobiliario[posicaoInserir].NIF, novo_agente.NIF);}
-    if (strcmp(agente_imobiliario[posicaoInserir].morada, novo_agente.morada) != 0){strcpy(agente_imobiliario[posicaoInserir].morada, novo_agente.morada);}
-    if (strcmp(agente_imobiliario[posicaoInserir].telefone, novo_agente.telefone) != 0){strcpy(agente_imobiliario[posicaoInserir].telefone, novo_agente.telefone);}
-    if (strcmp(agente_imobiliario[posicaoInserir].palavra_passe, novo_agente.palavra_passe) != 0){strcpy(agente_imobiliario[posicaoInserir].palavra_passe, novo_agente.palavra_passe);}
-    if (agente_imobiliario[posicaoInserir].dia_nascimento != novo_agente.dia_nascimento){agente_imobiliario[posicaoInserir].dia_nascimento = novo_agente.dia_nascimento;}
-    if (agente_imobiliario[posicaoInserir].mes_nascimento != novo_agente.mes_nascimento){agente_imobiliario[posicaoInserir].mes_nascimento = novo_agente.mes_nascimento;}
-    if (agente_imobiliario[posicaoInserir].ano_nascimento != novo_agente.ano_nascimento){agente_imobiliario[posicaoInserir].ano_nascimento = novo_agente.ano_nascimento;}
-    if (agente_imobiliario[posicaoInserir].role != novo_agente.role){agente_imobiliario[posicaoInserir].role = novo_agente.role;}
-    if (agente_imobiliario[posicaoInserir].disponibilidade != novo_agente.disponibilidade){agente_imobiliario[posicaoInserir].disponibilidade = novo_agente.disponibilidade;}
+    if(administrador[posicaoInserir].id_admin != posicaoInserir + 1){administrador[posicaoInserir].id_admin = posicaoInserir + 1;}
+    if (strcmp(administrador[posicaoInserir].nome, novo_administrador.nome) != 0){strcpy(administrador[posicaoInserir].nome, novo_administrador.nome);}
+    if (strcmp(administrador[posicaoInserir].NIF, novo_administrador.NIF) != 0){strcpy(administrador[posicaoInserir].NIF, novo_administrador.NIF);}
+    if (strcmp(administrador[posicaoInserir].palavra_passe, novo_administrador.palavra_passe) != 0){strcpy(administrador[posicaoInserir].palavra_passe, novo_administrador.palavra_passe);}
+    if (administrador[posicaoInserir].role != novo_administrador.role){administrador[posicaoInserir].role = novo_administrador.role;}
     return 0;
 }
 
-int imprimir_agente_imobiliario(AGENTE agente_imobiliario[], int posicaoImprimir) {
+int imprimir_administrador(ADMIN administrador[], int posicaoImprimir) {
 
     if(posicaoImprimir != 0){
         printf("-------------------------------------------------------------------------");
         printf("-------------------------------------------------------------------------");
-        printf("\n O agente com o nome %s tem os seguintes dados:\n",agente_imobiliario[posicaoImprimir].nome);
+        printf("\n O administrador com o nome %s tem os seguintes dados:\n",administrador[posicaoImprimir].nome);
         printf("-------------------------------------------------------------------------");
-        printf("\nO ID do agente e %d\n",agente_imobiliario[posicaoImprimir].id_agente);
-        printf("\nO NIF do agente e %s\n",agente_imobiliario[posicaoImprimir].NIF);
-        printf("\nA morada do agente e %s\n",agente_imobiliario[posicaoImprimir].morada);
-        printf("\nO telefone do agente e %s\n",agente_imobiliario[posicaoImprimir].telefone);
-        printf("\nA palavra passe do agente e %s\n",agente_imobiliario[posicaoImprimir].palavra_passe);
-        printf("\nA role do agente e %d\n",agente_imobiliario[posicaoImprimir].role);
-        printf("\nA disponibilidade do agente e %d\n",agente_imobiliario[posicaoImprimir].disponibilidade);
-        printf("\nA data de nascimento do agente e %d-%d-%d, (dd-mm-aaaa)\n",agente_imobiliario[posicaoImprimir].dia_nascimento,agente_imobiliario[posicaoImprimir].mes_nascimento,agente_imobiliario[posicaoImprimir].ano_nascimento);
+        printf("\nO NIF do administrador e %s\n",administrador[posicaoImprimir].NIF);
+        printf("\nA palavra passe do administrador e %s\n",administrador[posicaoImprimir].palavra_passe);
+        printf("\nA role do agente e %d\n",administrador[posicaoImprimir].role);
         printf("-------------------------------------------------------------------------");
     }
 
     return 0;
 }
 
-int criar_agente_imobiliario(AGENTE agente_imobiliario[], AGENTE novo_agente) {
+int criar_administrador(ADMIN administrador[], ADMIN novo_administrador) {
 
     int novaPosicao = -1;
 
     for (int i = 0; i < MAX_AGENTES_IMOBILIARIOS; i++) {
-        if (agente_imobiliario[i].id_agente == 0) {
+        if (administrador[i].id_admin == 0) {
             novaPosicao = i;
             break;
         }
     }
 
     if (novaPosicao != -1) {
-        inserir_agente_imobiliario(agente_imobiliario, novo_agente, novaPosicao);
+        inserir_administrador(administrador, novo_administrador, novaPosicao);
         return 0;
     }else{
         printf("\nNão tem lugares disponiveis !\n");
@@ -66,14 +55,14 @@ int criar_agente_imobiliario(AGENTE agente_imobiliario[], AGENTE novo_agente) {
 
 // Para esta função apenas e editado a disponibilidade os restantes dados não serao inseridos por causa da outra função ter verificações que não o permitem (no caso de )
 
-int editar_agente_imobiliario(AGENTE agente_imobiliario[], AGENTE agente_editado,int id_procura){
+int editar_administrador(ADMIN administrador[], ADMIN administrador_editado,int id_procura){
 
     int id_encontrado =0;
 
     for(int i =0; i < MAX_AGENTES_IMOBILIARIOS; i++){
 
-        if(agente_imobiliario[i].id_agente == id_procura){
-            id_encontrado = agente_imobiliario[i].id_agente;
+        if(administrador[i].id_admin == id_procura){
+            id_encontrado = administrador[i].id_admin;
         }
     }
 
@@ -81,36 +70,29 @@ int editar_agente_imobiliario(AGENTE agente_imobiliario[], AGENTE agente_editado
         printf("\nNao existe o agente que pretende editar !!!\n");
         return -1;
     } else{
-        inserir_agente_imobiliario(agente_imobiliario, agente_editado, id_encontrado);
+        inserir_administrador(administrador, administrador_editado, id_encontrado);
         return 0;
     }
 
 }
 
 // Aqui apenas vai inserir valores vazios (Zero no ID) ou NULL:
-int remover_agente_imobiliario(AGENTE agente_imobiliario[],int id_procura){
+int remover_administrador(ADMIN administrador[],int id_procura){
 
     int id_encontrado =0;
 
-    AGENTE agente_eliminar;
+    ADMIN admin_eliminar;
 
-    agente_eliminar.id_agente = 0;
-    strcpy(agente_eliminar.nome,"");
-    strcpy(agente_eliminar.NIF, "");
-    strcpy(agente_eliminar.morada, "");
-    strcpy(agente_eliminar.telefone, "");
-    strcpy(agente_eliminar.palavra_passe, "");
-    agente_eliminar.dia_nascimento =0;
-    agente_eliminar.mes_nascimento =0;
-    agente_eliminar.ano_nascimento =0;
-    agente_eliminar.role = 0;
-    agente_eliminar.disponibilidade = 0;
+    strcpy(admin_eliminar.nome,"");
+    strcpy(admin_eliminar.NIF, "");
+    strcpy(admin_eliminar.palavra_passe, "");
+    admin_eliminar.role = 0;
 
 
     for(int i =0; i < MAX_AGENTES_IMOBILIARIOS; i++){
 
-        if(agente_imobiliario[i].id_agente == id_procura){
-            id_encontrado = agente_imobiliario[i].id_agente;
+        if(administrador[i].id_admin == id_procura){
+            id_encontrado = administrador[i].id_admin;
         }
     }
 
@@ -118,9 +100,40 @@ int remover_agente_imobiliario(AGENTE agente_imobiliario[],int id_procura){
         printf("\nNao existe o agente que pretende editar !!!\n");
         return -1;
     } else{
-        inserir_agente_imobiliario(agente_imobiliario, agente_eliminar, id_encontrado);
+        inserir_administrador(administrador, admin_eliminar, id_encontrado);
         return 0;
     }
+}
+
+int carregar_do_ficheiro(ADMIN administrador[]){
+
+    ADMIN administrador_lido;
+    FILE *ficheiro_administrador = fopen("../../Armazenamento/Texto/Admins.txt", "r");
+    if (ficheiro_administrador == NULL) {
+        printf("\nErro a abrir o ficheiro de administradores !!!!\n");
+        return -1;
+    }
+
+    while (fscanf(ficheiro_administrador, "%29s %9s %d %d %20s",
+                  administrador_lido.nome,
+                  administrador_lido.NIF,
+                  &administrador_lido.role,
+                  &administrador_lido.id_admin,
+                  administrador_lido.palavra_passe) == 5) {
+        inserir_administrador(administrador, administrador_lido,administrador_lido.id_admin -1);
+    }
+
+    fclose(ficheiro_administrador);
+
+    /*
+    char nome [30];
+    char NIF [10]; // 9 caracteres mais o \0
+    int role;
+    int id_admin;
+    char palavra_passe [21]; // 20 caracteres mais o \0
+*/
+
+    return 0;
 }
 
 
