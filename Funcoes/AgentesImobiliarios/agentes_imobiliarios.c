@@ -23,7 +23,6 @@ int inserir_agente_imobiliario(AGENTE agente_imobiliario[], AGENTE novo_agente, 
     return 0;
 }
 
-
 int imprimir_agente_imobiliario(AGENTE agente_imobiliario[], int posicaoImprimir) {
 
     if(posicaoImprimir != 0){
@@ -44,7 +43,6 @@ int imprimir_agente_imobiliario(AGENTE agente_imobiliario[], int posicaoImprimir
 
     return 0;
 }
-
 
 int criar_agente_imobiliario(AGENTE agente_imobiliario[], AGENTE novo_agente) {
 
@@ -228,8 +226,6 @@ int listar_agente_imobiliario_idade(AGENTE agente_imobiliario[]){
 }
 
 // True = 1; False = 0;
-
-
 
 int gerador_relatorios_agentes(){
 
