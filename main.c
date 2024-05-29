@@ -45,6 +45,8 @@ int main() {
 
     int opcao, opcaoSub;
     PROPRIEDADE novaPropriedade;
+    //Escolher opcoes do tipo_comercial
+    int tipo_comercial;
 
     while (1) {
         menuAgente();
@@ -63,13 +65,18 @@ int main() {
                         printf("Nome da propriedade: ");
                         scanf("%s", novaPropriedade.nome);
                         printf("Tipo de comercio: \n");
-                        printf("1. Vender");
-                        printf("2. Arrendar")
-                        scanf("%d", novaPropriedade.tipo_comercial);
+                        printf("1. Vender\n");
+                        printf("2. Arrendar\n");
+                        scanf("%d", &tipo_comercial);
 
-
-
-
+                        if (tipo_comercial == 1) {
+                            strcpy(novaPropriedade.tipo_comercial, "Vender");
+                        } else if (tipo_comercial == 2) {
+                            strcpy(novaPropriedade.tipo_comercial, "Arrendar");
+                        } else {
+                            printf("Opção inválida. Tipo de comércio não definido.\n");
+                            break; // Sair do loop do submenu se a opção for inválida
+                        }
 
 
 
