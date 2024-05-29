@@ -9,5 +9,5 @@
 
 int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista, PROPRIEDADE propriedade_nova);
 
-
+void imprime_todas_propriedades (LISTA_PROPRIEDADE *iniLista);
 #endif //PROGRAMA_PROPRIEDADES_H

@@ -48,18 +48,18 @@ void imprime_todas_propriedades (LISTA_PROPRIEDADE *iniLista) {
     for (aux = iniLista; aux != NULL; aux = aux->seguinte) {
         contador ++;
 
-        printf("-------------------------------");
+        printf("\n-------------------------------\n");
 
         if(aux->propriedade.popular == 0){
-            printf("Propriedade popular ?: %s\n",falso );
+            printf("\nPropriedade popular?: %s\n", "falso" );
         }else{
-            printf("Propriedade popular ?: %s\n",verdade );
+            printf("\nPropriedade popular?: %s\n", "verdade" );
         }
 
-        printf("Preço da propriedade: %.2f\n",aux->propriedade.preco);
-        printf("Tipo da propriedade: %s\n",aux -> propriedade.tipo_comercial);
-        printf("Tipo da propriedade: %s\n",aux -> propriedade.tipo_imovel);
-        printf("ID da propriedade: %d\n", aux -> propriedade.id_propriedade);
+        printf("\nPreço da propriedade: %.2f\n",aux->propriedade.preco);
+        printf("\nTipo Comercial: %s\n",aux -> propriedade.tipo_comercial);
+        printf("\nTipo do Imovel: %s\n",aux -> propriedade.tipo_imovel);
+        printf("\nID da propriedade: %d\n", aux -> propriedade.id_propriedade);
 
         printf("-------------------------------");
     }
