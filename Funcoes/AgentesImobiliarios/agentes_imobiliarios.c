@@ -9,17 +9,17 @@
 
 int inserir_agente_imobiliario(AGENTE agente_imobiliario[], AGENTE novo_agente, int posicaoInserir) {
 
-    agente_imobiliario[posicaoInserir].id_agente = posicaoInserir + 1;
-    strcpy(agente_imobiliario[posicaoInserir].nome, novo_agente.nome);
-    strcpy(agente_imobiliario[posicaoInserir].NIF, novo_agente.NIF);
-    strcpy(agente_imobiliario[posicaoInserir].morada, novo_agente.morada);
-    strcpy(agente_imobiliario[posicaoInserir].telefone, novo_agente.telefone);
-    strcpy(agente_imobiliario[posicaoInserir].palavra_passe, novo_agente.palavra_passe);
-    agente_imobiliario[posicaoInserir].dia_nascimento = novo_agente.dia_nascimento;
-    agente_imobiliario[posicaoInserir].mes_nascimento = novo_agente.mes_nascimento;
-    agente_imobiliario[posicaoInserir].ano_nascimento = novo_agente.ano_nascimento;
-    agente_imobiliario[posicaoInserir].role = novo_agente.role;
-    agente_imobiliario[posicaoInserir].disponibilidade = novo_agente.disponibilidade;
+    if(agente_imobiliario[posicaoInserir].id_agente != posicaoInserir + 1){agente_imobiliario[posicaoInserir].id_agente = posicaoInserir + 1;}
+    if (strcmp(agente_imobiliario[posicaoInserir].nome, novo_agente.nome) != 0){strcpy(agente_imobiliario[posicaoInserir].nome, novo_agente.nome);}
+    if (strcmp(agente_imobiliario[posicaoInserir].NIF, novo_agente.NIF) != 0){strcpy(agente_imobiliario[posicaoInserir].NIF, novo_agente.NIF);}
+    if (strcmp(agente_imobiliario[posicaoInserir].morada, novo_agente.morada) != 0){strcpy(agente_imobiliario[posicaoInserir].morada, novo_agente.morada);}
+    if (strcmp(agente_imobiliario[posicaoInserir].telefone, novo_agente.telefone) != 0){strcpy(agente_imobiliario[posicaoInserir].telefone, novo_agente.telefone);}
+    if (strcmp(agente_imobiliario[posicaoInserir].palavra_passe, novo_agente.palavra_passe) != 0){strcpy(agente_imobiliario[posicaoInserir].palavra_passe, novo_agente.palavra_passe);}
+    if (agente_imobiliario[posicaoInserir].dia_nascimento != novo_agente.dia_nascimento){agente_imobiliario[posicaoInserir].dia_nascimento = novo_agente.dia_nascimento;}
+    if (agente_imobiliario[posicaoInserir].mes_nascimento != novo_agente.mes_nascimento){agente_imobiliario[posicaoInserir].mes_nascimento = novo_agente.mes_nascimento;}
+    if (agente_imobiliario[posicaoInserir].ano_nascimento != novo_agente.ano_nascimento){agente_imobiliario[posicaoInserir].ano_nascimento = novo_agente.ano_nascimento;}
+    if (agente_imobiliario[posicaoInserir].role != novo_agente.role){agente_imobiliario[posicaoInserir].role = novo_agente.role;}
+    if (agente_imobiliario[posicaoInserir].disponibilidade != novo_agente.disponibilidade){agente_imobiliario[posicaoInserir].disponibilidade = novo_agente.disponibilidade;}
     return 0;
 }
 
@@ -65,6 +65,7 @@ int criar_agente_imobiliario(AGENTE agente_imobiliario[], AGENTE novo_agente) {
 
 }
 
+// Para esta função apenas e editado a disponibilidade os restantes dados não serao inseridos por causa da outra função ter verificações que não o permitem (no caso de )
 
 int editar_agente_imobiliario(AGENTE agente_imobiliario[], AGENTE agente_editado,int id_procura){
 
@@ -226,10 +227,7 @@ int listar_agente_imobiliario_idade(AGENTE agente_imobiliario[]){
 
 // True = 1; False = 0;
 
-int mudar_estado_agente_imobiliario(){
 
-    return 0;
-}
 
 int gerador_relatorios_agentes(){
 
