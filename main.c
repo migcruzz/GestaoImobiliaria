@@ -618,7 +618,7 @@ int main() {
 
                             // Chama a função para editar a propriedade
                             if (editar_agente_imobiliario(agente_imobiliario, novoAgente, id_agente) == 0) {
-                                printf("Propriedade editada com sucesso.\n");
+                                printf("Agente editada com sucesso.\n");
                             } else {
                                 printf("Erro ao editar propriedade.\n");
                             }
