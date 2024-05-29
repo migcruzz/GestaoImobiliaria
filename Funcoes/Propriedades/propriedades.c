@@ -18,7 +18,7 @@ int procuraMaiorID(LISTA_PROPRIEDADE **iniLista){
     }
 
     if (maiorID != 0){
-        return maiorID;
+        return maiorID +1 ;
     }else{
         return 1;
     }
@@ -30,7 +30,7 @@ int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista
 
     LISTA_PROPRIEDADE *novo = NULL;
 
-    propriedade_nova.id_propriedade = procuraMaiorID(iniLista) + 1 ;
+    propriedade_nova.id_propriedade = procuraMaiorID(iniLista);
 
     novo = (LISTA_PROPRIEDADE *) calloc(1,sizeof(LISTA_PROPRIEDADE));
 
