@@ -56,6 +56,7 @@ int main() {
     AGENTE agente_logado;
     //Escolher opcoes do tipo_comercial
     int tipo_comercial;
+    int tipo_disponibilidade;
     int tipo_imovel;
     int popularidade;
     int id_propriedade;
@@ -615,6 +616,21 @@ int main() {
                             fflush(stdin);
                             scanf("%d",&novoAgente.ano_nascimento);
                             novoAgente.id_agente = id_agente;
+
+                            printf("Disponibilidade:\n");
+                            printf("1. Disponivel\n");
+                            printf("2. Indisponivel\n");
+                            scanf("%d", &tipo_disponibilidade);
+
+                            if (tipo_disponibilidade == 1) {
+                                novoAgente.disponibilidade = 1;
+                            } else if (tipo_disponibilidade == 2) {
+                                novoAgente.disponibilidade = 0;
+                            } else {
+                                printf("Opção invalida. Por favor, escolha 1 para 'Disponivel' ou 2 para 'Nao Disponivel'.\n");
+                                break;
+                            }
+
 
                             // Chama a função para editar a propriedade
                             if (editar_agente_imobiliario(agente_imobiliario, novoAgente, id_agente) == 0) {
