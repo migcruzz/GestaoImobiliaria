@@ -11,6 +11,8 @@
 #include "Funcoes/Menu/menu.h"
 #include "VariaveisGlobais/variaveis_globais.h"
 
+
+
 int main() {
     //// INICIO DO PROGRAMA
 
@@ -41,15 +43,49 @@ int main() {
 
     ///Menu
 
-    int opcao, opcaoSub;
+    int opcao, opcaoSub, opcaoSubAgente;
     PROPRIEDADE novaPropriedade;
+    AGENTE novoAgente;
+    AGENTE agente_logado;
     //Escolher opcoes do tipo_comercial
     int tipo_comercial;
     int tipo_imovel;
     int popularidade;
     int id_propriedade;
 
-    while (1) {
+
+
+    char username[30];
+    char password[21];
+    int role;
+    int login_resultado;
+
+    printf("Bem-vindo! Por favor, insira suas credenciais:\n");
+    printf("Nome de usuário: ");
+    scanf("%s", username);
+
+    printf("Senha: ");
+    scanf("%s", password);
+
+    printf("Função (1 para cliente, 2 para agente, 3 para admin): ");
+    scanf("%d", &role);
+
+    login_resultado = login(administrador, agente_imobiliario, ini_lista_cliente, username, password, role);
+
+    if (login_resultado == 0) {
+        printf("Login successful. Role: %d\n", role);
+    } else {
+        printf("O Login falhou.\n");
+        free(administrador);
+        free(agente_imobiliario);
+        return -1;
+    }
+
+    if(role==1){
+        printf("Escolha se pretende registar ou entrar");
+
+    }else if(role == 2){
+        while (1) {
         menuAgente();
         scanf("%d", &opcao);
 
@@ -238,16 +274,76 @@ int main() {
                         break;
 
                     case 5:
-                       break;
+                        break;
 
 
                     default:
                         printf("Opção inválida. Por favor, escolha uma opção válida.\n");
                         break;
                 }
+                break;
+            case 2:
+                submenuagentes();
+                scanf("%d", &opcaoSubAgente);
+                switch (opcaoSubAgente) {
+                    case 1:
+
+                        printf("Nome: ");
+                        fflush(stdin);
+                        fgets(novoAgente.nome,30,stdin);
+
+                        printf("NIF: ");
+                        fflush(stdin);
+                        fgets(novoAgente.NIF,9,stdin);
+
+                        printf("Morada: ");
+                        fflush(stdin);
+                        fgets(novoAgente.morada,50,stdin);
+
+                        printf("Telefone: ");
+                        fflush(stdin);
+                        fgets(novoAgente.telefone,9,stdin);
+
+                        printf("Dia de Nascimento: ");
+                        scanf("%d",&novoAgente.dia_nascimento);
+                        printf("Mes de Nascimento: ");
+                        scanf("%d",&novoAgente.mes_nascimento);
+                        printf("Ano de Nascimento: ");
+                        scanf("%d",&novoAgente.ano_nascimento);
+
+                        novoAgente.role=2;
+
+                        printf("");
+
+                        if (editar_agente_imobiliario(&ini_lista_propriedade, novaPropriedade) == 0) {
+                            printf("Propriedade criada com sucesso.\n");
+                        } else {
+                            printf("Erro ao criar propriedade.\n");
+                        }
+
+
+
+                        break;
+                    case 2:
+                        printf("Você escolheu a Sub-opção 2.2.\n");
+                        break;
+                    case 3:
+
+                    default:
+                        printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+                }
+
+
+
         }
         printf("\n");
     }
+    }else if(role ==3){
+
+    }
+
+
+
 
     //// FIM DO PROGRAMA
     //// DEALOCAÇÃO DE MEMÓRIA DAS VARIÁVEIS

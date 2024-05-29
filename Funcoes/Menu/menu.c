@@ -19,29 +19,15 @@ void submenupropriedadeAgente() {
 
 void submenuagentes() {
     int opcao;
-    while (1) {
-        printf("Submenu 2:\n");
-        printf("1. Criar agentes\n");
-        printf("2. Sub-opção 2.2\n");
-        printf("3. Voltar ao Menu Principal\n");
-        printf("Escolha uma opção: ");
-        scanf("%d", &opcao);
 
-        switch (opcao) {
-            case 1:
-                printf("Você escolheu a Sub-opção 2.1.\n");
-                break;
-            case 2:
-                printf("Você escolheu a Sub-opção 2.2.\n");
-                break;
-            case 3:
-                return;
-            default:
-                printf("Opção inválida. Por favor, escolha uma opção válida.\n");
-        }
+        printf("Gerir Agentes:\n");
+        printf("1. Criar agentes\n");
+        printf("2. Editar agentes\n");
+        printf("3. Remover agentes\n");
+        printf("Escolha uma opção: ");
         printf("\n");
     }
-}
+
 
 void sair() {
     printf("Saindo do programa.\n");

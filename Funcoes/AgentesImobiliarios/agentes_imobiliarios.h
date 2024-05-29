@@ -6,5 +6,6 @@
 
 #ifndef PROGRAMA_AGENTESIMOBILIARIOS_H
 #define PROGRAMA_AGENTESIMOBILIARIOS_H
-
+int inserir_agente_imobiliario(AGENTE agente_imobiliario[], AGENTE novo_agente, int posicaoInserir);
+int editar_agente_imobiliario(AGENTE agente_imobiliario[], AGENTE agente_editado,int id_procura);
 #endif //PROGRAMA_AGENTESIMOBILIARIOS_H
