@@ -41,6 +41,13 @@ int main() {
         return -1;
     }
 
+    //// POPULAR DADOS
+
+    carregar_do_ficheiro(administrador);
+
+
+    //// FIM POPULAR DADOS
+
     ///Menu
 
     int opcao, opcaoSub, opcaoSubAgente;

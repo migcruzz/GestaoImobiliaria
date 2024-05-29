@@ -108,19 +108,20 @@ int remover_administrador(ADMIN administrador[],int id_procura){
 int carregar_do_ficheiro(ADMIN administrador[]){
 
     ADMIN administrador_lido;
-    FILE *ficheiro_administrador = fopen("../../Armazenamento/Texto/Admins.txt", "r");
+    FILE *ficheiro_administrador = fopen("../Armazenamento/Texto/Admins.txt", "r");
     if (ficheiro_administrador == NULL) {
         printf("\nErro a abrir o ficheiro de administradores !!!!\n");
         return -1;
     }
 
-    while (fscanf(ficheiro_administrador, "%29s %9s %d %d %20s",
+    while (fscanf(ficheiro_administrador, "%29[^;];%9[^;];%d;%d;%20[^;]",
                   administrador_lido.nome,
                   administrador_lido.NIF,
                   &administrador_lido.role,
                   &administrador_lido.id_admin,
                   administrador_lido.palavra_passe) == 5) {
         inserir_administrador(administrador, administrador_lido,administrador_lido.id_admin -1);
+        imprimir_administrador(administrador,administrador_lido.id_admin -1);
     }
 
     fclose(ficheiro_administrador);

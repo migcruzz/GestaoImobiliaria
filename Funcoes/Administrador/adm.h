@@ -7,7 +7,7 @@
 #ifndef PROGRAMA_ADM_H
 #define PROGRAMA_ADM_H
 
-
+ void carregar_do_ficheiro(ADMIN administrador[]);
 
 
 
