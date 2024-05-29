@@ -606,10 +606,13 @@ int main() {
                             fgets(novoAgente.telefone,9,stdin);
 
                             printf("Dia de Nascimento: ");
+                            fflush(stdin);
                             scanf("%d",&novoAgente.dia_nascimento);
                             printf("Mes de Nascimento: ");
+                            fflush(stdin);
                             scanf("%d",&novoAgente.mes_nascimento);
                             printf("Ano de Nascimento: ");
+                            fflush(stdin);
                             scanf("%d",&novoAgente.ano_nascimento);
                             novoAgente.id_agente = id_agente;
 
@@ -643,6 +646,15 @@ int main() {
                         default:
                             break;
                     }
+                    break;
+
+                case 3:
+                    listar_agente_imobiliario_alfabeto(agente_imobiliario);
+                    break;
+
+                case 4:
+                    listar_agente_imobiliario_idade(agente_imobiliario);
+                    break;
 
 
 
