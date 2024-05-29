@@ -8,6 +8,6 @@
 #define PROGRAMA_PROPRIEDADES_H
 
 int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista, PROPRIEDADE propriedade_nova);
-
+int editar_propriedade(LISTA_PROPRIEDADE **iniLista, PROPRIEDADE editada);
 void imprime_todas_propriedades (LISTA_PROPRIEDADE *iniLista);
 #endif //PROGRAMA_PROPRIEDADES_H

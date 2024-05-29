@@ -47,6 +47,7 @@ int main() {
     int tipo_comercial;
     int tipo_imovel;
     int popularidade;
+    int id_propriedade;
 
     while (1) {
         menuAgente();
@@ -60,8 +61,8 @@ int main() {
                     case 1:
                         printf("Dados da nova propriedade:\n");
                         printf("Nome da propriedade: ");
-                        scanf("%s", novaPropriedade.nome);
-
+                        fflush(stdin);
+                        fgets( novaPropriedade.nome,50,stdin);
                         printf("Tipo de comércio:\n");
                         printf("1. Vender\n");
                         printf("2. Arrendar\n");
@@ -135,7 +136,85 @@ int main() {
 
 
                     case 2:
-                        submenuagentes();
+                        // Código para editar uma propriedade
+                        printf("Digite o ID da propriedade que deseja editar: ");
+                        scanf("%d", &id_propriedade);
+
+                        // Solicita ao usuário os novos dados para a propriedade
+                        printf("Digite os novos dados da propriedade:\n");
+                        printf("Nome da propriedade: ");
+                        fflush(stdin);
+                        fgets( novaPropriedade.nome,50,stdin);
+
+                        printf("Tipo de comércio:\n");
+                        printf("1. Vender\n");
+                        printf("2. Arrendar\n");
+                        printf("Escolha uma opção: ");
+                        scanf("%d", &tipo_comercial);
+
+                        if (tipo_comercial == 1) {
+                            strcpy(novaPropriedade.tipo_comercial, "Vender");
+                        } else if (tipo_comercial == 2) {
+                            strcpy(novaPropriedade.tipo_comercial, "Arrendar");
+                        } else {
+                            printf("Opção inválida. Tipo de comércio não definido.\n");
+                            break;
+                        }
+
+                        printf("Preco: ");
+                        scanf("%f", &novaPropriedade.preco);
+
+                        printf("Tipo de imovel:\n");
+                        printf("1. Casa\n");
+                        printf("2. Escritorio\n");
+                        printf("3. Apartamento\n");
+                        printf("4. Garagem\n");
+                        printf("5. Armazem\n");
+                        printf("Escolha uma opção: ");
+                        scanf("%d", &tipo_imovel);
+
+                        switch (tipo_imovel) {
+                            case 1:
+                                strcpy(novaPropriedade.tipo_imovel, "Casa");
+                                break;
+                            case 2:
+                                strcpy(novaPropriedade.tipo_imovel, "Escritorio");
+                                break;
+                            case 3:
+                                strcpy(novaPropriedade.tipo_imovel, "Apartamento");
+                                break;
+                            case 4:
+                                strcpy(novaPropriedade.tipo_imovel, "Garagem");
+                                break;
+                            case 5:
+                                strcpy(novaPropriedade.tipo_imovel, "Armazem");
+                                break;
+                            default:
+                                printf("Opção inválida. Tipo de imóvel não definido.\n");
+                                break;
+                        }
+
+                        printf("Popularidade:\n");
+                        printf("1. Popular\n");
+                        printf("2. Nao Popular\n");
+                        scanf("%d", &popularidade);
+
+                        if (popularidade == 1) {
+                            novaPropriedade.popular = 1;
+                        } else if (popularidade == 2) {
+                            novaPropriedade.popular = 0;
+                        } else {
+                            printf("Opção inválida. Por favor, escolha 1 para 'Popular' ou 2 para 'Não Popular'.\n");
+                            break;
+                        }
+                        novaPropriedade.id_propriedade = id_propriedade;
+
+                        // Chama a função para editar a propriedade
+                        if (editar_propriedade(&ini_lista_propriedade, novaPropriedade) == 0) {
+                            printf("Propriedade editada com sucesso.\n");
+                        } else {
+                            printf("Erro ao editar propriedade.\n");
+                        }
                         break;
 
                     case 3:
