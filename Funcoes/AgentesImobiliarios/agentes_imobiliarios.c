@@ -308,14 +308,14 @@ int carregar_do_ficheiro_agente_imobiliario(AGENTE agente_imobiliario[]) {
 int inserir_no_ficheiro_agente_imobiliario(AGENTE agente_imobiliario[]) {
     FILE *ficheiro_agente_imobiliario = fopen("../Armazenamento/Texto/Agentes_Imobiliarios.txt", "w");
     int contador = 0;
-    int total_adicionado;
-
+    int total_adicionado = 0;  // Inicialização correta da variável
 
     if (ficheiro_agente_imobiliario == NULL) {
-        printf("\nErro a abrir o ficheiro dos Agentes !!!!\n");
+        printf("\nErro ao abrir o ficheiro dos Agentes !!!!\n");
         return -1;
     }
 
+    printf("Iniciando a escrita no arquivo...\n");
 
     while (contador < MAX_AGENTES_IMOBILIARIOS && total_adicionado < MAX_AGENTES_IMOBILIARIOS) {
         if (agente_imobiliario[contador].id_agente > 0 &&
@@ -337,6 +337,8 @@ int inserir_no_ficheiro_agente_imobiliario(AGENTE agente_imobiliario[]) {
             fprintf(ficheiro_agente_imobiliario, "%d;", agente_imobiliario[contador].role);
             fprintf(ficheiro_agente_imobiliario, "%d\n", agente_imobiliario[contador].disponibilidade);
 
+            printf("Agente inserido na posição %d: %s\n", contador, agente_imobiliario[contador].nome);
+
             total_adicionado++;  // Incrementa o total de agentes adicionados
         } else {
             printf("\nErro: Algum dos campos do agente na posição %d está vazio ou contém um valor inválido. Não foi possível adicionar ao arquivo.\n", contador);
@@ -345,6 +347,8 @@ int inserir_no_ficheiro_agente_imobiliario(AGENTE agente_imobiliario[]) {
     }
 
     fclose(ficheiro_agente_imobiliario);
+
+    printf("Total de agentes adicionados: %d\n", total_adicionado);
 
     return 0;
 }

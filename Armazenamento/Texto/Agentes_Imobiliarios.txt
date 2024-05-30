@@ -1,0 +1,34 @@
+rui
+;caralho
+;1312
+;dasd
+;´3213
+;1;20;4;2003;0;1
+
+João Oliveira;pass9876;123456789;Rua das Flores, 23;923456789;2;15;6;1982;2;1
+
+Ana Pereira;abc123456;456789123;Rua Central, 45;934567890;3;22;9;1990;1;0
+
+Pedro Costa;mypassword;789123456;Av. Paulista, 56;945678901;4;30;12;1978;2;1
+
+Luísa Almeida;securepass;321654987;Rua Nova, 67;956789012;5;14;7;1985;1;0
+
+Carlos Santos;admin2023;654321789;Av. Independência, 89;967890123;6;5;4;1968;2;1
+
+Helena Marques;liberty123;987321654;Rua da Liberdade, 100;978901234;7;21;1;1995;1;1
+
+Ricardo Lima;keypass98;213546879;Av. dos Estados, 120;989012345;8;8;11;1972;2;0
+
+Isabel Nunes;open789pass;546879213;Rua Nova, 150;990123456;9;19;8;1988;1;1
+
+Jorge Rocha;closedsesame;879213546;Rua Verde, 180;901234567;10;11;5;1969;2;0
+
+Paula Mendes;bluesky789;321987654;Av. Azul, 200;912345670;11;25;10;1981;1;1
+
+Fernando Silva;yellow123;654789321;Rua Amarela, 230;923456781;12;17;6;1973;2;1
+
+Andreia Costa;purplepass;987654213;Rua Roxa, 250;934567892;13;9;3;1992;1;0
+
+Bruno Santos;orange456;123456987;Av. Laranja, 270;945678903;14;29;12;1987;2;1
+
+Catarina Alves;pinkpass123;789123654;Rua Rosa, 300;956789014;15;12;2;1991;1;0
