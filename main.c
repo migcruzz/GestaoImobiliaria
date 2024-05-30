@@ -680,6 +680,8 @@ int main() {
                                 break;
                             }
 
+                            novoAgente.role=2;
+
                             // Chama a função para editar a propriedade
                             if (editar_agente_imobiliario(agente_imobiliario, novoAgente, id_agente) == 0) {
                                 printf("Agente editado com sucesso.\n");
