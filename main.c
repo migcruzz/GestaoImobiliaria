@@ -42,33 +42,46 @@ int main() {
     }
 
     //// POPULAR DADOS
-
     carregar_do_ficheiro(administrador);
-
-
     //// FIM POPULAR DADOS
 
-    ///Menu
 
+
+    ///utilizadores logados
+    AGENTE agente_logado;
+    ADMIN admin_logado;
+    CLIENTE cliente_logado;
+    //FIM UTILIZADORES LOGADOS
+
+
+    //OPCOES MENU
     int opcao, opcaoSub, opcaoSubAgente;
+    //FIM
+
+    //Dados para criar,editar e eleminar os vários utilizadores
     PROPRIEDADE novaPropriedade;
     AGENTE novoAgente;
-    AGENTE agente_logado;
-    //Escolher opcoes do tipo_comercial
+    //FIM
+
+    //Escolher opcoes dos dados(introduzir dados)
     int tipo_comercial;
     int tipo_disponibilidade;
     int tipo_imovel;
     int popularidade;
     int id_propriedade;
     int id_agente;
+    //FIM
 
 
-
+    //LOGIN
     char username[30];
     char password[21];
     int role;
     int login_resultado;
+    //FIM LOGIN
 
+
+    ///Menu
     printf("Bem-vindo! Por favor, insira suas credenciais:\n");
     printf("Nome de usuário: ");
     scanf("%s", username);
@@ -575,6 +588,20 @@ int main() {
                             printf("Ano de Nascimento: ");
                             scanf("%d",&novoAgente.ano_nascimento);
 
+                            printf("Disponibilidade:\n");
+                            printf("1. Disponivel\n");
+                            printf("2. Indisponivel\n");
+                            scanf("%d", &tipo_disponibilidade);
+
+                            if (tipo_disponibilidade == 1) {
+                                novoAgente.disponibilidade = 1;
+                            } else if (tipo_disponibilidade == 2) {
+                                novoAgente.disponibilidade = 0;
+                            } else {
+                                printf("Opção invalida. Por favor, escolha 1 para 'Disponivel' ou 2 para 'Nao Disponivel'.\n");
+                                break;
+                            }
+
                             novoAgente.role=2;
 
                             printf("");
@@ -631,7 +658,6 @@ int main() {
                                 break;
                             }
 
-
                             // Chama a função para editar a propriedade
                             if (editar_agente_imobiliario(agente_imobiliario, novoAgente, id_agente) == 0) {
                                 printf("Agente editada com sucesso.\n");
@@ -679,7 +705,7 @@ int main() {
         }
     }
 
-
+        //FIM MENU
 
 
     //// FIM DO PROGRAMA
