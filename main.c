@@ -43,7 +43,7 @@ int main() {
 
     //// POPULAR DADOS
     carregar_do_ficheiro_administrador(administrador);
-
+    carregar_do_ficheiro_agente_imobiliario(agente_imobiliario);
     //// FIM POPULAR DADOS
 
 
@@ -748,10 +748,12 @@ int main() {
 
                 case 12:
                     //GERAR UM RELATORIO DE TODOS OS AGENTES
-                    inserir_no_ficheiro_agente_imobiliario(agente_imobiliario);
+
                     break;
 
                 case 13:
+                    inserir_no_ficheiro_agente_imobiliario(agente_imobiliario);
+                    return 0;
                     break;
 
             }

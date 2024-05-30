@@ -9,7 +9,7 @@
 
 int inserir_agente_imobiliario(AGENTE agente_imobiliario[], AGENTE novo_agente, int *posicaoInserir) {
 
-    if (*posicaoInserir < 0 || *posicaoInserir >= MAX_AGENTES_IMOBILIARIOS) {
+    if (*posicaoInserir < 0 || *posicaoInserir > MAX_AGENTES_IMOBILIARIOS) {
         printf("Posicao de insercao invalida.\n");
         return -1;
     }
@@ -82,25 +82,16 @@ int editar_agente_imobiliario(AGENTE agente_imobiliario[], AGENTE agente_editado
 
     for (int i = 0; i < MAX_AGENTES_IMOBILIARIOS; i++) {
         if (agente_imobiliario[i].id_agente == id_procura) {
-            id_encontrado = i;
+            id_encontrado = id_procura;
             break;
         }
     }
 
     if (id_encontrado == -1) {
-        // Não existe agente com o id_procura, inserir um novo agente.
-        for (int i = 0; i < MAX_AGENTES_IMOBILIARIOS; i++) {
-            if (agente_imobiliario[i].id_agente == 0) { // Espaço livre encontrado
-                inserir_agente_imobiliario(agente_imobiliario, agente_editado, &i);
-                printf("Novo agente inserido na posição %d.\n", i + 1);
-                return 0;
-            }
-        }
-        printf("Nao ha espaco para adicionar um novo agente.\n");
+        printf("Não existe agente com o id_procura.\n");
         return -1;
     } else {
-        // Agente encontrado, editar
-        inserir_agente_imobiliario(agente_imobiliario, agente_editado, &id_encontrado);
+        inserir_agente_imobiliario(agente_imobiliario, agente_editado, &id_encontrado-1);
         printf("Agente com ID %d editado.\n", id_procura);
         return 0;
     }
@@ -252,17 +243,18 @@ int listar_agente_imobiliario_idade(AGENTE agente_imobiliario[]) {
 
 // True = 1; False = 0;
 
-int carregar_do_ficheiro_agente_imobiliario(AGENTE agente_imobiliario[]){
-
+int carregar_do_ficheiro_agente_imobiliario(AGENTE agente_imobiliario[]) {
     AGENTE agente_imobiliario_lido;
     FILE *ficheiro_agente_imobiliario = fopen("../Armazenamento/Texto/Agentes_Imobiliarios.txt", "r");
-    int contador =0;
     if (ficheiro_agente_imobiliario == NULL) {
-        printf("\nErro a abrir o ficheiro de administradores !!!!\n");
+        printf("\nErro a abrir o ficheiro de agentes imobiliários !!!!\n");
         return -1;
     }
 
-    while (fscanf(ficheiro_agente_imobiliario, "%29[^;];%9[^;];%49[^;];%9[^;];%d;%d;%d;%d;%d;%20[^;];%d",
+    int contador = 0;
+    printf("Iniciando a leitura do arquivo...\n");
+
+    while (fscanf(ficheiro_agente_imobiliario, "%29[^;];%9[^;];%49[^;];%9[^;];%d;%d;%d;%d;%d;%20[^;];%d;\n",
                   agente_imobiliario_lido.nome,
                   agente_imobiliario_lido.NIF,
                   agente_imobiliario_lido.morada,
@@ -273,22 +265,50 @@ int carregar_do_ficheiro_agente_imobiliario(AGENTE agente_imobiliario[]){
                   &agente_imobiliario_lido.ano_nascimento,
                   &agente_imobiliario_lido.role,
                   agente_imobiliario_lido.palavra_passe,
-                  &agente_imobiliario_lido.disponibilidade) == 11)
-    {
-        contador ++;
-        inserir_agente_imobiliario(agente_imobiliario, agente_imobiliario_lido,&agente_imobiliario_lido.id_agente -1);
+                  &agente_imobiliario_lido.disponibilidade) == 11) {
+
+        printf("Lido do ficheiro: %s, %s, %s, %s, %d, %d/%d/%d, %d, %s, %d\n",
+               agente_imobiliario_lido.nome,
+               agente_imobiliario_lido.NIF,
+               agente_imobiliario_lido.morada,
+               agente_imobiliario_lido.telefone,
+               agente_imobiliario_lido.id_agente,
+               agente_imobiliario_lido.dia_nascimento,
+               agente_imobiliario_lido.mes_nascimento,
+               agente_imobiliario_lido.ano_nascimento,
+               agente_imobiliario_lido.role,
+               agente_imobiliario_lido.palavra_passe,
+               agente_imobiliario_lido.disponibilidade);
+
+        if (contador < MAX_AGENTES_IMOBILIARIOS) {
+            if (inserir_agente_imobiliario(agente_imobiliario, agente_imobiliario_lido, &contador) == 0) {
+                printf("Agente inserido na posição %d\n", contador);
+            } else {
+                printf("Erro ao inserir agente na posição %d\n", contador);
+            }
+            contador++;
+        } else {
+            printf("\nO número máximo de agentes imobiliários foi alcançado.\n");
+            break;
+        }
+    }
+
+    if (contador == 0) {
+        printf("Nenhum agente foi lido do arquivo.\n");
+    } else {
+        printf("Total de agentes lidos: %d\n", contador);
     }
 
     fclose(ficheiro_agente_imobiliario);
-
     return 0;
 }
+
 
 
 int inserir_no_ficheiro_agente_imobiliario(AGENTE agente_imobiliario[]) {
     FILE *ficheiro_agente_imobiliario = fopen("../Armazenamento/Texto/Agentes_Imobiliarios.txt", "w");
     int contador = 0;
-
+    int total_adicionado;
 
 
     if (ficheiro_agente_imobiliario == NULL) {
@@ -297,14 +317,19 @@ int inserir_no_ficheiro_agente_imobiliario(AGENTE agente_imobiliario[]) {
     }
 
 
-    while (contador < MAX_AGENTES_IMOBILIARIOS) {
-        if( agente_imobiliario[contador].id_agente > 0 ) {
+    while (contador < MAX_AGENTES_IMOBILIARIOS && total_adicionado < MAX_AGENTES_IMOBILIARIOS) {
+        if (agente_imobiliario[contador].id_agente > 0 &&
+            strlen(agente_imobiliario[contador].nome) > 0 &&
+            strlen(agente_imobiliario[contador].palavra_passe) > 0 &&
+            strlen(agente_imobiliario[contador].NIF) > 0 &&
+            strlen(agente_imobiliario[contador].morada) > 0 &&
+            strlen(agente_imobiliario[contador].telefone) > 0) {
 
             fprintf(ficheiro_agente_imobiliario, "%s;", agente_imobiliario[contador].nome);
             fprintf(ficheiro_agente_imobiliario, "%s;", agente_imobiliario[contador].palavra_passe);
             fprintf(ficheiro_agente_imobiliario, "%s;", agente_imobiliario[contador].NIF);
             fprintf(ficheiro_agente_imobiliario, "%s;", agente_imobiliario[contador].morada);
-            fprintf(ficheiro_agente_imobiliario, "%d;", agente_imobiliario[contador].telefone);
+            fprintf(ficheiro_agente_imobiliario, "%s;", agente_imobiliario[contador].telefone);
             fprintf(ficheiro_agente_imobiliario, "%d;", agente_imobiliario[contador].id_agente);
             fprintf(ficheiro_agente_imobiliario, "%d;", agente_imobiliario[contador].dia_nascimento);
             fprintf(ficheiro_agente_imobiliario, "%d;", agente_imobiliario[contador].mes_nascimento);
@@ -312,6 +337,9 @@ int inserir_no_ficheiro_agente_imobiliario(AGENTE agente_imobiliario[]) {
             fprintf(ficheiro_agente_imobiliario, "%d;", agente_imobiliario[contador].role);
             fprintf(ficheiro_agente_imobiliario, "%d\n", agente_imobiliario[contador].disponibilidade);
 
+            total_adicionado++;  // Incrementa o total de agentes adicionados
+        } else {
+            printf("\nErro: Algum dos campos do agente na posição %d está vazio ou contém um valor inválido. Não foi possível adicionar ao arquivo.\n", contador);
         }
         contador++;
     }

@@ -16,6 +16,7 @@ int criar_cliente(LISTA_CLIENTE **iniLista, LISTA_CLIENTE **fimLista, CLIENTE cl
         return -1;
     }
 
+
     novo -> cliente = cliente_novo;
 
     novo -> seguinte = NULL;

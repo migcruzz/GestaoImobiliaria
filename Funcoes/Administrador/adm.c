@@ -105,7 +105,7 @@ int remover_administrador(ADMIN administrador[],int id_procura){
     }
 }
 
-int carregar_do_ficheiro(ADMIN administrador[]){
+int carregar_do_ficheiro_administrador(ADMIN administrador[]){
 
     ADMIN administrador_lido;
     FILE *ficheiro_administrador = fopen("../Armazenamento/Texto/Admins.txt", "r");
