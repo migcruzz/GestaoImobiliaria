@@ -1,0 +1,15 @@
+Maria Silva;987654321;Av. Brasil, 100;912345678;5;10;3;1975;1;senha123;1
+João Oliveira;123456789;Rua das Flores, 23;923456789;13;15;6;1982;2;pass9876;1
+Ana Pereira;456789123;Rua Central, 45;934567890;8;22;9;1990;1;abc123456;0
+Pedro Costa;789123456;Av. Paulista, 56;945678901;3;30;12;1978;2;mypassword;1
+Luísa Almeida;321654987;Rua Nova, 67;956789012;11;14;7;1985;1;securepass;0
+Carlos Santos;654321789;Av. Independência, 89;967890123;1;5;4;1968;2;admin2023;1
+Helena Marques;987321654;Rua da Liberdade, 100;978901234;9;21;1;1995;1;liberty123;1
+Ricardo Lima;213546879;Av. dos Estados, 120;989012345;4;7;11;1972;2;keypass98;0
+Isabel Nunes;546879213;Rua Nova, 150;990123456;12;19;8;1988;1;open789pass;1
+Jorge Rocha;879213546;Rua Verde, 180;901234567;2;11;5;1969;2;closedsesame;0
+Paula Mendes;321987654;Av. Azul, 200;912345670;6;25;10;1981;1;bluesky789;1
+Fernando Silva;654789321;Rua Amarela, 230;923456781;14;17;6;1973;2;yellow123;1
+Andreia Costa;987654213;Rua Roxa, 250;934567892;7;9;3;1992;1;purplepass;0
+Bruno Santos;123456987;Av. Laranja, 270;945678903;10;29;12;1987;2;orange456;1
+Catarina Alves;789123654;Rua Rosa, 300;956789014;15;12;2;1991;1;pinkpass123;0

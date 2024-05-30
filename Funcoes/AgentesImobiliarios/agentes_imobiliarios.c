@@ -4,7 +4,7 @@
 #include "../../VariaveisGlobais/variaveis_globais.h"
 #include "../../TiposDados/TiposDados.h"
 
-// O ID do agente imobiliario começa a 1 !!!! e sempre que se apaga um do meio os restantes vão ser copiados para o mesmo apontador
+// O ID do agente imobiliario começa a 1 !!!! e sempre que se apaga um do meio os restantes vão manter a posição
 
 
 int inserir_agente_imobiliario(AGENTE agente_imobiliario[], AGENTE novo_agente, int *posicaoInserir) {
@@ -17,7 +17,6 @@ int inserir_agente_imobiliario(AGENTE agente_imobiliario[], AGENTE novo_agente, 
     if (agente_imobiliario[*posicaoInserir].id_agente == 0) {
         agente_imobiliario[*posicaoInserir].id_agente = *posicaoInserir + 1;
     }
-
     strcpy(agente_imobiliario[*posicaoInserir].nome, novo_agente.nome);
     strcpy(agente_imobiliario[*posicaoInserir].NIF, novo_agente.NIF);
     strcpy(agente_imobiliario[*posicaoInserir].morada, novo_agente.morada);
