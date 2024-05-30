@@ -16,8 +16,6 @@ int inserir_agente_imobiliario(AGENTE agente_imobiliario[], AGENTE novo_agente, 
 
     if (agente_imobiliario[*posicaoInserir].id_agente == 0) {
         agente_imobiliario[*posicaoInserir].id_agente = *posicaoInserir + 1;
-    }else{
-        agente_imobiliario[*posicaoInserir].id_agente = *posicaoInserir;
     }
 
     strcpy(agente_imobiliario[*posicaoInserir].nome, novo_agente.nome);
@@ -110,40 +108,31 @@ int editar_agente_imobiliario(AGENTE agente_imobiliario[], AGENTE agente_editado
 }
 
 // Aqui apenas vai inserir valores vazios (Zero no ID) ou NULL:
-int remover_agente_imobiliario(AGENTE agente_imobiliario[],int id_procura){
+int remover_agente_imobiliario(AGENTE agente_imobiliario[], int id_procura) {
+    for (int i = 0; i < MAX_AGENTES_IMOBILIARIOS; i++) {
+        if (agente_imobiliario[i].id_agente == id_procura) {
+            // Limpar os dados do agente
+            agente_imobiliario[i].id_agente = 0;
+            strcpy(agente_imobiliario[i].nome, "");
+            strcpy(agente_imobiliario[i].NIF, "");
+            strcpy(agente_imobiliario[i].morada, "");
+            strcpy(agente_imobiliario[i].telefone, "");
+            strcpy(agente_imobiliario[i].palavra_passe, "");
+            agente_imobiliario[i].dia_nascimento = 0;
+            agente_imobiliario[i].mes_nascimento = 0;
+            agente_imobiliario[i].ano_nascimento = 0;
+            agente_imobiliario[i].role = 0;
+            agente_imobiliario[i].disponibilidade = 0;
 
-    int id_encontrado =0;
-
-    AGENTE agente_eliminar;
-
-    agente_eliminar.id_agente = 0;
-    strcpy(agente_eliminar.nome,"");
-    strcpy(agente_eliminar.NIF, "");
-    strcpy(agente_eliminar.morada, "");
-    strcpy(agente_eliminar.telefone, "");
-    strcpy(agente_eliminar.palavra_passe, "");
-    agente_eliminar.dia_nascimento =0;
-    agente_eliminar.mes_nascimento =0;
-    agente_eliminar.ano_nascimento =0;
-    agente_eliminar.role = 0;
-    agente_eliminar.disponibilidade = 0;
-
-
-    for(int i =0; i < MAX_AGENTES_IMOBILIARIOS; i++){
-
-        if(agente_imobiliario[i].id_agente == id_procura){
-            id_encontrado = agente_imobiliario[i].id_agente;
+            printf("\nAgente removido com sucesso.\n");
+            return 0;
         }
     }
 
-    if(id_encontrado == 0){
-        printf("\nNao existe o agente que pretende editar !!!\n");
-        return -1;
-    } else{
-        inserir_agente_imobiliario(agente_imobiliario, agente_eliminar, &id_encontrado);
-        return 0;
-    }
+    printf("\nNao existe o agente que pretende remover !!!\n");
+    return -1;
 }
+
 
 // ALGORITMO FUNCIONA
 int listar_agente_imobiliario_alfabeto(AGENTE agente_imobiliario[]){
@@ -263,6 +252,76 @@ int listar_agente_imobiliario_idade(AGENTE agente_imobiliario[]) {
 
 
 // True = 1; False = 0;
+
+int carregar_do_ficheiro_agente_imobiliario(AGENTE agente_imobiliario[]){
+
+    AGENTE agente_imobiliario_lido;
+    FILE *ficheiro_agente_imobiliario = fopen("../Armazenamento/Texto/Agentes_Imobiliarios.txt", "r");
+    int contador =0;
+    if (ficheiro_agente_imobiliario == NULL) {
+        printf("\nErro a abrir o ficheiro de administradores !!!!\n");
+        return -1;
+    }
+
+    while (fscanf(ficheiro_agente_imobiliario, "%29[^;];%9[^;];%49[^;];%9[^;];%d;%d;%d;%d;%d;%20[^;];%d",
+                  agente_imobiliario_lido.nome,
+                  agente_imobiliario_lido.NIF,
+                  agente_imobiliario_lido.morada,
+                  agente_imobiliario_lido.telefone,
+                  &agente_imobiliario_lido.id_agente,
+                  &agente_imobiliario_lido.dia_nascimento,
+                  &agente_imobiliario_lido.mes_nascimento,
+                  &agente_imobiliario_lido.ano_nascimento,
+                  &agente_imobiliario_lido.role,
+                  agente_imobiliario_lido.palavra_passe,
+                  &agente_imobiliario_lido.disponibilidade) == 11)
+    {
+        contador ++;
+        inserir_agente_imobiliario(agente_imobiliario, agente_imobiliario_lido,&agente_imobiliario_lido.id_agente -1);
+    }
+
+    fclose(ficheiro_agente_imobiliario);
+
+    return 0;
+}
+
+
+int inserir_no_ficheiro_agente_imobiliario(AGENTE agente_imobiliario[]) {
+    FILE *ficheiro_agente_imobiliario = fopen("../Armazenamento/Texto/Agentes_Imobiliarios.txt", "w");
+    int contador = 0;
+
+
+
+    if (ficheiro_agente_imobiliario == NULL) {
+        printf("\nErro a abrir o ficheiro dos Agentes !!!!\n");
+        return -1;
+    }
+
+
+    while (contador < MAX_AGENTES_IMOBILIARIOS) {
+        if( agente_imobiliario[contador].id_agente > 0 ) {
+
+            fprintf(ficheiro_agente_imobiliario, "%s;", agente_imobiliario[contador].nome);
+            fprintf(ficheiro_agente_imobiliario, "%s;", agente_imobiliario[contador].palavra_passe);
+            fprintf(ficheiro_agente_imobiliario, "%s;", agente_imobiliario[contador].NIF);
+            fprintf(ficheiro_agente_imobiliario, "%s;", agente_imobiliario[contador].morada);
+            fprintf(ficheiro_agente_imobiliario, "%d;", agente_imobiliario[contador].telefone);
+            fprintf(ficheiro_agente_imobiliario, "%d;", agente_imobiliario[contador].id_agente);
+            fprintf(ficheiro_agente_imobiliario, "%d;", agente_imobiliario[contador].dia_nascimento);
+            fprintf(ficheiro_agente_imobiliario, "%d;", agente_imobiliario[contador].mes_nascimento);
+            fprintf(ficheiro_agente_imobiliario, "%d;", agente_imobiliario[contador].ano_nascimento);
+            fprintf(ficheiro_agente_imobiliario, "%d;", agente_imobiliario[contador].role);
+            fprintf(ficheiro_agente_imobiliario, "%d\n", agente_imobiliario[contador].disponibilidade);
+
+        }
+        contador++;
+    }
+
+    fclose(ficheiro_agente_imobiliario);
+
+    return 0;
+}
+
 
 int gerador_relatorios_agentes(){
 

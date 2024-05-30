@@ -13,4 +13,5 @@ int imprimir_agente_imobiliario(AGENTE agente_imobiliario[], int posicaoImprimir
 int remover_agente_imobiliario(AGENTE agente_imobiliario[],int id_procura);
 int listar_agente_imobiliario_alfabeto(AGENTE agente_imobiliario[]);
 int listar_agente_imobiliario_idade(AGENTE agente_imobiliario[]);
+int inserir_no_ficheiro_agente_imobiliario(AGENTE agente_imobiliario[]);
 #endif //PROGRAMA_AGENTESIMOBILIARIOS_H

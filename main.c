@@ -310,10 +310,13 @@ int main() {
                     switch (opcaoSubAgente) {
                         case 1:
 
-
                             printf("Nome: ");
                             fflush(stdin);
                             fgets(novoAgente.nome,30,stdin);
+
+                            printf("Palavra-Passe: ");
+                            fflush(stdin);
+                            fgets(novoAgente.palavra_passe,30,stdin);
 
                             printf("NIF: ");
                             fflush(stdin);
@@ -560,14 +563,27 @@ int main() {
                     }
                     break;
                 case 2:
+                    //Quanto fatorou cada propriedade hoje e este mes
+
+                   break;
+
+                case 3:
+                    //Historico de visitas de uma determinada propriedade
+                    break;
+
+                case 4:
                     submenuagentes();
                     scanf("%d", &opcaoSubAgente);
                     switch (opcaoSubAgente) {
                         case 1:
-
+                            //CRIAR AGENTE
                             printf("Nome: ");
                             fflush(stdin);
                             fgets(novoAgente.nome,30,stdin);
+
+                            printf("Palavra-Passe: ");
+                            fflush(stdin);
+                            fgets(novoAgente.palavra_passe,30,stdin);
 
                             printf("NIF: ");
                             fflush(stdin);
@@ -607,19 +623,24 @@ int main() {
                             printf("");
 
                             if (criar_agente_imobiliario(agente_imobiliario, novoAgente) == 0) {
-                                printf("Propriedade criada com sucesso.\n");
+                                printf("Agente criado com sucesso.\n");
                             } else {
-                                printf("Erro ao criar propriedade.\n");
+                                printf("Erro ao criar Agente.\n");
                             }
 
                             break;
                         case 2:
+                            //EDITAR AGENTE
                             printf("Digite o ID da propriedade que deseja editar: ");
                             scanf("%d", &id_agente);
 
                             printf("Nome: ");
                             fflush(stdin);
                             fgets(novoAgente.nome,30,stdin);
+
+                            printf("Palavra-Passe: ");
+                            fflush(stdin);
+                            fgets(novoAgente.palavra_passe,30,stdin);
 
                             printf("NIF: ");
                             fflush(stdin);
@@ -660,28 +681,27 @@ int main() {
 
                             // Chama a função para editar a propriedade
                             if (editar_agente_imobiliario(agente_imobiliario, novoAgente, id_agente) == 0) {
-                                printf("Agente editada com sucesso.\n");
+                                printf("Agente editado com sucesso.\n");
                             } else {
-                                printf("Erro ao editar propriedade.\n");
+                                printf("Erro ao editar Agente.\n");
                             }
                             break;
                         case 3:
+                            //REMOVER AGENTE
                             printf("Digite o ID do agente que deseja remover: ");
                             scanf("%d", &id_agente);
 
 
                             if (id_agente <= 0) {
-                                printf("ID da propriedade inválido. Por favor, insira um ID válido.\n");
+                                printf("ID do Agente inválido. Por favor, insira um ID válido.\n");
                             } else {
                                 // Chama a função para remover a propriedade apenas se o ID for válido
                                 if (remover_agente_imobiliario(agente_imobiliario, id_agente) == 0) {
-                                    printf("Propriedade removida com sucesso.\n");
+                                    printf("Agente removido com sucesso.\n");
                                 } else {
-                                    printf("Erro ao remover propriedade.\n");
+                                    printf("Erro ao remover Agente.\n");
                                 }
                             }
-
-
                             break;
 
                         case 4:
@@ -690,15 +710,48 @@ int main() {
                     }
                     break;
 
-                case 3:
+
+
+                case 5:
+                    //Quantas visitas realizou um agente
+
+
+                    break;
+
+                case 6:
+                    //LISTAR POR ORDEM ALFABETICA
                     listar_agente_imobiliario_alfabeto(agente_imobiliario);
                     break;
 
-                case 4:
-                    listar_agente_imobiliario_idade(agente_imobiliario);
+                case 7:
+                    //LISTAR POR ORDEM DE IDADE
+                     listar_agente_imobiliario_idade(agente_imobiliario);
                     break;
 
+                case 8:
+                    //LISTAR TODAS AS VISITAS DO DIA (Hora POR ASCENDE)
 
+                    break;
+
+                case 9:
+                   //SIMULAR A REALIZACAO DE UMA VISITA
+                    break;
+
+                case 10:
+                    //LISTAR AS VISITAS EM QUE O CLIENTE NAO COMPARECEU NUM DETERMINADO DIA
+                    break;
+
+                case 11:
+                    //GERAR UM RELATORIO POR DIA E POR MES DE CONTAS
+                    break;
+
+                case 12:
+                    //GERAR UM RELATORIO DE TODOS OS AGENTES
+                    inserir_no_ficheiro_agente_imobiliario(agente_imobiliario);
+                    break;
+
+                case 13:
+                    break;
 
             }
             printf("\n");
