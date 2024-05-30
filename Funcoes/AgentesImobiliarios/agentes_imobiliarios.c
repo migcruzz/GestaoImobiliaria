@@ -4,7 +4,7 @@
 #include "../../VariaveisGlobais/variaveis_globais.h"
 #include "../../TiposDados/TiposDados.h"
 
-// O ID do agente imobiliario começa a 1 !!!! e sempre que se apaga um do meio os restantes vão ser copiados para o mesmo apontador
+// O ID do agente imobiliario começa a 1 !!!! e sempre que se apaga um do meio os restantes vão manter a posição
 
 
 int inserir_agente_imobiliario(AGENTE agente_imobiliario[], AGENTE novo_agente, int *posicaoInserir) {
@@ -16,10 +16,7 @@ int inserir_agente_imobiliario(AGENTE agente_imobiliario[], AGENTE novo_agente, 
 
     if (agente_imobiliario[*posicaoInserir].id_agente == 0) {
         agente_imobiliario[*posicaoInserir].id_agente = *posicaoInserir + 1;
-    }else{
-        agente_imobiliario[*posicaoInserir].id_agente = *posicaoInserir;
     }
-
     strcpy(agente_imobiliario[*posicaoInserir].nome, novo_agente.nome);
     strcpy(agente_imobiliario[*posicaoInserir].NIF, novo_agente.NIF);
     strcpy(agente_imobiliario[*posicaoInserir].morada, novo_agente.morada);
@@ -260,11 +257,39 @@ int listar_agente_imobiliario_idade(AGENTE agente_imobiliario[]) {
     }
 }
 
-
-
-// True = 1; False = 0;
-
 int gerador_relatorios_agentes(){
+
+    return 0;
+}
+
+int carregar_do_ficheiro_agente_imobiliario(AGENTE agente_imobiliario[]){
+
+    AGENTE agente_imobiliario_lido;
+    FILE *ficheiro_agente_imobiliario = fopen("../Armazenamento/Texto/Agentes_Imobiliarios.txt", "r");
+    int contador =0;
+    if (ficheiro_agente_imobiliario == NULL) {
+        printf("\nErro a abrir o ficheiro de administradores !!!!\n");
+        return -1;
+    }
+
+    while (fscanf(ficheiro_agente_imobiliario, "%29[^;];%9[^;];%49[^;];%9[^;];%d;%d;%d;%d;%d;%20[^;];%d",
+                  agente_imobiliario_lido.nome,
+                  agente_imobiliario_lido.NIF,
+                  agente_imobiliario_lido.morada,
+                  agente_imobiliario_lido.telefone,
+                  &agente_imobiliario_lido.id_agente,
+                  &agente_imobiliario_lido.dia_nascimento,
+                  &agente_imobiliario_lido.mes_nascimento,
+                  &agente_imobiliario_lido.ano_nascimento,
+                  &agente_imobiliario_lido.role,
+                  agente_imobiliario_lido.palavra_passe,
+                  &agente_imobiliario_lido.disponibilidade) == 11)
+    {
+        contador ++;
+            inserir_agente_imobiliario(agente_imobiliario, agente_imobiliario_lido,&agente_imobiliario_lido.id_agente -1);
+    }
+
+    fclose(ficheiro_agente_imobiliario);
 
     return 0;
 }

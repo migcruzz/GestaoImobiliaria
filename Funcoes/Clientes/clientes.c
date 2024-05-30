@@ -13,6 +13,7 @@ int criar_cliente(LISTA_CLIENTE **iniLista, LISTA_CLIENTE **fimLista, CLIENTE cl
 
     if(novo == NULL){ // se a lista estiver vazia
         printf("Out of memory ! \n");
+        return -1;
     }
 
     novo -> cliente = cliente_novo;
@@ -34,16 +35,15 @@ int criar_cliente(LISTA_CLIENTE **iniLista, LISTA_CLIENTE **fimLista, CLIENTE cl
     return 0;
 }
 
-void imprime_todos_clientes (LISTA_CLIENTE *iniLista) {
+int imprime_todos_clientes (LISTA_CLIENTE *iniLista) {
 
     int contador =0;
-    char verdade [] = "verdade";
-    char falso [] = "falso";
 
     LISTA_CLIENTE *aux = NULL;
 
     if (iniLista == NULL) {
         printf("Lista Vazia\n");
+        return -1;
     }
 
     for (aux = iniLista; aux != NULL; aux = aux->seguinte) {
@@ -57,6 +57,7 @@ void imprime_todos_clientes (LISTA_CLIENTE *iniLista) {
         printf("Palavra passe: %s", aux -> cliente.palavra_passe);
         printf("------------------------------------------------------------------\n");
     }
+    return 0;
 }
 
 int editar_cliente(LISTA_CLIENTE **iniLista, CLIENTE editado) {
@@ -277,3 +278,29 @@ int apresenta_informacao_dado_NIF(LISTA_CLIENTE **iniLista, char NIF[]){
 
 
 }
+
+int carregar_do_ficheiro_cliente(CLIENTE **iniLista, CLIENTE **fimLista){
+
+    CLIENTE cliente_lido;
+    FILE *ficheiro_cliente = fopen("../Armazenamento/Texto/Agentes_Imobiliarios.txt", "r");
+    if (ficheiro_cliente == NULL) {
+        printf("\nErro a abrir o ficheiro de clientes !!!!\n");
+        return -1;
+    }
+
+    while (fscanf(ficheiro_cliente, "%29[^;];%9[^;];%9[^;];%d;%d;%20[^;];",
+                  cliente_lido.nome,
+                  cliente_lido.NIF,
+                  cliente_lido.telefone,
+                  &cliente_lido.id_cliente,
+                  &cliente_lido.role,
+                  cliente_lido.palavra_passe) == 6)
+    {
+        criar_cliente((LISTA_CLIENTE **) iniLista, (LISTA_CLIENTE **) fimLista, cliente_lido);
+    }
+
+    fclose(ficheiro_cliente);
+
+    return 0;
+}
+

@@ -42,7 +42,8 @@ int main() {
     }
 
     //// POPULAR DADOS
-    carregar_do_ficheiro(administrador);
+    carregar_do_ficheiro_administrador(administrador);
+
     //// FIM POPULAR DADOS
 
 
