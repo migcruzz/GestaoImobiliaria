@@ -289,7 +289,7 @@ int carregar_do_ficheiro_cliente(CLIENTE **iniLista, CLIENTE **fimLista){
         return -1;
     }
 
-    while (fscanf(ficheiro_cliente, "%29[^;];%9[^;];%9[^;];%d;%d;%20[^;];",
+    while (fscanf(ficheiro_cliente, "%29[^;];%9[^;];%9[^;];%d;%d;%20[^;]",
                   cliente_lido.nome,
                   cliente_lido.NIF,
                   cliente_lido.telefone,
