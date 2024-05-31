@@ -43,7 +43,8 @@ int main() {
 
     //// POPULAR DADOS
     carregar_do_ficheiro_administrador(administrador);
-    carregar_do_ficheiro_agente_imobiliario(agente_imobiliario);
+    carregar_agentes_do_arquivo(agente_imobiliario);
+    carregar_lista_do_arquivo(&ini_lista_propriedade, &fim_lista_propriedade);
     //// FIM POPULAR DADOS
 
 
@@ -71,6 +72,7 @@ int main() {
     int popularidade;
     int id_propriedade;
     int id_agente;
+    int id_procura;
     //FIM
 
 
@@ -108,7 +110,7 @@ int main() {
         printf("Escolha se pretende registar ou entrar");
 
     }else if(role == 2){
-        while (1) {
+       /* while (1) {
             menuAgente();
             scanf("%d", &opcao);
 
@@ -364,7 +366,7 @@ int main() {
 
             }
             printf("\n");
-        }
+        } */
     }else if(role ==3){
         while (1) {
             menuAdmin();
@@ -376,180 +378,18 @@ int main() {
                     scanf("%d", &opcaoSub);
                     switch (opcaoSub) {
                         case 1:
-                            printf("Dados da nova propriedade:\n");
-                            printf("Nome da propriedade: ");
-                            fflush(stdin);
-                            fgets( novaPropriedade.nome,50,stdin);
-                            printf("Tipo de comércio:\n");
-                            printf("1. Vender\n");
-                            printf("2. Arrendar\n");
-                            printf("Escolha uma opção: ");
-                            scanf("%d", &tipo_comercial);
-
-                            if (tipo_comercial == 1) {
-                                strcpy(novaPropriedade.tipo_comercial, "Vender");
-                            } else if (tipo_comercial == 2) {
-                                strcpy(novaPropriedade.tipo_comercial, "Arrendar");
-                            } else {
-                                printf("Opção inválida. Tipo de comércio não definido.\n");
-                                break;
-                            }
-
-                            printf("Preco: ");
-                            scanf("%f", &novaPropriedade.preco);
-
-                            printf("Tipo de imovel:\n");
-                            printf("1. Casa\n");
-                            printf("2. Escritorio\n");
-                            printf("3. Apartamento\n");
-                            printf("4. Garagem\n");
-                            printf("5. Armazem\n");
-                            printf("Escolha uma opção: ");
-                            scanf("%d", &tipo_imovel);
-
-                            switch (tipo_imovel) {
-                                case 1:
-                                    strcpy(novaPropriedade.tipo_imovel, "Casa");
-                                    break;
-                                case 2:
-                                    strcpy(novaPropriedade.tipo_imovel, "Escritorio");
-                                    break;
-                                case 3:
-                                    strcpy(novaPropriedade.tipo_imovel, "Apartamento");
-                                    break;
-                                case 4:
-                                    strcpy(novaPropriedade.tipo_imovel, "Garagem");
-                                    break;
-                                case 5:
-                                    strcpy(novaPropriedade.tipo_imovel, "Armazem");
-                                    break;
-                                default:
-                                    printf("Opção inválida. Tipo de imóvel não definido.\n");
-                                    break;
-                            }
-
-                            printf("Popularidade:\n");
-                            printf("1. Popular\n");
-                            printf("2. Nao Popular\n");
-                            scanf("%d", &popularidade);
-
-                            if (popularidade == 1) {
-                                novaPropriedade.popular = 1;
-                            } else if (popularidade == 2) {
-                                novaPropriedade.popular = 0;
-                            } else {
-                                printf("Opção inválida. Por favor, escolha 1 para 'Popular' ou 2 para 'Não Popular'.\n");
-                                break;
-                            }
-
-                            // função criar_propriedade
-
-                            if (criar_propriedade(&ini_lista_propriedade, &fim_lista_propriedade, novaPropriedade) == 0) {
-                                printf("Propriedade criada com sucesso.\n");
-                            } else {
-                                printf("Erro ao criar propriedade.\n");
-                            }
+                            criar_propriedade(&ini_lista_propriedade,&fim_lista_propriedade);
                             break;
-
 
                         case 2:
                             // Código para editar uma propriedade
-                            printf("Digite o ID da propriedade que deseja editar: ");
-                            scanf("%d", &id_propriedade);
-
-                            // Solicita ao usuário os novos dados para a propriedade
-                            printf("Digite os novos dados da propriedade:\n");
-                            printf("Nome da propriedade: ");
-                            fflush(stdin);
-                            fgets( novaPropriedade.nome,50,stdin);
-
-                            printf("Tipo de comércio:\n");
-                            printf("1. Vender\n");
-                            printf("2. Arrendar\n");
-                            printf("Escolha uma opção: ");
-                            scanf("%d", &tipo_comercial);
-
-                            if (tipo_comercial == 1) {
-                                strcpy(novaPropriedade.tipo_comercial, "Vender");
-                            } else if (tipo_comercial == 2) {
-                                strcpy(novaPropriedade.tipo_comercial, "Arrendar");
-                            } else {
-                                printf("Opção inválida. Tipo de comércio não definido.\n");
-                                break;
-                            }
-
-                            printf("Preco: ");
-                            scanf("%f", &novaPropriedade.preco);
-
-                            printf("Tipo de imovel:\n");
-                            printf("1. Casa\n");
-                            printf("2. Escritorio\n");
-                            printf("3. Apartamento\n");
-                            printf("4. Garagem\n");
-                            printf("5. Armazem\n");
-                            printf("Escolha uma opção: ");
-                            scanf("%d", &tipo_imovel);
-
-                            switch (tipo_imovel) {
-                                case 1:
-                                    strcpy(novaPropriedade.tipo_imovel, "Casa");
-                                    break;
-                                case 2:
-                                    strcpy(novaPropriedade.tipo_imovel, "Escritorio");
-                                    break;
-                                case 3:
-                                    strcpy(novaPropriedade.tipo_imovel, "Apartamento");
-                                    break;
-                                case 4:
-                                    strcpy(novaPropriedade.tipo_imovel, "Garagem");
-                                    break;
-                                case 5:
-                                    strcpy(novaPropriedade.tipo_imovel, "Armazem");
-                                    break;
-                                default:
-                                    printf("Opção inválida. Tipo de imóvel não definido.\n");
-                                    break;
-                            }
-
-                            printf("Popularidade:\n");
-                            printf("1. Popular\n");
-                            printf("2. Nao Popular\n");
-                            scanf("%d", &popularidade);
-
-                            if (popularidade == 1) {
-                                novaPropriedade.popular = 1;
-                            } else if (popularidade == 2) {
-                                novaPropriedade.popular = 0;
-                            } else {
-                                printf("Opção inválida. Por favor, escolha 1 para 'Popular' ou 2 para 'Não Popular'.\n");
-                                break;
-                            }
-                            novaPropriedade.id_propriedade = id_propriedade;
-
-                            // Chama a função para editar a propriedade
-                            if (editar_propriedade(&ini_lista_propriedade, novaPropriedade) == 0) {
-                                printf("Propriedade editada com sucesso.\n");
-                            } else {
-                                printf("Erro ao editar propriedade.\n");
-                            }
+                            editar_propriedade(&ini_lista_propriedade);
                             break;
 
                         case 3:
-                            printf("Digite o ID da propriedade que deseja remover: ");
-                            scanf("%d", &id_propriedade);
-
-
-                            if (id_propriedade <= 0) {
-                                printf("ID da propriedade inválido. Por favor, insira um ID válido.\n");
-                            } else {
-                                // Chama a função para remover a propriedade apenas se o ID for válido
-                                if (remover_propriedade(&ini_lista_propriedade, id_propriedade) == 0) {
-                                    printf("Propriedade removida com sucesso.\n");
-                                } else {
-                                    printf("Erro ao remover propriedade.\n");
-                                }
-                            }
-
+                            //Remover Propriedade
+                          remover_propriedade(&ini_lista_propriedade);
+                            break;
                         case 4:
                             imprime_todas_propriedades(ini_lista_propriedade);
                             break;
@@ -575,140 +415,37 @@ int main() {
                 case 4:
                     submenuagentes();
                     scanf("%d", &opcaoSubAgente);
+
                     switch (opcaoSubAgente) {
                         case 1:
                             //CRIAR AGENTE
-                            printf("Nome: ");
-                            fflush(stdin);
-                            fgets(novoAgente.nome,30,stdin);
-
-                            printf("Palavra-Passe: ");
-                            fflush(stdin);
-                            fgets(novoAgente.palavra_passe,30,stdin);
-
-                            printf("NIF: ");
-                            fflush(stdin);
-                            fgets(novoAgente.NIF,9,stdin);
-
-                            printf("Morada: ");
-                            fflush(stdin);
-                            fgets(novoAgente.morada,50,stdin);
-
-                            printf("Telefone: ");
-                            fflush(stdin);
-                            fgets(novoAgente.telefone,9,stdin);
-
-                            printf("Dia de Nascimento: ");
-                            scanf("%d",&novoAgente.dia_nascimento);
-                            printf("Mes de Nascimento: ");
-                            scanf("%d",&novoAgente.mes_nascimento);
-                            printf("Ano de Nascimento: ");
-                            scanf("%d",&novoAgente.ano_nascimento);
-
-                            printf("Disponibilidade:\n");
-                            printf("1. Disponivel\n");
-                            printf("2. Indisponivel\n");
-                            scanf("%d", &tipo_disponibilidade);
-
-                            if (tipo_disponibilidade == 1) {
-                                novoAgente.disponibilidade = 1;
-                            } else if (tipo_disponibilidade == 2) {
-                                novoAgente.disponibilidade = 0;
-                            } else {
-                                printf("Opção invalida. Por favor, escolha 1 para 'Disponivel' ou 2 para 'Nao Disponivel'.\n");
-                                break;
-                            }
-
-                            novoAgente.role=2;
-
-                            printf("");
-
-                            if (criar_agente_imobiliario(agente_imobiliario, novoAgente) == 0) {
-                                printf("Agente criado com sucesso.\n");
-                            } else {
-                                printf("Erro ao criar Agente.\n");
-                            }
-
+                            criar_agente_imobiliario(agente_imobiliario);
                             break;
                         case 2:
                             //EDITAR AGENTE
-                            printf("Digite o ID da propriedade que deseja editar: ");
-                            scanf("%d", &id_agente);
-
-                            printf("Nome: ");
-                            fflush(stdin);
-                            fgets(novoAgente.nome,30,stdin);
-
-                            printf("Palavra-Passe: ");
-                            fflush(stdin);
-                            fgets(novoAgente.palavra_passe,30,stdin);
-
-                            printf("NIF: ");
-                            fflush(stdin);
-                            fgets(novoAgente.NIF,9,stdin);
-
-                            printf("Morada: ");
-                            fflush(stdin);
-                            fgets(novoAgente.morada,50,stdin);
-
-                            printf("Telefone: ");
-                            fflush(stdin);
-                            fgets(novoAgente.telefone,9,stdin);
-
-                            printf("Dia de Nascimento: ");
-                            fflush(stdin);
-                            scanf("%d",&novoAgente.dia_nascimento);
-                            printf("Mes de Nascimento: ");
-                            fflush(stdin);
-                            scanf("%d",&novoAgente.mes_nascimento);
-                            printf("Ano de Nascimento: ");
-                            fflush(stdin);
-                            scanf("%d",&novoAgente.ano_nascimento);
-                            novoAgente.id_agente = id_agente;
-
-                            printf("Disponibilidade:\n");
-                            printf("1. Disponivel\n");
-                            printf("2. Indisponivel\n");
-                            scanf("%d", &tipo_disponibilidade);
-
-                            if (tipo_disponibilidade == 1) {
-                                novoAgente.disponibilidade = 1;
-                            } else if (tipo_disponibilidade == 2) {
-                                novoAgente.disponibilidade = 0;
-                            } else {
-                                printf("Opção invalida. Por favor, escolha 1 para 'Disponivel' ou 2 para 'Nao Disponivel'.\n");
-                                break;
-                            }
-
-                            novoAgente.role=2;
-
-                            // Chama a função para editar a propriedade
-                            if (editar_agente_imobiliario(agente_imobiliario, novoAgente, id_agente) == 0) {
-                                printf("Agente editado com sucesso.\n");
-                            } else {
-                                printf("Erro ao editar Agente.\n");
-                            }
+                            editar_agente_imobiliario(agente_imobiliario);
                             break;
                         case 3:
                             //REMOVER AGENTE
                             printf("Digite o ID do agente que deseja remover: ");
-                            scanf("%d", &id_agente);
-
-
-                            if (id_agente <= 0) {
-                                printf("ID do Agente inválido. Por favor, insira um ID válido.\n");
-                            } else {
-                                // Chama a função para remover a propriedade apenas se o ID for válido
-                                if (remover_agente_imobiliario(agente_imobiliario, id_agente) == 0) {
-                                    printf("Agente removido com sucesso.\n");
-                                } else {
-                                    printf("Erro ao remover Agente.\n");
-                                }
-                            }
+                            scanf("%d", &id_procura);
+                            remover_agente_imobiliario(agente_imobiliario, id_procura);
                             break;
 
                         case 4:
-                        default:
+                            //Listar agentes
+                            listar_agente_imobiliario(agente_imobiliario);
+                            break;
+
+                        case 5:
+                            //Colocar agente como indisponivel
+                            printf("Digite o ID do agente que quer que fique indisponivel: ");
+                            scanf("%d", &id_agente);
+                            tornar_agente_indisponivel(agente_imobiliario, id_agente);
+                            break;
+
+                        case 6:
+                            default:
                             break;
                     }
                     break;
@@ -728,7 +465,7 @@ int main() {
 
                 case 7:
                     //LISTAR POR ORDEM DE IDADE
-                     listar_agente_imobiliario_idade(agente_imobiliario);
+                    listar_agente_imobiliario_idade(agente_imobiliario);
                     break;
 
                 case 8:
@@ -738,6 +475,7 @@ int main() {
 
                 case 9:
                    //SIMULAR A REALIZACAO DE UMA VISITA
+
                     break;
 
                 case 10:
@@ -754,7 +492,8 @@ int main() {
                     break;
 
                 case 13:
-                    inserir_no_ficheiro_agente_imobiliario(agente_imobiliario);
+                    inserir_agentes_em_arquivo(agente_imobiliario);
+                    salvar_lista_propriedades_ficheiro_binario(&ini_lista_propriedade);
                     return 0;
                     break;
 
@@ -768,7 +507,7 @@ int main() {
 
     //// FIM DO PROGRAMA
     //// DEALOCAÇÃO DE MEMÓRIA DAS VARIÁVEIS
-
+    limpar_memoria_lista_propriedades(&ini_lista_propriedade, &fim_lista_propriedade);
     free(administrador);
     free(agente_imobiliario);
     return 0;

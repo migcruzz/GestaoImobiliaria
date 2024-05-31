@@ -24,8 +24,9 @@ void submenuagentes() {
         printf("1. Criar agentes\n");
         printf("2. Editar agentes\n");
         printf("3. Remover agentes\n");
-        printf("4. Colocar agente como Indisponivel\n");
-        printf("5. Sair\n");
+        printf("4. Listar todos os agentes\n");
+        printf("5. Colocar agente como Indisponivel");
+        printf("6. Sair\n");
         printf("Escolha uma opção: ");
         printf("\n");
     }
