@@ -5,10 +5,13 @@
 #include "../../TiposDados/TiposDados.h"
 
 //// fazer função para todos para procurar o maior ID !!!!
-int procuraMaiorID(LISTA_PROPRIEDADE **iniLista){
+int procuraMaiorID_ou_ID_Disponivel(LISTA_PROPRIEDADE **iniLista){
 
     int maiorID=0;
+    int menorID =0;
     LISTA_PROPRIEDADE *aux;
+
+
 
     for(aux = *iniLista; aux != NULL; aux = aux->seguinte){
         if(aux->propriedade.id_propriedade > maiorID){
@@ -16,15 +19,31 @@ int procuraMaiorID(LISTA_PROPRIEDADE **iniLista){
         }
     }
 
-    if (maiorID != 0){
-        return maiorID+1;
-    }else{
-        return 1;
+    menorID = maiorID;
+
+    for(aux = *iniLista; aux != NULL; aux = aux->seguinte){
+        if(aux->propriedade.id_propriedade < menorID){
+            menorID = aux -> propriedade.id_propriedade;
+        }
     }
+
+    if(menorID-1 > 0 ){
+        menorID = menorID -1;
+        return menorID;
+    }else{
+        if (maiorID != 0){
+            return maiorID+1;
+        }else{
+            return 1;
+        }
+    }
+
+
 
 }
 
 int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista) {
+
     LISTA_PROPRIEDADE *novo = NULL;
     PROPRIEDADE propriedade_nova;
     int tipo_comercial = -1;
@@ -32,7 +51,7 @@ int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista
     int popularidade = -1;
 
     // Gerar ID sequencial
-    propriedade_nova.id_propriedade = procuraMaiorID(iniLista);
+    propriedade_nova.id_propriedade = procuraMaiorID_ou_ID_Disponivel(iniLista);
 
     novo = (LISTA_PROPRIEDADE *) calloc(1, sizeof(LISTA_PROPRIEDADE));
     if (novo == NULL) {
@@ -132,7 +151,6 @@ int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista
 
     return 0; // Retorna 0 indicando sucesso
 }
-
 
 void imprime_todas_propriedades (LISTA_PROPRIEDADE *iniLista) {
 
@@ -368,7 +386,6 @@ void salvar_lista_propriedades_ficheiro_binario(LISTA_PROPRIEDADE *iniLista) {
     fclose(arquivo);
     printf("Lista salva com sucesso no arquivo.\n");
 }
-
 
 void carregar_lista_do_arquivo(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista) {
     FILE *arquivo = fopen("../Armazenamento/Binario/Propriedades.dat", "rb");

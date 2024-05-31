@@ -433,8 +433,8 @@ int remover_agente_imobiliario(AGENTE agente_imobiliario[], int id_procura) {
     return -1;
 }
 
-
 int listar_agente_imobiliario(AGENTE agente_imobiliario[]) {
+
     int num_agentes = 0;
 
     // Count the number of valid real estate agents

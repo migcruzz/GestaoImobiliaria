@@ -61,8 +61,14 @@ typedef struct visita{
     int hora_marcacao; // em minutos tendo em atenção que um dia tem 1440 minutos.
     char relatorio [3000];
     char detalhes_intresse_cliente [3000];
+    int cliente_compareceu;
     int casa_aberta;
 }VISITA;
+
+typedef struct tempo{
+    int horas;
+    int minutos;
+}TEMPO;
 
 //// Listas Ligadas:
 
