@@ -62,6 +62,7 @@ typedef struct visita{
     char relatorio [3000];
     char detalhes_intresse_cliente [3000];
     int cliente_compareceu;
+    int visita_terminou;
     int casa_aberta;
 }VISITA;
 

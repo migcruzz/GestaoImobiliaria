@@ -8,26 +8,12 @@
 #define PROGRAMA_CLIENTES_H
 
 
-int criar_cliente(LISTA_CLIENTE **iniLista, LISTA_CLIENTE **fimLista, CLIENTE cliente_novo);
-
-int imprime_todos_clientes (LISTA_CLIENTE *iniLista);
-
-int editar_cliente(LISTA_CLIENTE **iniLista, CLIENTE editado);
-// Troca os elementos da lista a para a frente do b
-
-void aux_troca_elementos_lista(LISTA_CLIENTE *a, LISTA_CLIENTE *b, LISTA_CLIENTE **iniLista);
-
-void ordena_cliente_alfabeto_bubble_sort(LISTA_CLIENTE **iniLista);
-
-int remover_cliente(LISTA_CLIENTE **iniLista,int cliente_id);
-
-void limpar_memoria_lista_clientes(LISTA_CLIENTE **iniLista, LISTA_CLIENTE **fimLista);
-
-void ordena_cliente_NIF_bubble_sort(LISTA_CLIENTE **iniLista, LISTA_CLIENTE **fimLista);
-
-//// Primeiro executar a função acima na main para facilitar procura.
-int apresenta_informacao_dado_NIF(LISTA_CLIENTE **iniLista, char NIF[]);
-
-int carregar_do_ficheiro_cliente(CLIENTE **iniLista, CLIENTE **fimLista);
+int criar_cliente(CLIENTE clientes[]);
+void inserir_clientes_em_arquivo(CLIENTE clientes[]);
+void carregar_clientes_do_arquivo(CLIENTE clientes[]);
+void editar_cliente(CLIENTE clientes[]);
+int listar_cliente_alfabeto(CLIENTE clientes[]);
+int listar_cliente_nif(CLIENTE clientes[]);
+int remover_cliente(CLIENTE clientes[], int id_procura);
 
 #endif //PROGRAMA_CLIENTES_H

@@ -4,7 +4,8 @@
 #include "../../VariaveisGlobais/variaveis_globais.h"
 #include "../../TiposDados/TiposDados.h"
 
-//// fazer função para todos para procurar o maior ID !!!!
+//procuraMaiorID
+
 int procuraMaiorID_ou_ID_Disponivel(LISTA_PROPRIEDADE **iniLista){
 
     int maiorID=0;
@@ -43,14 +44,13 @@ int procuraMaiorID_ou_ID_Disponivel(LISTA_PROPRIEDADE **iniLista){
 }
 
 int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista) {
-
     LISTA_PROPRIEDADE *novo = NULL;
     PROPRIEDADE propriedade_nova;
     int tipo_comercial = -1;
     int tipo_imovel = -1;
     int popularidade = -1;
 
-    // Gerar ID sequencial
+
     propriedade_nova.id_propriedade = procuraMaiorID_ou_ID_Disponivel(iniLista);
 
     novo = (LISTA_PROPRIEDADE *) calloc(1, sizeof(LISTA_PROPRIEDADE));
@@ -65,6 +65,11 @@ int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista
     fflush(stdin);
     fgets(propriedade_nova.nome, sizeof(propriedade_nova.nome), stdin);
     propriedade_nova.nome[strcspn(propriedade_nova.nome, "\n")] = '\0'; // Remove newline character
+
+    // Recolher morada
+    printf("Morada: ");
+    fgets(propriedade_nova.morada, sizeof(propriedade_nova.morada), stdin);
+    propriedade_nova.morada[strcspn(propriedade_nova.morada, "\n")] = '\0'; // Remove newline character
 
     do {
         printf("Tipo de comércio:\n");
@@ -149,42 +154,62 @@ int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista
         *fimLista = novo;
     }
 
-    return 0; // Retorna 0 indicando sucesso
+    printf("Propriedade criada com sucesso!\n");
+    return 0;
 }
 
-void imprime_todas_propriedades (LISTA_PROPRIEDADE *iniLista) {
-
-    int contador =0;
 
 
-    LISTA_PROPRIEDADE *aux = NULL;
-
+void imprime_todas_propriedades(LISTA_PROPRIEDADE *iniLista) {
     if (iniLista == NULL) {
         printf("Lista Vazia\n");
+        return;
     }
 
+    // Contagem do número total de propriedades
+    int contador = 0;
+    LISTA_PROPRIEDADE *aux;
     for (aux = iniLista; aux != NULL; aux = aux->seguinte) {
-        contador ++;
-
-        printf("\n-------------------------------\n");
-
-        if(aux->propriedade.popular == 0){
-            printf("\nPropriedade popular?: %s\n", "falso" );
-        }else{
-            printf("\nPropriedade popular?: %s\n", "verdade" );
-        }
-        printf("\nNome do Imovel: %s\n",aux->propriedade.nome);
-        printf("\nPreço da propriedade: %.2f\n",aux->propriedade.preco);
-        printf("\nTipo Comercial: %s\n",aux -> propriedade.tipo_comercial);
-        printf("\nTipo do Imovel: %s\n",aux -> propriedade.tipo_imovel);
-        printf("\nID da propriedade: %d\n", aux -> propriedade.id_propriedade);
-
-        printf("-------------------------------");
+        contador++;
     }
+
+    // Ordenação da lista por IDs de forma crescente
+    LISTA_PROPRIEDADE *propriedades[contador];
+    int i = 0;
+    for (aux = iniLista; aux != NULL; aux = aux->seguinte) {
+        propriedades[i++] = aux;
+    }
+
+    // Bubble sort para ordenar a lista de propriedades por IDs
+    for (int i = 0; i < contador - 1; i++) {
+        for (int j = 0; j < contador - i - 1; j++) {
+            if (propriedades[j]->propriedade.id_propriedade > propriedades[j + 1]->propriedade.id_propriedade) {
+                LISTA_PROPRIEDADE *temp = propriedades[j];
+                propriedades[j] = propriedades[j + 1];
+                propriedades[j + 1] = temp;
+            }
+        }
+    }
+
+    // Impressão formatada das propriedades ordenadas
+    printf("┌────┬──────────────────┬──────────────────────┬────────┬─────────┐\n");
+    printf("│ ID │      Nome        │        Morada        │ Preço  │ Popular │\n");
+    printf("├────┼──────────────────┼──────────────────────┼────────┼─────────┤\n");
+    for (int i = 0; i < contador; i++) {
+        LISTA_PROPRIEDADE *prop = propriedades[i];
+        printf("│ %2d │ %-16s │ %-20s │ %6.2f │   %s   │\n",
+               prop->propriedade.id_propriedade,
+               prop->propriedade.nome,
+               prop->propriedade.morada,
+               prop->propriedade.preco,
+               prop->propriedade.popular ? "Sim" : "Não");
+    }
+    printf("└────┴──────────────────┴──────────────────────┴────────┴─────────┘\n");
 }
 
-int editar_propriedade(LISTA_PROPRIEDADE **iniLista) {
 
+
+int editar_propriedade(LISTA_PROPRIEDADE **iniLista) {
     if (iniLista == NULL || *iniLista == NULL) {
         printf("Lista Vazia\n");
         return -1;
@@ -193,10 +218,8 @@ int editar_propriedade(LISTA_PROPRIEDADE **iniLista) {
     int id_propriedade;
     LISTA_PROPRIEDADE *aux = NULL;
 
-
     do {
         printf("ID da propriedade a editar: ");
-        fflush(stdin);
         scanf("%d", &id_propriedade);
 
         aux = *iniLista;
@@ -215,9 +238,16 @@ int editar_propriedade(LISTA_PROPRIEDADE **iniLista) {
     // Interação com o utilizador
     PROPRIEDADE propriedade_editada;
 
+    // Recolher dados do utilizador:
     printf("Nome da propriedade: ");
     fflush(stdin);
-    fgets(propriedade_editada.nome, 50, stdin);
+    fgets(propriedade_editada.nome, sizeof(propriedade_editada.nome), stdin);
+    propriedade_editada.nome[strcspn(propriedade_editada.nome, "\n")] = '\0'; // Remove newline character
+
+    printf("\nMorada: "); // Adicionando um enter extra aqui
+    fflush(stdin);
+    fgets(propriedade_editada.morada, sizeof(propriedade_editada.morada), stdin);
+    propriedade_editada.morada[strcspn(propriedade_editada.morada, "\n")] = '\0'; // Remove newline character
 
     int tipo_comercial = -1;
     do {
@@ -225,7 +255,6 @@ int editar_propriedade(LISTA_PROPRIEDADE **iniLista) {
         printf("1. Vender\n");
         printf("2. Arrendar\n");
         printf("Escolha uma opção: ");
-        fflush(stdin);
         scanf("%d", &tipo_comercial);
 
         if (tipo_comercial == 1) {
@@ -238,7 +267,6 @@ int editar_propriedade(LISTA_PROPRIEDADE **iniLista) {
     } while (tipo_comercial != 1 && tipo_comercial != 2);
 
     printf("Preço: ");
-    fflush(stdin);
     scanf("%f", &propriedade_editada.preco);
 
     int tipo_imovel = -1;
@@ -250,7 +278,6 @@ int editar_propriedade(LISTA_PROPRIEDADE **iniLista) {
         printf("4. Garagem\n");
         printf("5. Armazém\n");
         printf("Escolha uma opção: ");
-        fflush(stdin);
         scanf("%d", &tipo_imovel);
 
         switch (tipo_imovel) {
@@ -280,8 +307,8 @@ int editar_propriedade(LISTA_PROPRIEDADE **iniLista) {
         printf("Popularidade:\n");
         printf("1. Popular\n");
         printf("2. Não Popular\n");
-        fflush(stdin);
         scanf("%d", &popularidade);
+
         if (popularidade == 1) {
             propriedade_editada.popular = 1;
         } else if (popularidade == 2) {
@@ -293,6 +320,7 @@ int editar_propriedade(LISTA_PROPRIEDADE **iniLista) {
 
     // Atualiza a propriedade
     strcpy(aux->propriedade.nome, propriedade_editada.nome);
+    strcpy(aux->propriedade.morada, propriedade_editada.morada);
     strcpy(aux->propriedade.tipo_imovel, propriedade_editada.tipo_imovel);
     strcpy(aux->propriedade.tipo_comercial, propriedade_editada.tipo_comercial);
     aux->propriedade.preco = propriedade_editada.preco;
@@ -302,6 +330,7 @@ int editar_propriedade(LISTA_PROPRIEDADE **iniLista) {
 
     return 0;
 }
+
 
 int remover_propriedade(LISTA_PROPRIEDADE **iniLista) {
     if (iniLista == NULL || *iniLista == NULL) {
@@ -369,6 +398,8 @@ void limpar_memoria_lista_propriedades(LISTA_PROPRIEDADE **iniLista, LISTA_PROPR
     }
 }
 
+
+
 void salvar_lista_propriedades_ficheiro_binario(LISTA_PROPRIEDADE *iniLista) {
     FILE *arquivo = fopen("../Armazenamento/Binario/Propriedades.dat", "wb");
     if (arquivo == NULL) {
@@ -378,27 +409,105 @@ void salvar_lista_propriedades_ficheiro_binario(LISTA_PROPRIEDADE *iniLista) {
 
     LISTA_PROPRIEDADE *aux = iniLista;
     while (aux != NULL) {
-        printf("Salvando: ID = %d, Nome = %s\n", aux->propriedade.id_propriedade, aux->propriedade.nome); // Depuração
         fwrite(&(aux->propriedade), sizeof(PROPRIEDADE), 1, arquivo);
         aux = aux->seguinte;
     }
 
     fclose(arquivo);
-    printf("Lista salva com sucesso no arquivo.\n");
+    printf("Lista salva com sucesso no arquivo binário.\n");
 }
 
-void carregar_lista_do_arquivo(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista) {
+void carregar_lista_do_arquivo_binario(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista) {
     FILE *arquivo = fopen("../Armazenamento/Binario/Propriedades.dat", "rb");
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo para leitura.\n");
         return;
     }
 
+    PROPRIEDADE propriedade_lida;
 
+    while (fread(&propriedade_lida, sizeof(PROPRIEDADE), 1, arquivo) == 1) {
+        LISTA_PROPRIEDADE *novo = (LISTA_PROPRIEDADE *)calloc(1, sizeof(LISTA_PROPRIEDADE));
+        if (novo == NULL) {
+            printf("Erro ao alocar memória para a nova propriedade.\n");
+            fclose(arquivo);
+            return;
+        }
+
+        novo->propriedade = propriedade_lida;
+        novo->seguinte = NULL;
+
+        if (*iniLista == NULL) {
+            *iniLista = novo;
+            *fimLista = novo;
+        } else {
+            (*fimLista)->seguinte = novo;
+            novo->anterior = *fimLista;
+            *fimLista = novo;
+        }
+    }
+
+    if (!feof(arquivo)) {
+        printf("Erro: leitura do arquivo incompleta.\n");
+    }
+
+    fclose(arquivo);
+    printf("Lista carregada com sucesso do arquivo binário.\n");
+}
+
+
+/*
+
+void salvar_lista_propriedades_ficheiro_texto(LISTA_PROPRIEDADE *iniLista) {
+    FILE *arquivo = fopen("../Armazenamento/Texto/Propriedades.txt", "w");
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo para escrita.\n");
+        return;
+    }
+
+    LISTA_PROPRIEDADE *aux = iniLista;
+    while (aux != NULL) {
+        fprintf(arquivo, "%d|%s|%s|%.2f|%s|%s|%d\n",
+                aux->propriedade.id_propriedade,
+                aux->propriedade.nome,
+                aux->propriedade.morada,
+                aux->propriedade.preco,
+                aux->propriedade.tipo_comercial,
+                aux->propriedade.tipo_imovel,
+                aux->propriedade.popular);
+        aux = aux->seguinte;
+    }
+
+    fclose(arquivo);
+    printf("Lista salva com sucesso no arquivo de texto.\n");
+}
+
+void carregar_lista_do_arquivo_texto(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista) {
+    FILE *arquivo = fopen("../Armazenamento/Texto/Propriedades.txt", "r");
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo para leitura.\n");
+        return;
+    }
 
     PROPRIEDADE propriedade_lida;
-    while (fread(&propriedade_lida, sizeof(PROPRIEDADE), 1, arquivo) == 1) {
-        printf("Lido: ID = %d, Nome = %s\n", propriedade_lida.id_propriedade, propriedade_lida.nome); // Depuração
+
+    while (fscanf(arquivo, "%d|%50[^\n]|%100[^\n]|%f|%100[^\n]|%100[^\n]|%d\n",
+                  &propriedade_lida.id_propriedade,
+                  propriedade_lida.nome,
+                  propriedade_lida.morada,
+                  &propriedade_lida.preco,
+                  propriedade_lida.tipo_comercial,
+                  propriedade_lida.tipo_imovel,
+                  &propriedade_lida.popular) == 7) {
+
+        printf("Lido: ID = %d, Nome = %s, Morada = %s, Preço = %.2f, Tipo Comercial = %s, Tipo do Imóvel = %s, Popular = %d\n",
+               propriedade_lida.id_propriedade,
+               propriedade_lida.nome,
+               propriedade_lida.morada,
+               propriedade_lida.preco,
+               propriedade_lida.tipo_comercial,
+               propriedade_lida.tipo_imovel,
+               propriedade_lida.popular); // Depuração
 
         LISTA_PROPRIEDADE *novo = (LISTA_PROPRIEDADE *)calloc(1, sizeof(LISTA_PROPRIEDADE));
         if (novo == NULL) {
@@ -412,12 +521,12 @@ void carregar_lista_do_arquivo(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE *
 
         if (*iniLista == NULL) {
             *iniLista = novo;
+            *fimLista = novo;
         } else {
             (*fimLista)->seguinte = novo;
+            novo->anterior = *fimLista;
+            *fimLista = novo;
         }
-
-        novo->anterior = *fimLista;
-        *fimLista = novo;
     }
 
     if (!feof(arquivo)) {
@@ -425,5 +534,9 @@ void carregar_lista_do_arquivo(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE *
     }
 
     fclose(arquivo);
-    printf("Lista carregada com sucesso do arquivo.\n");
+    printf("Lista carregada com sucesso do arquivo de texto.\n");
 }
+*/
+
+
+

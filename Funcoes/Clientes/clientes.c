@@ -5,303 +5,275 @@
 #include "../../TiposDados/TiposDados.h"
 
 
-int criar_cliente(LISTA_CLIENTE **iniLista, LISTA_CLIENTE **fimLista, CLIENTE cliente_novo){
-
-    LISTA_CLIENTE *novo = NULL;
-
-    novo = (LISTA_CLIENTE *) calloc(1,sizeof(LISTA_CLIENTE));
-
-    if(novo == NULL){ // se a lista estiver vazia
-        printf("Out of memory ! \n");
-        return -1;
-    }
 
 
-    novo -> cliente = cliente_novo;
+int criar_cliente(CLIENTE clientes[]) {
+    CLIENTE novoCliente;
 
-    novo -> seguinte = NULL;
-    novo -> anterior = NULL;
+    printf("Nome: ");
+    fflush(stdin);
+    fgets(novoCliente.nome, sizeof(novoCliente.nome), stdin);
+    novoCliente.nome[strcspn(novoCliente.nome, "\n")] = '\0'; // Remove newline character
 
-    if(*iniLista == NULL){
+    printf("Palavra-Passe: ");
+    fflush(stdin);
+    fgets(novoCliente.palavra_passe, sizeof(novoCliente.palavra_passe), stdin);
+    novoCliente.palavra_passe[strcspn(novoCliente.palavra_passe, "\n")] = '\0'; // Remove newline character
 
-        *iniLista = novo;
-        *fimLista = novo;
+    printf("NIF: ");
+    fflush(stdin);
+    fgets(novoCliente.NIF, sizeof(novoCliente.NIF), stdin);
+    novoCliente.NIF[strcspn(novoCliente.NIF, "\n")] = '\0'; // Remove newline character
 
-    }else{
-        novo -> seguinte = *iniLista;
-        (*iniLista) -> anterior = novo;
-        (*iniLista) = novo;
-    }
+    printf("Telefone: ");
+    fflush(stdin);
+    fgets(novoCliente.telefone, sizeof(novoCliente.telefone), stdin);
+    novoCliente.telefone[strcspn(novoCliente.telefone, "\n")] = '\0'; // Remove newline character
 
-    return 0;
-}
+    novoCliente.role = 1; // Definindo o papel do cliente
 
-int imprime_todos_clientes (LISTA_CLIENTE *iniLista) {
+    int posicaoInserir = -1;
 
-    int contador =0;
-
-    LISTA_CLIENTE *aux = NULL;
-
-    if (iniLista == NULL) {
-        printf("Lista Vazia\n");
-        return -1;
-    }
-
-    for (aux = iniLista; aux != NULL; aux = aux->seguinte) {
-        contador ++;
-
-        printf("------------------------------------------------------------------\n");
-        printf("Nome do Cliente: %s\n",aux->cliente.nome);
-        printf("NIF do cliente: %s\n",aux -> cliente.NIF);
-        printf("Telefone do Cliente: %s\n", aux -> cliente.telefone);
-        printf("ID do Cliente: %d\n", aux -> cliente.id_cliente);
-        printf("Palavra passe: %s", aux -> cliente.palavra_passe);
-        printf("------------------------------------------------------------------\n");
-    }
-    return 0;
-}
-
-int editar_cliente(LISTA_CLIENTE **iniLista, CLIENTE editado) {
-
-    int contador = 0;
-
-    LISTA_CLIENTE *aux = NULL;
-
-    if (iniLista == NULL) {
-        printf("Lista Vazia\n");
-        return -1;
-    }
-
-    for (aux = *iniLista; aux != NULL; aux = aux ->seguinte) {
-
-        if (aux->cliente.id_cliente == editado.id_cliente) {
-
-            strcpy(aux->cliente.nome, editado.nome);
-            strcpy(aux->cliente.NIF, editado.NIF);
-            strcpy(aux->cliente.telefone, editado.telefone);
-            strcpy(aux->cliente.palavra_passe, editado.palavra_passe);
-
-            printf("Utilizador alterado ficou com o seguintes dados:\n");
-
-            printf("------------------------------------------------------------------\n");
-            printf("Nome do Cliente: %s\n", aux->cliente.nome);
-            printf("NIF do cliente: %s\n", aux->cliente.NIF);
-            printf("Telefone do Cliente: %s\n", aux->cliente.telefone);
-            printf("ID do Cliente: %d\n", aux->cliente.id_cliente);
-            printf("Palavra passe: %s", aux->cliente.palavra_passe);
-            printf("------------------------------------------------------------------\n");
-
+    for (int i = 0; i < MAX_CLIENTES; i++) {
+        if (clientes[i].id_cliente == 0) {
+            posicaoInserir = i;
+            break;
         }
+    }
+
+    if (posicaoInserir != -1) {
+        strcpy(clientes[posicaoInserir].nome, novoCliente.nome);
+        strcpy(clientes[posicaoInserir].NIF, novoCliente.NIF);
+        strcpy(clientes[posicaoInserir].telefone, novoCliente.telefone);
+        strcpy(clientes[posicaoInserir].palavra_passe, novoCliente.palavra_passe);
+        clientes[posicaoInserir].role = novoCliente.role;
+        clientes[posicaoInserir].id_cliente = posicaoInserir + 1;
+
         return 0;
-    }
-    return 0;
-}
-
-// Troca os elementos da lista a para a frente do b
-
-void aux_troca_elementos_lista(LISTA_CLIENTE *a, LISTA_CLIENTE *b, LISTA_CLIENTE **iniLista){
-
-    LISTA_CLIENTE *b_aux = NULL;
-    LISTA_CLIENTE *a_aux= NULL;
-    LISTA_CLIENTE *bb_aux = NULL;
-    LISTA_CLIENTE *aa_aux = NULL;
-
-    LISTA_CLIENTE *bb = NULL;
-    LISTA_CLIENTE *aa = NULL;
-
-    // Auxiliares apenas para guardar dados para serem mais trde acedidos, de forma a garantir que não se perde segurança no procedimento de troca de elementos.
-    //Podia ser mais rápido de outra forma usando apenas os apontadores importantes mas a segurança é mais importante.
-
-    a_aux = a;
-    b_aux = b;
-    aa_aux = a -> anterior;
-    bb_aux = b -> seguinte;
-
-    // Dados a serem alterados assim como os argumentos a e b da função.
-    aa = a -> anterior;
-    bb = b -> seguinte;
-
-    if(a -> anterior == NULL){
-        a ->seguinte = bb_aux;
-        bb -> anterior = a_aux;
-        *iniLista = b_aux;
-        b -> seguinte = a_aux;
-        a-> anterior = b_aux;
-    }
-    else if(b -> seguinte == NULL){
-        aa -> seguinte = b_aux;
-        b -> seguinte = a_aux;
-        a -> seguinte = NULL;
-        a ->anterior  = b_aux;
-        b -> anterior = aa_aux;
-    }
-    else{
-        aa -> seguinte = b_aux;
-        b -> seguinte = b_aux -> anterior;
-        a -> seguinte = bb_aux;
-        bb -> anterior = a_aux;
-        a -> anterior = b_aux;
-        b -> anterior = aa_aux;
-    }
-}
-
-void ordena_cliente_alfabeto_bubble_sort(LISTA_CLIENTE **iniLista){
-
-    int contador =0;
-    int i;
-    LISTA_CLIENTE *aux = NULL;
-
-    for (aux = *iniLista; aux != NULL; aux = aux->seguinte) {
-        contador ++;
-    }
-
-
-    for(i =0; i < contador; i++){
-
-        for(aux = *iniLista; aux != NULL; aux = aux->seguinte){
-
-            if(strcmp(aux -> cliente.nome, aux -> seguinte ->cliente.nome) > 0){
-                aux_troca_elementos_lista(aux, aux ->seguinte, iniLista);
-            }
-        }
-    }
-}
-
-int remover_cliente(LISTA_CLIENTE **iniLista,int cliente_id) {
-
-    LISTA_CLIENTE *aux = *iniLista;
-    LISTA_CLIENTE *NoSeguinte = NULL;
-    LISTA_CLIENTE  *NoAnterior = NULL;
-    int contador =0;
-
-
-    if (aux == NULL) {
-        printf("Lista vazia.\n");
+    } else {
+        printf("\nNão há lugares disponíveis!\n");
         return -1;
     }
+}
 
-    while (aux != NULL) {
-        if (aux->cliente.id_cliente == cliente_id) {
+void inserir_clientes_em_arquivo(CLIENTE clientes[]) {
+    FILE *arquivo = fopen("../Armazenamento/Texto/Clientes.txt", "w");
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return;
+    }
 
-            NoSeguinte = aux->seguinte;
-            NoAnterior = aux->anterior;
+    for (int i = 0; i < MAX_CLIENTES; i++) {
+        if (clientes[i].id_cliente != 0) {
+            fprintf(arquivo, "%d\n", clientes[i].id_cliente);
+            fprintf(arquivo, "%s\n", clientes[i].nome);
+            fprintf(arquivo, "%s\n", clientes[i].palavra_passe);
+            fprintf(arquivo, "%s\n", clientes[i].NIF);
+            fprintf(arquivo, "%s\n", clientes[i].telefone);
+            fprintf(arquivo, "%d\n", clientes[i].role);
+        }
+    }
 
-            if (NoAnterior != NULL) {
-                NoAnterior->seguinte = NoSeguinte;
-            } else {
-                *iniLista = NoSeguinte;
+    fclose(arquivo);
+}
+
+
+void carregar_clientes_do_arquivo(CLIENTE clientes[]) {
+    FILE *arquivo = fopen("../Armazenamento/Texto/Clientes.txt", "r");
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return;
+    }
+
+    int index = 0;
+
+    while (fscanf(arquivo, "%d\n", &clientes[index].id_cliente) != EOF) {
+        fscanf(arquivo, "%[^\n]\n", clientes[index].nome);
+        fscanf(arquivo, "%[^\n]\n", clientes[index].palavra_passe);
+        fscanf(arquivo, "%[^\n]\n", clientes[index].NIF);
+        fscanf(arquivo, "%[^\n]\n", clientes[index].telefone);
+        fscanf(arquivo, "%d\n", &clientes[index].role);
+        index++;
+    }
+
+    fclose(arquivo);
+}
+
+
+void editar_cliente(CLIENTE clientes[]) {
+    int id_cliente;
+
+    printf("Digite o ID do cliente que deseja editar: ");
+    scanf("%d", &id_cliente);
+
+    // Procurar o cliente com o ID especificado
+    int encontrado = 0;
+    int indice_cliente = -1; // Índice do cliente a ser editado
+    for (int i = 0; i < MAX_CLIENTES; i++) {
+        if (clientes[i].id_cliente == id_cliente) {
+            encontrado = 1;
+            indice_cliente = i; // Armazenar o índice do cliente
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        printf("Não existe cliente com o ID especificado.\n");
+        return;
+    }
+
+    // Limpar o buffer do teclado
+    fflush(stdin);
+
+    // Resto do código de edição...
+
+    printf("Nome: ");
+    fflush(stdin);
+    fgets(clientes[indice_cliente].nome, sizeof(clientes[indice_cliente].nome), stdin);
+    clientes[indice_cliente].nome[strcspn(clientes[indice_cliente].nome, "\n")] = '\0';
+
+    printf("Palavra-passe: ");
+    fflush(stdin);
+    fgets(clientes[indice_cliente].palavra_passe, sizeof(clientes[indice_cliente].palavra_passe), stdin);
+    clientes[indice_cliente].palavra_passe[strcspn(clientes[indice_cliente].palavra_passe, "\n")] = '\0';
+
+    printf("NIF: ");
+    fflush(stdin);
+    fgets(clientes[indice_cliente].NIF, sizeof(clientes[indice_cliente].NIF), stdin);
+    clientes[indice_cliente].NIF[strcspn(clientes[indice_cliente].NIF, "\n")] = '\0';
+
+    printf("Telefone: ");
+    fflush(stdin);
+    fgets(clientes[indice_cliente].telefone, sizeof(clientes[indice_cliente].telefone), stdin);
+    clientes[indice_cliente].telefone[strcspn(clientes[indice_cliente].telefone, "\n")] = '\0';
+
+    printf("Cliente editado com sucesso.\n");
+}
+
+int listar_cliente_alfabeto(CLIENTE clientes[]) {
+    int num_clientes = 0;
+
+    // Contagem do número de clientes válidos
+    for (int i = 0; i < MAX_CLIENTES; i++) {
+        if (clientes[i].id_cliente != 0) {
+            num_clientes++;
+        }
+    }
+
+    if (num_clientes != 0) {
+        // Alocação de memória para um novo array de clientes (ordenados)
+        CLIENTE *clientes_ordenados = (CLIENTE *)calloc(num_clientes, sizeof(CLIENTE));
+
+        int indice_ordenados = 0;
+        for (int i = 0; i < MAX_CLIENTES; i++) {
+            if (clientes[i].id_cliente != 0) {
+                clientes_ordenados[indice_ordenados++] = clientes[i];
             }
+        }
 
-            if (NoSeguinte != NULL) {
-                NoSeguinte->anterior = NoAnterior;
+        // Ordenação dos clientes por nome usando o algoritmo Bubble Sort
+        for (int i = 0; i < num_clientes - 1; i++) {
+            for (int j = 0; j < num_clientes - i - 1; j++) {
+                if (strcmp(clientes_ordenados[j].nome, clientes_ordenados[j + 1].nome) > 0) {
+                    CLIENTE temp = clientes_ordenados[j];
+                    clientes_ordenados[j] = clientes_ordenados[j + 1];
+                    clientes_ordenados[j + 1] = temp;
+                }
             }
+        }
 
-            free(aux);
-            printf("Cliente removido.\n");
+        // Impressão dos detalhes de cada cliente em uma tabela
+        printf("┌───────────────┬───────────────────┬───────────────────────┬──────────────┬──────────────┬───────────┐\n");
+        printf("│   ID          │        Nome        │          NIF          │    Telefone   │    Role      │\n");
+        printf("├───────────────┼───────────────────┼───────────────────────┼──────────────┼──────────────┼───────────┤\n");
+        for (int i = 0; i < num_clientes; i++) {
+            printf("│   %-11d │ %-17s │ %-21s │ %-12s │ %-12d │\n",
+                   clientes_ordenados[i].id_cliente,
+                   clientes_ordenados[i].nome,
+                   clientes_ordenados[i].NIF,
+                   clientes_ordenados[i].telefone,
+                   clientes_ordenados[i].role);
+            printf("├───────────────┼───────────────────┼───────────────────────┼──────────────┼──────────────┼───────────┤\n");
+        }
+
+        free(clientes_ordenados);
+
+        return 0;
+    } else {
+        printf("\nNão existem clientes!\n");
+        return -1;
+    }
+}
+
+
+int listar_cliente_nif(CLIENTE clientes[]) {
+    int num_clientes = 0;
+
+    // Contagem do número de clientes válidos
+    for (int i = 0; i < MAX_CLIENTES; i++) {
+        if (clientes[i].id_cliente != 0) {
+            num_clientes++;
+        }
+    }
+
+    if (num_clientes != 0) {
+        // Alocação de memória para um novo array de clientes (ordenados)
+        CLIENTE *clientes_ordenados = (CLIENTE *)calloc(num_clientes, sizeof(CLIENTE));
+
+        int indice_ordenados = 0;
+        for (int i = 0; i < MAX_CLIENTES; i++) {
+            if (clientes[i].id_cliente != 0) {
+                clientes_ordenados[indice_ordenados++] = clientes[i];
+            }
+        }
+
+        // Ordenação dos clientes por NIF usando o algoritmo Bubble Sort
+        for (int i = 0; i < num_clientes - 1; i++) {
+            for (int j = 0; j < num_clientes - i - 1; j++) {
+                if (strcmp(clientes_ordenados[j].NIF, clientes_ordenados[j + 1].NIF) > 0) {
+                    CLIENTE temp = clientes_ordenados[j];
+                    clientes_ordenados[j] = clientes_ordenados[j + 1];
+                    clientes_ordenados[j + 1] = temp;
+                }
+            }
+        }
+
+        // Impressão dos detalhes de cada cliente em uma tabela
+        printf("┌───────────────┬───────────────────┬───────────────────────┬──────────────┬──────────────┬───────────┐\n");
+        printf("│   ID          │        Nome        │          NIF          │    Telefone   │    Role      │\n");
+        printf("├───────────────┼───────────────────┼───────────────────────┼──────────────┼──────────────┼───────────┤\n");
+        for (int i = 0; i < num_clientes; i++) {
+            printf("│   %-11d │ %-17s │ %-21s │ %-12s │ %-12d │\n",
+                   clientes_ordenados[i].id_cliente,
+                   clientes_ordenados[i].nome,
+                   clientes_ordenados[i].NIF,
+                   clientes_ordenados[i].telefone,
+                   clientes_ordenados[i].role);
+            printf("├───────────────┼───────────────────┼───────────────────────┼──────────────┼──────────────┼───────────┤\n");
+        }
+
+        free(clientes_ordenados);
+
+        return 0;
+    } else {
+        printf("\nNão existem clientes!\n");
+        return -1;
+    }
+}
+
+
+int remover_cliente(CLIENTE clientes[], int id_procura) {
+    for (int i = 0; i < MAX_CLIENTES; i++) {
+        if (clientes[i].id_cliente == id_procura) {
+            // Limpar os dados do cliente
+            memset(&clientes[i], 0, sizeof(CLIENTE));
+            printf("Cliente removido com sucesso.\n");
             return 0;
         }
-        aux = aux->seguinte;
     }
 
-    printf("Cliente com ID %d não encontrado.\n", cliente_id);
+    printf("Não existe cliente com o ID especificado.\n");
     return -1;
-
 }
 
-void limpar_memoria_lista_clientes(LISTA_CLIENTE **iniLista, LISTA_CLIENTE **fimLista) {
-
-    LISTA_CLIENTE *aux = NULL;
-    LISTA_CLIENTE *proximo = NULL;
-
-    aux = *iniLista;
-
-    *iniLista = NULL;
-    *fimLista = NULL;
-
-    while(aux != NULL){
-        proximo = aux -> seguinte;
-
-        free(aux);
-
-        aux = proximo;
-    }
-}
-
-void ordena_cliente_NIF_bubble_sort(LISTA_CLIENTE **iniLista, LISTA_CLIENTE **fimLista){
-
-    int contador =0;
-    int i;
-    LISTA_CLIENTE *aux = NULL;
-
-    for (aux = *iniLista; aux != NULL; aux = aux->seguinte) {
-        contador ++;
-    }
-
-    for(i =0; i < contador; i++){
-
-        for(aux = *iniLista; aux != NULL; aux = aux->seguinte){
-
-            if(strcmp(aux -> cliente.NIF, aux -> seguinte ->cliente.NIF) > 0){
-                aux_troca_elementos_lista(aux, aux ->seguinte, iniLista);
-            }
-        }
-    }
-}
-
-//// Primeiro executar a função acima na main para facilitar procura.
-int apresenta_informacao_dado_NIF(LISTA_CLIENTE **iniLista, char NIF[]){
-
-    CLIENTE cliente_encontrado;
-
-    int contador = 0;
-
-    LISTA_CLIENTE *aux = NULL;
-
-    if (iniLista == NULL) {
-        printf("Lista Vazia\n");
-        return -1;
-    }
-
-    for (aux = *iniLista; aux != NULL; aux = aux ->seguinte) {
-
-        if (strcmp(aux->cliente.NIF , NIF) == 0) {
-
-            strcpy(cliente_encontrado.nome,aux->cliente.nome );
-            strcpy(cliente_encontrado.NIF, aux->cliente.NIF);
-            strcpy(cliente_encontrado.telefone, aux->cliente.telefone );
-            strcpy( cliente_encontrado.palavra_passe, aux->cliente.palavra_passe);
-            cliente_encontrado.id_cliente = aux ->cliente.id_cliente;
-
-        }
-        return 0;
-    }
-    return 0;
-
-
-}
-
-int carregar_do_ficheiro_cliente(CLIENTE **iniLista, CLIENTE **fimLista){
-
-    CLIENTE cliente_lido;
-    FILE *ficheiro_cliente = fopen("../Armazenamento/Texto/Agentes_Imobiliarios.txt", "r");
-    if (ficheiro_cliente == NULL) {
-        printf("\nErro a abrir o ficheiro de clientes !!!!\n");
-        return -1;
-    }
-
-    while (fscanf(ficheiro_cliente, "%29[^;];%9[^;];%9[^;];%d;%d;%20[^;]",
-                  cliente_lido.nome,
-                  cliente_lido.NIF,
-                  cliente_lido.telefone,
-                  &cliente_lido.id_cliente,
-                  &cliente_lido.role,
-                  cliente_lido.palavra_passe) == 6)
-    {
-        criar_cliente((LISTA_CLIENTE **) iniLista, (LISTA_CLIENTE **) fimLista, cliente_lido);
-    }
-
-    fclose(ficheiro_cliente);
-
-    return 0;
-}
 

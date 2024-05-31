@@ -7,5 +7,7 @@ void menuAgente();
 void submenupropriedadeAgente();
 void submenuagentes();
 void menuAdmin();
+void submenuvisitas();
 void sair();
+void submenucliente();
 #endif //PROGRAMA_MENU_H

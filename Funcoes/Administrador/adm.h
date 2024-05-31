@@ -9,6 +9,12 @@
 
  void carregar_do_ficheiro_administrador(ADMIN administrador[]);
 
+int editar_administrador(ADMIN administrador[], int id_admin_logado);
+
+int inserir_no_ficheiro_administrador(ADMIN administrador[]);
+
+void remove_newline(char *string);
+
 
 
 

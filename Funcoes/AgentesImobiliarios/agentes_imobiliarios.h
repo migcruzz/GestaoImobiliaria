@@ -24,7 +24,7 @@ int editar_agente_imobiliario(AGENTE agente_imobiliario[]) ;
 
 int remover_agente_imobiliario(AGENTE agente_imobiliario[], int id_procura) ;
 
-void tornar_agente_indisponivel(AGENTE agente_imobiliario[], int id_agente);
+void tornar_agente_indisponivel(AGENTE agente_imobiliario[]);
 
 int listar_agente_imobiliario(AGENTE agente_imobiliario[]);
 
