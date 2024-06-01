@@ -18,7 +18,6 @@ void submenupropriedadeAgente() {
     printf("│   4   │ Listar propriedades                                           │\n");
     printf("│   5   │ Sair                                                          │\n");
     printf("└───────┴───────────────────────────────────────────────────────────────┘\n");
-    printf("Escolha uma opção: ");
     printf("\n");
 }
 
@@ -40,7 +39,6 @@ void submenuagentes() {
     printf("│   8   │ Colocar agente como Indisponível                    │\n");
     printf("│   9   │ Sair                                                │\n");
     printf("└───────┴─────────────────────────────────────────────────────┘\n");
-    printf("Escolha uma opção: ");
     printf("\n");
 }
 
@@ -69,7 +67,6 @@ void menuAgente() {
     printf("├──────────────────────┼────────────────────────────────────────────────────┤\n");
     printf("│   6                  │   Sair                                             │\n");
     printf("└──────────────────────┴────────────────────────────────────────────────────┘\n");
-    printf("Escolha uma opção: ");
 }
 
 void menuCliente() {
@@ -92,7 +89,6 @@ void menuCliente() {
     printf("├──────────────────────┼────────────────────────────────────────────────────┤\n");
     printf("│   7                  │   Sair                                             │\n");
     printf("└──────────────────────┴────────────────────────────────────────────────────┘\n");
-    printf("Escolha uma opção: ");
 }
 
 
@@ -113,7 +109,6 @@ void menuAdmin(){
     printf("│     9      │ Editar perfil                                                                │\n");
     printf("│    10      │ Sair                                                                         │\n");
     printf("└────────────┴──────────────────────────────────────────────────────────────────────────────┘\n");
-    printf("Escolha uma opção: ");
 
 
 
@@ -133,7 +128,6 @@ void submenuvisitas() {
     printf("│   4   │ Visitas do dia em que o cliente não compareceu               │\n");
     printf("│   5   │ Sair                                                         │\n");
     printf("└───────┴──────────────────────────────────────────────────────────────┘\n");
-    printf("Escolha uma opção: ");
     printf("\n");
 }
 
@@ -151,6 +145,5 @@ void submenucliente() {
     printf("│   5   │ Listar clientes por o NIF                           │\n");
     printf("│   6   │ Sair                                                │\n");
     printf("└───────┴─────────────────────────────────────────────────────┘\n");
-    printf("Escolha uma opção: ");
     printf("\n");
 }

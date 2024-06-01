@@ -11,6 +11,23 @@
 #include "Funcoes/Menu/menu.h"
 #include "VariaveisGlobais/variaveis_globais.h"
 
+int obterOpcaoMenu() {
+    int opcao;
+    char entrada[10]; // Tamanho arbitrário para a entrada
+
+    // Solicitar a entrada do usuário
+    printf("Escolha uma opção: ");
+    scanf("%s", entrada);
+
+    // Validar se a entrada é um número
+    if (sscanf(entrada, "%d", &opcao) != 1) {
+        printf("Por favor, insira um número válido.\n");
+        return -1; // Retornar um valor inválido para indicar erro
+    }
+
+    return opcao;
+}
+
 int main() {
     LISTA_CLIENTE *ini_lista_cliente = NULL;
     LISTA_CLIENTE *fim_lista_cliente = NULL;
@@ -111,8 +128,7 @@ int main() {
         if (role == 1) {
             while(1){
                 menuCliente();
-                int opcaoCliente;
-                scanf("%d", &opcaoCliente);
+                int opcaoCliente = obterOpcaoMenu();
                 switch (opcaoCliente) {
                     case 1:
                         //Gerir TIPOS DE PROPRIEDADE
@@ -139,8 +155,7 @@ int main() {
 
             while(1){
                 menuAgente();
-                int opcaoAgente;
-                scanf("%d", &opcaoAgente);
+                int opcaoAgente = obterOpcaoMenu();
                 switch (opcaoAgente) {
                     case 1:
                         //Gerir TIPOS DE PROPRIEDADE
@@ -176,16 +191,13 @@ int main() {
         } else if (role == 3) {
             while (1) {
                 menuAdmin();
-                int opcao;
-
-                scanf("%d", &opcao);
+                int opcao = obterOpcaoMenu();
 
                 switch (opcao) {
                     case 1:
                         //PROPRIEDADE
                         submenupropriedadeAgente();
-                        int opcaoSub;
-                        scanf("%d", &opcaoSub);
+                        int opcaoSub = obterOpcaoMenu();
                         switch (opcaoSub) {
                             case 1:
                                 criar_propriedade(&ini_lista_propriedade, &fim_lista_propriedade);
@@ -218,8 +230,7 @@ int main() {
                     case 3:
                         //GERIR AGENTES
                         submenuagentes();
-                        int opcaoSubAgente;
-                        scanf("%d", &opcaoSubAgente);
+                        int opcaoSubAgente = obterOpcaoMenu();
 
                         switch (opcaoSubAgente) {
                             case 1:
@@ -265,8 +276,7 @@ int main() {
                     case 4:
                         //LISTAR VISITAS
                         submenuvisitas();
-                        int opcaoSubVisitas;
-                        scanf("%d", &opcaoSubVisitas);
+                        int opcaoSubVisitas = obterOpcaoMenu();
 
                         switch (opcaoSubVisitas) {
                             case 1:
@@ -298,8 +308,7 @@ int main() {
                     case 6:
                         //GERIR CLIENTES
                         submenucliente();
-                        int opcaoSubCliente;
-                        scanf("%d", &opcaoSubCliente);
+                        int opcaoSubCliente = obterOpcaoMenu();
 
                         switch (opcaoSubCliente) {
                             case 1:
@@ -327,8 +336,7 @@ int main() {
                                 listar_cliente_alfabeto(cliente);
                                 break;
 
-                            case 5:
-                                //LISTAR POR NIF
+                            case 5://LISTAR POR NIF
                                 listar_cliente_nif(cliente);
                                 break;
 
@@ -376,3 +384,6 @@ int main() {
     free(cliente);
     return 0;
 }
+
+
+
