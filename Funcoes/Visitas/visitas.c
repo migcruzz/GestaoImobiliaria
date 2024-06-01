@@ -180,28 +180,28 @@ int verifica_disponibilidade_agente_visita(LISTA_VISITA *iniLista_visita, int ag
             return -1;
         }
     */
-    int tempo_total = HORA_INICIO_AGENTE_IMOBILIARIO;
     LISTA_VISITA *aux = iniLista_visita;
 
     while (aux != NULL) {
         if (aux->visita.id_agente == agente_verificar) {
             // Verificar sobreposição de horários
-            if (hora_visita >= aux->visita.hora_marcacao && hora_visita < aux->visita.hora_marcacao + aux->visita.duracao) {
+            if ((hora_visita >= aux->visita.hora_marcacao && hora_visita < aux->visita.hora_marcacao + aux->visita.duracao) ||
+                (aux->visita.hora_marcacao >= hora_visita && aux->visita.hora_marcacao < hora_visita + duracao_visita)) {
                 printf("Horário de visita sobreposto. Agente ocupado.\n");
                 return -1;
             }
-            tempo_total += aux->visita.duracao;
         }
         aux = aux->seguinte;
     }
 
-    if (tempo_total + duracao_visita <= HORA_FIM_AGENTE_IMOBILIARIO && hora_visita + duracao_visita <= HORA_FIM_AGENTE_IMOBILIARIO) {
+    if (hora_visita >= HORA_INICIO_AGENTE_IMOBILIARIO && hora_visita + duracao_visita <= HORA_FIM_AGENTE_IMOBILIARIO) {
         return hora_visita;
     } else {
         printf("Não há horário disponível para a nova visita. Horário de término ultrapassado.\n");
         return -1;
     }
 }
+
 
 
 int dia_atual(){
