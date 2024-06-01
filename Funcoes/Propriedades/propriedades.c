@@ -3,6 +3,7 @@
 #include <string.h>
 #include "../../VariaveisGlobais/variaveis_globais.h"
 #include "../../TiposDados/TiposDados.h"
+#include "../AgentesImobiliarios/agentes_imobiliarios.h"
 
 //procuraMaiorID
 
@@ -43,7 +44,7 @@ int procuraMaiorID_ou_ID_Disponivel(LISTA_PROPRIEDADE **iniLista){
 
 }
 
-int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista) {
+int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista, AGENTE agente_imobiliario[]) {
     LISTA_PROPRIEDADE *novo = NULL;
     PROPRIEDADE propriedade_nova;
     int tipo_comercial = -1;
@@ -58,9 +59,17 @@ int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista
         printf("Erro ao inserir nova propriedade \n");
         return -1;
     }
+    printf("\nDados da nova propriedade:\n");
+
+    printf("\nAssociar agente a nova casa:\n");
+
+    listar_agente_imobiliario_disponiveis(agente_imobiliario);
+
+    printf("\nSelecione um agente:\n");
+    scanf("%d")
 
     // Recolher dados do utilizador:
-    printf("Dados da nova propriedade:\n");
+
     printf("Nome da propriedade: ");
     fflush(stdin);
     fgets(propriedade_nova.nome, sizeof(propriedade_nova.nome), stdin);

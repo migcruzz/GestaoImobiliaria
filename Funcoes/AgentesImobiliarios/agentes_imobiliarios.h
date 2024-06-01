@@ -17,6 +17,7 @@ int inserir_agente_imobiliario(AGENTE *agente_imobiliario, AGENTE novo_agente, i
 int criar_agente_imobiliario(AGENTE agente_imobiliario[]);
 
 void inserir_agentes_em_arquivo(AGENTE agente_imobiliario[]);
+
 void carregar_agentes_do_arquivo(AGENTE agente_imobiliario[]);
 
 int editar_agente_imobiliario(AGENTE agente_imobiliario[]) ;
@@ -33,4 +34,6 @@ int listar_agente_imobiliario_alfabeto(AGENTE agente_imobiliario[]);
 int listar_agente_imobiliario_idade(AGENTE agente_imobiliario[]);
 
 int listar_agente_imobiliario_disponiveis(AGENTE agente_imobiliario[]);
+
+int verificar_agente_imobiliario_disponiveis(AGENTE agente_imobiliario[], int id_agente_verificar)
 #endif //PROGRAMA_AGENTESIMOBILIARIOS_H

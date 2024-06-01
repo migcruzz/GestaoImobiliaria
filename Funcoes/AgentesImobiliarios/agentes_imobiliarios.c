@@ -505,4 +505,22 @@ int listar_agente_imobiliario_disponiveis(AGENTE agente_imobiliario[]) {
     return 0;
 }
 
+int verificar_agente_imobiliario_disponiveis(AGENTE agente_imobiliario[], int id_agente_verificar) {
+
+    // Contagem do número de agentes imobiliários válidos
+    for (int i = 0; i < MAX_AGENTES_IMOBILIARIOS; i++) {
+        if (agente_imobiliario[i].id_agente != 0 &&
+        agente_imobiliario[i].id_agente == id_agente_verificar &&
+        agente_imobiliario[i].disponibilidade == 1)
+        {
+            return 0;
+        }
+    }
+
+    printf("\nErro ao encontrar agente. Introduziu um identificador inválido !!!!\n");
+
+    return -1;
+
+}
+
 
