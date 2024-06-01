@@ -11,6 +11,7 @@ void remove_newline(char *string) {
     if (tamanho > 0 && string[tamanho - 1] == '\n') {
         string[tamanho - 1] = '\0';
     }
+
 }
 
 int inserir_administrador(ADMIN administrador[], ADMIN novo_administrador, int posicaoInserir) {
