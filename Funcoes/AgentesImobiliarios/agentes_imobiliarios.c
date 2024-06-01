@@ -470,3 +470,47 @@ int listar_agente_imobiliario(AGENTE agente_imobiliario[]) {
 
     return 0;
 }
+
+
+int listar_agente_imobiliario_disponiveis(AGENTE agente_imobiliario[]) {
+    int num_agentes = 0;
+
+    // Contagem do número de agentes imobiliários válidos
+    for (int i = 0; i < MAX_AGENTES_IMOBILIARIOS; i++) {
+        if (agente_imobiliario[i].id_agente != 0) {
+            num_agentes++;
+        }
+    }
+
+    if (num_agentes != 0) {
+        printf("┌───────────────┬───────────────────┬───────────────────────┬──────────────┬───────────────────┬─────────────────────┬───────────────────────┐\n");
+        printf("│   ID          │        Nome        │          NIF          │    Morada    │     Telefone      │ Data de Nascimento │   Disponibilidade   │\n");
+        printf("├───────────────┼───────────────────┼───────────────────────┼──────────────┼───────────────────┼─────────────────────┼───────────────────────┤\n");
+
+        // Iteração sobre o array e impressão dos detalhes de cada agente
+        for (int i = 0; i < MAX_AGENTES_IMOBILIARIOS; i++) {
+            if (agente_imobiliario[i].id_agente != 0 && agente_imobiliario[i].disponibilidade == 1) {
+                printf("│   %-11d │ %-17s │ %-21s │ %-12s │ %-17s │ %2d/%2d/%-12d │ %-19s │\n",
+                       agente_imobiliario[i].id_agente,
+                       agente_imobiliario[i].nome,
+                       agente_imobiliario[i].NIF,
+                       agente_imobiliario[i].morada,
+                       agente_imobiliario[i].telefone,
+                       agente_imobiliario[i].dia_nascimento,
+                       agente_imobiliario[i].mes_nascimento,
+                       agente_imobiliario[i].ano_nascimento,
+                       (agente_imobiliario[i].disponibilidade == 1) ? "Disponível" : "Indisponível");
+                printf("├───────────────┼───────────────────┼───────────────────────┼──────────────┼───────────────────┼─────────────────────┼───────────────────────┤\n");
+            }
+        }
+
+        printf("Total de Agentes Imobiliários: %d\n", num_agentes);
+    } else {
+        printf("Não existem agentes imobiliários cadastrados.\n");
+        return -1;
+    }
+
+    return 0;
+}
+
+

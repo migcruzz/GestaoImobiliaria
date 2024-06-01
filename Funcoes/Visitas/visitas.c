@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "../../VariaveisGlobais/variaveis_globais.h"
 #include "../../TiposDados/TiposDados.h"
-#include <time.h>
+#include "../AgentesImobiliarios/agentes_imobiliarios.h"
+#include "../Propriedades/propriedades.h"
+
 
 // Trabalhar com formato 24H
 // Dentro do programa todos os algoritmos vão ser no formato de minutos e só para o cliente vai ser mostrado
@@ -103,6 +106,20 @@ int verifica_dia_mes_ano(int dia, int mes, int ano){
     return 0;
 }
 
+// Aqui tem de procurar em todos os agentes que têm essa propriedade e averiguar aqual é que somando os valores passados
+// tem a disponibilidade de oferecer visita:
+
+int verifica_disponibilidade_propriedade_visita(){
+
+    return 0;
+}
+
+// Aqui tem de verificar em todas as propriedades
+int verifica_disponibilidade_agente_visita(){
+
+    return 0;
+}
+
 int dia_atual(){
 
     int dia_atual =0;
@@ -136,7 +153,7 @@ int ano_atual(){
     ano_atual =data_atual->tm_year + 1900;
     return ano_atual;
 }
-
+/*
 int contador_visitas(LISTA_VISITA **iniLista){
 
     LISTA_VISITA *primeira = *iniLista;
@@ -150,17 +167,21 @@ int contador_visitas(LISTA_VISITA **iniLista){
 
     return contador;
 }
-
+*/
 
 // Cada visita tem de duração máxima de 240 minutos ou 2 Horas.
 // Função com funcionamnto normal:
 // Função para o cliente usar:
 
 
-int agendar_visita_cliente(LISTA_VISITA **iniLista, LISTA_VISITA **fimLista, CLIENTE cliente_login){
+int agendar_visita_cliente(LISTA_VISITA **iniLista_visita, LISTA_VISITA **fimLista, CLIENTE cliente_login,AGENTE agente_imobiliario[],LISTA_PROPRIEDADE *iniLista_propriedade){
 
     VISITA nova_visita;
     LISTA_VISITA *nova = NULL;
+
+    // Valores que são passados para a função de converter horas para minutos:
+    int horas;
+    int minutos;
 
     nova = (LISTA_VISITA *) calloc(1,sizeof(LISTA_VISITA));
 
@@ -188,9 +209,15 @@ int agendar_visita_cliente(LISTA_VISITA **iniLista, LISTA_VISITA **fimLista, CLI
 
         case 1:
 
+            //listar agentes disponiveis
+
+            listar_agente_imobiliario_disponiveis(agente_imobiliario);
+
             // Entrada para ID do agente
             printf("ID do Agente: ");
             scanf("%d", &nova_visita.id_agente);
+
+            imprime_todas_propriedades_populares(iniLista_propriedade);
 
             // Entrada para ID da propriedade
             printf("ID da Propriedade: ");
@@ -266,28 +293,44 @@ int agendar_visita_cliente(LISTA_VISITA **iniLista, LISTA_VISITA **fimLista, CLI
 
             }
 
+            listar_agente_imobiliario_disponiveis(agente_imobiliario);
+
             // Entrada para ID do agente
             printf("ID do Agente: ");
             scanf("%d", &nova_visita.id_agente);
+
+            imprime_todas_propriedades_nao_populares(iniLista_propriedade);
 
             // Entrada para ID da propriedade
             printf("ID da Propriedade: ");
             scanf("%d", &nova_visita.id_propriedade);
 
-            // Entrada para duração
+
             while (1) {
-                printf("Duração (em minutos, até 1440): ");
-                scanf("%d", &nova_visita.duracao);
-                if (nova_visita.duracao > 0 && nova_visita.duracao <= 240) break;
-                printf("Duração inválida. Por favor, insira um valor entre 1 e 240 minutos.\n");
+                // Entrada para duração
+                printf("\nIntroduza a duracao da visita, tendo um tempo maximo de 2 horas e mínimo de 20 minutos\n");
+                printf("\nIntroduza o número de horas:\n");
+                scanf("%d", &horas);
+                printf("\nIntroduza o número de minutos:\n");
+                scanf("%d", &minutos);
+                nova_visita.duracao = conversor_horas_para_minutos(horas, minutos);
+                if (nova_visita.duracao > 20 && nova_visita.duracao <= 240) break;
+                printf("\nDuração inválida. Por favor, insira uma duração máxima de 2 horas \n");
+
             }
 
-            // Entrada para hora de marcação
             while (1) {
-                printf("Hora da Marcação (em minutos desde meia-noite, até 1440): ");
-                scanf("%d", &nova_visita.hora_marcacao);
+                // Entrada para hora de marcação
+                printf("\nIntroduza o horário da visita:\n");
+                printf("\nHora da Marcação : ");
+                fflush(stdin);
+                scanf("%d", &horas);
+                printf("\nIntroduza o número de minutos:\n");
+                scanf("%d", &minutos);
+                nova_visita.hora_marcacao = conversor_horas_para_minutos(horas,minutos);
                 if (nova_visita.hora_marcacao >= 0 && nova_visita.hora_marcacao < 1440) break;
                 printf("Hora da marcação inválida. Por favor, insira um valor entre 0 e 1439 minutos.\n");
+
             }
 
             // Limpar o buffer do stdin antes de usar fgets para strings
@@ -321,15 +364,15 @@ int agendar_visita_cliente(LISTA_VISITA **iniLista, LISTA_VISITA **fimLista, CLI
     nova -> seguinte = NULL;
     nova -> anterior = NULL;
 
-    if(*iniLista == NULL){
+    if(*iniLista_visita == NULL){
 
-        *iniLista = nova;
+        *iniLista_visita = nova;
         *fimLista = nova;
 
     }else{
-        nova -> seguinte = *iniLista;
-        (*iniLista) -> anterior = nova;
-        (*iniLista) = nova;
+        nova -> seguinte = *iniLista_visita;
+        (*iniLista_visita) -> anterior = nova;
+        (*iniLista_visita) = nova;
     }
 
     return 0;

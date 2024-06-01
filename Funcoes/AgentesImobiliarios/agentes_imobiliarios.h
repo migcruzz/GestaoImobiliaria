@@ -31,4 +31,6 @@ int listar_agente_imobiliario(AGENTE agente_imobiliario[]);
 int listar_agente_imobiliario_alfabeto(AGENTE agente_imobiliario[]);
 
 int listar_agente_imobiliario_idade(AGENTE agente_imobiliario[]);
+
+int listar_agente_imobiliario_disponiveis(AGENTE agente_imobiliario[]);
 #endif //PROGRAMA_AGENTESIMOBILIARIOS_H

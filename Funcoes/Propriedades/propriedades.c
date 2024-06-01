@@ -158,8 +158,6 @@ int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista
     return 0;
 }
 
-
-
 void imprime_todas_propriedades(LISTA_PROPRIEDADE *iniLista) {
     if (iniLista == NULL) {
         printf("Lista Vazia\n");
@@ -207,7 +205,103 @@ void imprime_todas_propriedades(LISTA_PROPRIEDADE *iniLista) {
     printf("└────┴──────────────────┴──────────────────────┴────────┴─────────┘\n");
 }
 
+void imprime_todas_propriedades_nao_populares(LISTA_PROPRIEDADE *iniLista) {
+    if (iniLista == NULL) {
+        printf("Lista Vazia\n");
+        return;
+    }
 
+    // Contagem do número total de propriedades
+    int contador = 0;
+    LISTA_PROPRIEDADE *aux;
+    for (aux = iniLista; aux != NULL; aux = aux->seguinte) {
+        contador++;
+    }
+
+    // Ordenação da lista por IDs de forma crescente
+    LISTA_PROPRIEDADE *propriedades[contador];
+    int i = 0;
+    for (aux = iniLista; aux != NULL; aux = aux->seguinte) {
+        propriedades[i++] = aux;
+    }
+
+    // Bubble sort para ordenar a lista de propriedades por IDs
+    for (int i = 0; i < contador - 1; i++) {
+        for (int j = 0; j < contador - i - 1; j++) {
+            if (propriedades[j]->propriedade.id_propriedade > propriedades[j + 1]->propriedade.id_propriedade) {
+                LISTA_PROPRIEDADE *temp = propriedades[j];
+                propriedades[j] = propriedades[j + 1];
+                propriedades[j + 1] = temp;
+            }
+        }
+    }
+
+    // Impressão formatada das propriedades ordenadas
+    printf("┌────┬──────────────────┬──────────────────────┬────────┬─────────┐\n");
+    printf("│ ID │      Nome        │        Morada        │ Preço  │ Popular │\n");
+    printf("├────┼──────────────────┼──────────────────────┼────────┼─────────┤\n");
+    for (int i = 0; i < contador; i++) {
+        LISTA_PROPRIEDADE *prop = propriedades[i];
+        if(prop ->propriedade.popular == 0){
+        printf("│ %2d │ %-16s │ %-20s │ %6.2f │   %s   │\n",
+               prop->propriedade.id_propriedade,
+               prop->propriedade.nome,
+               prop->propriedade.morada,
+               prop->propriedade.preco,
+               prop->propriedade.popular ? "Sim" : "Não");
+        }
+    }
+    printf("└────┴──────────────────┴──────────────────────┴────────┴─────────┘\n");
+}
+
+void imprime_todas_propriedades_populares(LISTA_PROPRIEDADE *iniLista) {
+    if (iniLista == NULL) {
+        printf("Lista Vazia\n");
+        return;
+    }
+
+    // Contagem do número total de propriedades
+    int contador = 0;
+    LISTA_PROPRIEDADE *aux;
+    for (aux = iniLista; aux != NULL; aux = aux->seguinte) {
+        contador++;
+    }
+
+    // Ordenação da lista por IDs de forma crescente
+    LISTA_PROPRIEDADE *propriedades[contador];
+    int i = 0;
+    for (aux = iniLista; aux != NULL; aux = aux->seguinte) {
+        propriedades[i++] = aux;
+    }
+
+    // Bubble sort para ordenar a lista de propriedades por IDs
+    for (int i = 0; i < contador - 1; i++) {
+        for (int j = 0; j < contador - i - 1; j++) {
+            if (propriedades[j]->propriedade.id_propriedade > propriedades[j + 1]->propriedade.id_propriedade) {
+                LISTA_PROPRIEDADE *temp = propriedades[j];
+                propriedades[j] = propriedades[j + 1];
+                propriedades[j + 1] = temp;
+            }
+        }
+    }
+
+    // Impressão formatada das propriedades ordenadas
+    printf("┌────┬──────────────────┬──────────────────────┬────────┬─────────┐\n");
+    printf("│ ID │      Nome        │        Morada        │ Preço  │ Popular │\n");
+    printf("├────┼──────────────────┼──────────────────────┼────────┼─────────┤\n");
+    for (int i = 0; i < contador; i++) {
+        LISTA_PROPRIEDADE *prop = propriedades[i];
+        if(prop ->propriedade.popular == 1){
+            printf("│ %2d │ %-16s │ %-20s │ %6.2f │   %s   │\n",
+                   prop->propriedade.id_propriedade,
+                   prop->propriedade.nome,
+                   prop->propriedade.morada,
+                   prop->propriedade.preco,
+                   prop->propriedade.popular ? "Sim" : "Não");
+        }
+    }
+    printf("└────┴──────────────────┴──────────────────────┴────────┴─────────┘\n");
+}
 
 int editar_propriedade(LISTA_PROPRIEDADE **iniLista) {
     if (iniLista == NULL || *iniLista == NULL) {
@@ -331,7 +425,6 @@ int editar_propriedade(LISTA_PROPRIEDADE **iniLista) {
     return 0;
 }
 
-
 int remover_propriedade(LISTA_PROPRIEDADE **iniLista) {
     if (iniLista == NULL || *iniLista == NULL) {
         printf("Lista Vazia\n");
@@ -397,8 +490,6 @@ void limpar_memoria_lista_propriedades(LISTA_PROPRIEDADE **iniLista, LISTA_PROPR
         aux = proximo;
     }
 }
-
-
 
 void salvar_lista_propriedades_ficheiro_binario(LISTA_PROPRIEDADE *iniLista) {
     FILE *arquivo = fopen("../Armazenamento/Binario/Propriedades.dat", "wb");
