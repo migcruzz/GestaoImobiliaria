@@ -5,7 +5,6 @@
 #include "../../TiposDados/TiposDados.h"
 #include "../AgentesImobiliarios/agentes_imobiliarios.h"
 
-//procuraMaiorID
 
 int procuraMaiorID_ou_ID_Disponivel(LISTA_PROPRIEDADE **iniLista){
 
@@ -64,9 +63,11 @@ int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista
 
     printf("\nAssociar agente a nova casa:\n");
 
-    listar_agente_imobiliario_disponiveis(agente_imobiliario);
+
 
     while(1){
+    listar_agente_imobiliario_disponiveis(agente_imobiliario);
+
         int verificador =-1;
         printf("\nSelecione um agente:\n");
         scanf("%d",&agente_selecionado);
@@ -74,6 +75,8 @@ int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista
        if(verificador == 0){
            propriedade_nova.id_agente_responsavel = agente_selecionado;
            break;
+       }else{
+           printf("\nAgente inválido, tente novamente !\n");
        }
     }
 
@@ -208,19 +211,22 @@ void imprime_todas_propriedades(LISTA_PROPRIEDADE *iniLista) {
     }
 
     // Impressão formatada das propriedades ordenadas
-    printf("┌────┬──────────────────┬──────────────────────┬────────┬─────────┐\n");
-    printf("│ ID │      Nome        │        Morada        │ Preço  │ Popular │\n");
-    printf("├────┼──────────────────┼──────────────────────┼────────┼─────────┤\n");
+    printf("┌────┬──────────────────┬──────────────────────┬────────┬─────────┬───────────────────────────────┬───────────────┐\n");
+    printf("│ ID │      Nome        │        Morada        │ Preço  │ Popular │   Agente Imobiliário Resp.    │ Negócio Concl. │\n");
+    printf("├────┼──────────────────┼──────────────────────┼────────┼─────────┼───────────────────────────────┼───────────────┤\n");
     for (int i = 0; i < contador; i++) {
         LISTA_PROPRIEDADE *prop = propriedades[i];
-        printf("│ %2d │ %-16s │ %-20s │ %6.2f │   %s   │\n",
+        printf("│ %2d │ %-16s │ %-20s │ %6.2f │   %s   │ %-29d │ %-13s │\n",
                prop->propriedade.id_propriedade,
                prop->propriedade.nome,
                prop->propriedade.morada,
                prop->propriedade.preco,
-               prop->propriedade.popular ? "Sim" : "Não");
+               prop->propriedade.popular ? "Sim" : "Não",
+               prop->propriedade.id_agente_responsavel,
+               prop->propriedade.negocio_concluido ? "Sim" : "Não");
     }
-    printf("└────┴──────────────────┴──────────────────────┴────────┴─────────┘\n");
+    printf("└────┴──────────────────┴──────────────────────┴────────┴─────────┴───────────────────────────────┴───────────────┘\n");
+
 }
 
 void imprime_todas_propriedades_nao_populares(LISTA_PROPRIEDADE *iniLista) {
@@ -255,21 +261,23 @@ void imprime_todas_propriedades_nao_populares(LISTA_PROPRIEDADE *iniLista) {
     }
 
     // Impressão formatada das propriedades ordenadas
-    printf("┌────┬──────────────────┬──────────────────────┬────────┬─────────┐\n");
-    printf("│ ID │      Nome        │        Morada        │ Preço  │ Popular │\n");
-    printf("├────┼──────────────────┼──────────────────────┼────────┼─────────┤\n");
+    printf("┌────┬──────────────────┬──────────────────────┬────────┬─────────┬───────────────────────────────┬───────────────┐\n");
+    printf("│ ID │      Nome        │        Morada        │ Preço  │ Popular │   Agente Imobiliário Resp.    │ Negócio Concl. │\n");
+    printf("├────┼──────────────────┼──────────────────────┼────────┼─────────┼───────────────────────────────┼───────────────┤\n");
     for (int i = 0; i < contador; i++) {
         LISTA_PROPRIEDADE *prop = propriedades[i];
-        if(prop ->propriedade.popular == 0){
-        printf("│ %2d │ %-16s │ %-20s │ %6.2f │   %s   │\n",
-               prop->propriedade.id_propriedade,
-               prop->propriedade.nome,
-               prop->propriedade.morada,
-               prop->propriedade.preco,
-               prop->propriedade.popular ? "Sim" : "Não");
+        if (prop->propriedade.popular == 0) {
+            printf("│ %2d │ %-16s │ %-20s │ %6.2f │   %s   │ %-29d │ %-13s │\n",
+                   prop->propriedade.id_propriedade,
+                   prop->propriedade.nome,
+                   prop->propriedade.morada,
+                   prop->propriedade.preco,
+                   prop->propriedade.popular ? "Sim" : "Não",
+                   prop->propriedade.id_agente_responsavel,
+                   prop->propriedade.negocio_concluido ? "Sim" : "Não");
         }
     }
-    printf("└────┴──────────────────┴──────────────────────┴────────┴─────────┘\n");
+    printf("└────┴──────────────────┴──────────────────────┴────────┴─────────┴───────────────────────────────┴───────────────┘\n");
 }
 
 void imprime_todas_propriedades_populares(LISTA_PROPRIEDADE *iniLista) {
@@ -304,24 +312,28 @@ void imprime_todas_propriedades_populares(LISTA_PROPRIEDADE *iniLista) {
     }
 
     // Impressão formatada das propriedades ordenadas
-    printf("┌────┬──────────────────┬──────────────────────┬────────┬─────────┐\n");
-    printf("│ ID │      Nome        │        Morada        │ Preço  │ Popular │\n");
-    printf("├────┼──────────────────┼──────────────────────┼────────┼─────────┤\n");
+    printf("┌────┬──────────────────┬──────────────────────┬────────┬─────────┬───────────────────────────────┬───────────────┐\n");
+    printf("│ ID │      Nome        │        Morada        │ Preço  │ Popular │   Agente Imobiliário Resp.    │ Negócio Concl. │\n");
+    printf("├────┼──────────────────┼──────────────────────┼────────┼─────────┼───────────────────────────────┼───────────────┤\n");
     for (int i = 0; i < contador; i++) {
         LISTA_PROPRIEDADE *prop = propriedades[i];
-        if(prop ->propriedade.popular == 1){
-            printf("│ %2d │ %-16s │ %-20s │ %6.2f │   %s   │\n",
+        if (prop->propriedade.popular == 1) {
+            printf("│ %2d │ %-16s │ %-20s │ %6.2f │   %s   │ %-29d │ %-13s │\n",
                    prop->propriedade.id_propriedade,
                    prop->propriedade.nome,
                    prop->propriedade.morada,
                    prop->propriedade.preco,
-                   prop->propriedade.popular ? "Sim" : "Não");
+                   prop->propriedade.popular ? "Sim" : "Não",
+                   prop->propriedade.id_agente_responsavel,
+                   prop->propriedade.negocio_concluido ? "Sim" : "Não");
         }
     }
-    printf("└────┴──────────────────┴──────────────────────┴────────┴─────────┘\n");
+    printf("└────┴──────────────────┴──────────────────────┴────────┴─────────┴───────────────────────────────┴───────────────┘\n");
 }
 
-int editar_propriedade(LISTA_PROPRIEDADE **iniLista) {
+int editar_propriedade(LISTA_PROPRIEDADE **iniLista, AGENTE agente_imobiliario[]) {
+    int agente_responsavel = -1;
+
     if (iniLista == NULL || *iniLista == NULL) {
         printf("Lista Vazia\n");
         return -1;
@@ -360,6 +372,21 @@ int editar_propriedade(LISTA_PROPRIEDADE **iniLista) {
     fflush(stdin);
     fgets(propriedade_editada.morada, sizeof(propriedade_editada.morada), stdin);
     propriedade_editada.morada[strcspn(propriedade_editada.morada, "\n")] = '\0'; // Remove newline character
+
+    while (1) {
+        listar_agente_imobiliario_disponiveis(agente_imobiliario);
+
+        int verificador = -1;
+        printf("\nSelecione um agente:\n");
+        scanf("%d", &agente_responsavel);
+        verificador = verificar_agente_imobiliario_disponiveis(agente_imobiliario, agente_responsavel);
+        if (verificador == 0) {
+            propriedade_editada.id_agente_responsavel = agente_responsavel;
+            break;
+        } else {
+            printf("\nAgente inválido, tente novamente !\n");
+        }
+    }
 
     int tipo_comercial = -1;
     do {
@@ -430,6 +457,22 @@ int editar_propriedade(LISTA_PROPRIEDADE **iniLista) {
         }
     } while (popularidade != 1 && popularidade != 2);
 
+    int negocio_concluido = -1;
+    do {
+        printf("Negócio Concluído:\n");
+        printf("1. Sim\n");
+        printf("2. Não\n");
+        scanf("%d", &negocio_concluido);
+
+        if (negocio_concluido == 1) {
+            propriedade_editada.negocio_concluido = 1;
+        } else if (negocio_concluido == 2) {
+            propriedade_editada.negocio_concluido = 0;
+        } else {
+            printf("Opção inválida. Por favor, escolha 1 para 'Sim' ou 2 para 'Não'.\n");
+        }
+    } while (negocio_concluido != 1 && negocio_concluido != 2);
+
     // Atualiza a propriedade
     strcpy(aux->propriedade.nome, propriedade_editada.nome);
     strcpy(aux->propriedade.morada, propriedade_editada.morada);
@@ -437,6 +480,7 @@ int editar_propriedade(LISTA_PROPRIEDADE **iniLista) {
     strcpy(aux->propriedade.tipo_comercial, propriedade_editada.tipo_comercial);
     aux->propriedade.preco = propriedade_editada.preco;
     aux->propriedade.popular = propriedade_editada.popular;
+    aux->propriedade.negocio_concluido = propriedade_editada.negocio_concluido;
 
     printf("Propriedade editada com sucesso!\n");
 
@@ -563,7 +607,3 @@ void carregar_lista_do_arquivo_binario(LISTA_PROPRIEDADE **iniLista, LISTA_PROPR
     fclose(arquivo);
     printf("Lista carregada com sucesso do arquivo binário.\n");
 }
-
-
-
-

@@ -16,6 +16,12 @@ TEMPO conversor_minutos_para_horas(int minutos);
 
 int verifica_dia_mes_ano(int dia, int mes, int ano);
 
+int verifica_disponibilidade_agente_visita(LISTA_VISITA *iniLista_visita, int agente_verificar, int hora_em_minutos_verificar, int duraco_visita_verifiar);
+
+int agendar_visita_cliente(LISTA_VISITA **iniLista_visita, LISTA_VISITA **fimLista, int id_cliente_logado,AGENTE agente_imobiliario[],LISTA_PROPRIEDADE *iniLista_propriedade);
+
+void listar_todas_visitas(LISTA_VISITA *iniLista_visita);
+
 int dia_atual();
 
 int mes_atual();
@@ -23,8 +29,6 @@ int mes_atual();
 int ano_atual();
 
 int contador_visitas(LISTA_VISITA **iniLista);
-
-int agendar_visita_cliente(LISTA_VISITA **iniLista, LISTA_VISITA **fimLista, CLIENTE cliente_login);
 
 int listar_visita_dia();
 

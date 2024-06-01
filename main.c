@@ -42,6 +42,7 @@ int main() {
     AGENTE *agente_imobiliario = NULL;
     CLIENTE *cliente = NULL;
 
+
     administrador = (ADMIN *) calloc(MAX_ADMINISTRADORES, sizeof(ADMIN));
     agente_imobiliario = (AGENTE *) calloc(MAX_AGENTES_IMOBILIARIOS, sizeof(AGENTE));
     cliente = (CLIENTE *) calloc(MAX_CLIENTES, sizeof(CLIENTE));
@@ -137,6 +138,16 @@ int main() {
                         //FATURACAO DE PROPRIEDADES
                         break;
 
+                    case 3:
+                        agendar_visita_cliente(&ini_lista_visita, &fim_lista_visita, id_cliente_logado,agente_imobiliario,ini_lista_propriedade);
+                        break;
+
+                    case 4:
+
+                        listar_todas_visitas(ini_lista_visita);
+
+                        break;
+
                     case 5:
                         editar_cliente_logado(cliente, id_cliente_logado);
                         break;
@@ -200,11 +211,11 @@ int main() {
                         int opcaoSub = obterOpcaoMenu();
                         switch (opcaoSub) {
                             case 1:
-                                criar_propriedade(&ini_lista_propriedade, &fim_lista_propriedade);
+                                criar_propriedade(&ini_lista_propriedade, &fim_lista_propriedade, agente_imobiliario);
                                 break;
 
                             case 2:
-                                editar_propriedade(&ini_lista_propriedade);
+                                editar_propriedade(&ini_lista_propriedade, agente_imobiliario);
                                 break;
 
                             case 3:

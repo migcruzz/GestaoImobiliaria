@@ -47,7 +47,7 @@ typedef struct propriedade{
     int popular;
     int id_propriedade;
     int id_agente_responsavel;
-    int vendida;
+    int negocio_concluido;
     char tipo_comercial[101];
 }PROPRIEDADE;
 

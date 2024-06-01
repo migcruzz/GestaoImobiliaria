@@ -109,19 +109,100 @@ int verifica_dia_mes_ano(int dia, int mes, int ano){
 // Aqui tem de procurar em todos os agentes que têm essa propriedade e averiguar aqual é que somando os valores passados
 // tem a disponibilidade de oferecer visita:
 
-int verifica_disponibilidade_propriedade_visita(LISTA_VISITA **iniLista_visita, AGENTE agente_imobiliario[],LISTA_PROPRIEDADE *iniLista_propriedade){
 
 
+// Aqui tem de verificar em todas as propriedades (em visita) se o agente tem horários sobrepostos
+/*int verifica_disponibilidade_agente_visita(LISTA_VISITA *iniLista_visita, int agente_verificar, int hora_em_minutos_verificar, int duracao_visita_verificar) {
+    // Verifica se a lista de visitas está vazia
+    if (iniLista_visita == NULL) {
+        printf("Lista Vazia\n");
+        return -1;
+    }
+
+    // Variável para armazenar o tempo total de visitas já marcadas pelo agente
+    int tempo_total = HORA_INICIO_AGENTE_IMOBILIARIO; // Inicializa com o horário de início do agente imobiliário
+
+    // Ponteiro auxiliar para percorrer a lista de visitas
+    LISTA_VISITA *aux = iniLista_visita;
+
+    // Percorre a lista de visitas
+    while (aux != NULL) {
+        // Verifica se a visita é do agente que estamos verificando
+        if (aux->visita.id_agente == agente_verificar) {
+            // Calcula o tempo total de visitas já marcadas pelo agente
+            tempo_total += aux->visita.duracao;
+        }
+
+        // Move para a próxima visita na lista
+        aux = aux->seguinte;
+    }
+
+    // Verifica se há disponibilidade para a nova visita
+    if (tempo_total + duracao_visita_verificar <= HORA_FIM_AGENTE_IMOBILIARIO) {
+        // Verifica se o horário da nova visita não ultrapassa o horário de término do agente imobiliário
+        if (hora_em_minutos_verificar + duracao_visita_verificar <= HORA_FIM_AGENTE_IMOBILIARIO) {
+            // Retorna o horário da nova visita
+            return hora_em_minutos_verificar;
+        } else {
+            printf("Não há horário disponível para a nova visita. Horário de término ultrapassado.\n");
+            return -1;
+        }
+    } else {
+        printf("Não há horário disponível para a nova visita. Horário de término ultrapassado.\n");
+        return -1;
+    }
+}*/
+
+/*int verifica_disponibilidade_agente_visita(LISTA_VISITA *iniLista_visita, int agente_verificar, int hora_visita, int duracao_visita) {
 
 
-    return 0;
+    int tempo_total = HORA_INICIO_AGENTE_IMOBILIARIO;
+    LISTA_VISITA *aux = iniLista_visita;
+
+    while (aux != NULL) {
+        if (aux->visita.id_agente == agente_verificar) {
+            tempo_total += aux->visita.duracao;
+        }
+        aux = aux->seguinte;
+    }
+
+    if (tempo_total + duracao_visita <= HORA_FIM_AGENTE_IMOBILIARIO && hora_visita + duracao_visita <= HORA_FIM_AGENTE_IMOBILIARIO) {
+        return hora_visita;
+    } else {
+        printf("Não há horário disponível para a nova visita. Horário de término ultrapassado.\n");
+        return -1;
+    }
+} */
+
+int verifica_disponibilidade_agente_visita(LISTA_VISITA *iniLista_visita, int agente_verificar, int hora_visita, int duracao_visita) {
+    /*  if (iniLista_visita == NULL) {
+            printf("Lista de visitas vazia\n");
+            return -1;
+        }
+    */
+    int tempo_total = HORA_INICIO_AGENTE_IMOBILIARIO;
+    LISTA_VISITA *aux = iniLista_visita;
+
+    while (aux != NULL) {
+        if (aux->visita.id_agente == agente_verificar) {
+            // Verificar sobreposição de horários
+            if (hora_visita >= aux->visita.hora_marcacao && hora_visita < aux->visita.hora_marcacao + aux->visita.duracao) {
+                printf("Horário de visita sobreposto. Agente ocupado.\n");
+                return -1;
+            }
+            tempo_total += aux->visita.duracao;
+        }
+        aux = aux->seguinte;
+    }
+
+    if (tempo_total + duracao_visita <= HORA_FIM_AGENTE_IMOBILIARIO && hora_visita + duracao_visita <= HORA_FIM_AGENTE_IMOBILIARIO) {
+        return hora_visita;
+    } else {
+        printf("Não há horário disponível para a nova visita. Horário de término ultrapassado.\n");
+        return -1;
+    }
 }
 
-// Aqui tem de verificar em todas as propriedades se o agente tem horários sobrepostos
-int verifica_disponibilidade_agente_visita(){
-
-    return 0;
-}
 
 int dia_atual(){
 
@@ -177,14 +258,27 @@ int contador_visitas(LISTA_VISITA **iniLista){
 // Função para o cliente usar:
 
 
-int agendar_visita_cliente(LISTA_VISITA **iniLista_visita, LISTA_VISITA **fimLista, CLIENTE cliente_login,AGENTE agente_imobiliario[],LISTA_PROPRIEDADE *iniLista_propriedade){
+int agendar_visita_cliente(LISTA_VISITA **iniLista_visita, LISTA_VISITA **fimLista, int id_cliente_logado,AGENTE agente_imobiliario[],LISTA_PROPRIEDADE *iniLista_propriedade){
 
     VISITA nova_visita;
     LISTA_VISITA *nova = NULL;
 
-    // Valores que são passados para a função de converter horas para minutos:
-    int horas;
-    int minutos;
+    nova = (LISTA_VISITA *) calloc(1, sizeof(LISTA_VISITA));
+    if (nova == NULL) {
+        printf("Erro ao alocar memoria para nova visita \n");
+        return -1;
+    }
+
+    // STRUCT com valores que são passados para a função de converter horas para minutos:
+    TEMPO horario;
+
+    // Valores para verificação de horários:
+    int horario_valido = -1;
+
+    // Valores para averiguar o agente disponivel (associado à propriedade);
+    int id_agente_imobiliario_responsavel = -1;
+
+
 
     nova = (LISTA_VISITA *) calloc(1,sizeof(LISTA_VISITA));
 
@@ -199,7 +293,7 @@ int agendar_visita_cliente(LISTA_VISITA **iniLista_visita, LISTA_VISITA **fimLis
 
     // Entrada para casa aberta
 
-    nova_visita.id_cliente = cliente_login.id_cliente;
+    nova_visita.id_cliente = id_cliente_logado;
 
     while (1) {
         printf("Casa Aberta (1 para sim, 0 para não): ");
@@ -212,7 +306,7 @@ int agendar_visita_cliente(LISTA_VISITA **iniLista_visita, LISTA_VISITA **fimLis
 
         case 1:
 
-            /*
+
             imprime_todas_propriedades_populares(iniLista_propriedade);
             // Fazer verificação se o id introduzido pertence mesmo a propriedade listadas
             // Entrada para ID da propriedade
@@ -257,31 +351,45 @@ int agendar_visita_cliente(LISTA_VISITA **iniLista_visita, LISTA_VISITA **fimLis
             nova_visita.ano = ano_atual();
 
             break;
-*/
+
         case 0:
 
             // Entrada para o ano mês e dia
             while (1) {
-                printf("Ano: ");
-                scanf("%d", &nova_visita.ano);
-                if (nova_visita.ano > 0) break;
-                printf("Ano inválido. Por favor, insira um ano válido.\n");
+
+                while (1){
+                    printf("Ano: ");
+                    fflush(stdin);
+                    scanf("%d", &nova_visita.ano);
+                    if (nova_visita.ano > 0) break;
+                    printf("Ano inválido. Por favor, insira um ano válido.\n");
+                    fflush(stdout);
+                }
 
 
-                // Entrada para o mês
+                while (1){
+                    // Entrada para o mês
+                    fflush(stdout);
+                    printf("Mês (1-12): ");
+                    fflush(stdin);
+                    scanf("%d", &nova_visita.mes);
+                    if (nova_visita.mes >= 1 && nova_visita.mes <= 12) break;
+                    printf("Mês inválido. Por favor, insira um valor entre 1 e 12.\n");
+                    fflush(stdout);
+                }
 
-                printf("Mês (1-12): ");
-                scanf("%d", &nova_visita.mes);
-                if (nova_visita.mes >= 1 && nova_visita.mes <= 12) break;
-                printf("Mês inválido. Por favor, insira um valor entre 1 e 12.\n");
 
+                while(1){
+                    // Entrada para o dia
+                    fflush(stdout);
+                    printf("Dia (1-31): ");
+                    fflush(stdin);
+                    scanf("%d", &nova_visita.dia);
+                    if (nova_visita.dia >= 1 && nova_visita.dia <= 31) break;
+                    printf("Dia inválido. Por favor, insira um valor entre 1 e 31.\n");
+                    fflush(stdout);
+                }
 
-                // Entrada para o dia
-
-                printf("Dia (1-31): ");
-                scanf("%d", &nova_visita.dia);
-                if (nova_visita.dia >= 1 && nova_visita.dia <= 31) break;
-                printf("Dia inválido. Por favor, insira um valor entre 1 e 31.\n");
 
                 if(verifica_dia_mes_ano(nova_visita.dia, nova_visita.mes, nova_visita.ano) == 0){
                     break;
@@ -291,51 +399,76 @@ int agendar_visita_cliente(LISTA_VISITA **iniLista_visita, LISTA_VISITA **fimLis
 
             }
 
-            imprime_todas_propriedades_nao_populares(iniLista_propriedade);
+            while(1){
 
-            // Entrada para ID da propriedade
-            printf("ID da Propriedade: ");
-            scanf("%d", &nova_visita.id_propriedade);
+                imprime_todas_propriedades_nao_populares(iniLista_propriedade);
 
+                // verificaçãp de dado introduzido se é casa não popular
+                // Entrada para ID da propriedade
+                printf("\nIntroduza o identificador da propriedade pela qual demosntra interesse: \n");
+                scanf("%d", &nova_visita.id_propriedade);
+                id_agente_imobiliario_responsavel = verifica_agente_casa_responsavel(agente_imobiliario, iniLista_propriedade, nova_visita.id_propriedade );
 
-            // mudar para todos aqueles agentes que Têm a casa responsável escolhida acima;
-            listar_agente_imobiliario_disponiveis(agente_imobiliario);
-
-            //(alterar para apresntar apenas os que tem a casa atribuida).
-
-            // Entrada para ID do agente
-
-           /* printf("ID do Agente: ");
-            scanf("%d", &nova_visita.id_agente);*/
-
-
-            // Verificador se o agente tem disponibilidade, calculando assim as
-            while (1) {
-                // Entrada para duração
-                printf("\nIntroduza a duracao da visita, tendo um tempo maximo de 2 horas e mínimo de 20 minutos\n");
-                printf("\nIntroduza o número de horas:\n");
-                scanf("%d", &horas);
-                printf("\nIntroduza o número de minutos:\n");
-                scanf("%d", &minutos);
-                nova_visita.duracao = conversor_horas_para_minutos(horas, minutos);
-                if (nova_visita.duracao > 20 && nova_visita.duracao <= 240) break;
-                printf("\nDuração inválida. Por favor, insira uma duração máxima de 2 horas \n");
+                if(id_agente_imobiliario_responsavel != -1){
+                    nova_visita.id_agente = id_agente_imobiliario_responsavel;
+                    break;
+                }else{
+                    printf("\nErro ao escolher prorpiedade válida !!!!\n");
+                }
 
             }
+
+            // Verificador se o agente tem disponibilidade, calculando assim a partir de que horas pode marcar
+
+        while(1){
 
             while (1) {
                 // Entrada para hora de marcação
                 printf("\nIntroduza o horário da visita:\n");
                 printf("\nHora da Marcação : ");
                 fflush(stdin);
-                scanf("%d", &horas);
+                scanf("%d", &horario.horas);
                 printf("\nIntroduza o número de minutos:\n");
-                scanf("%d", &minutos);
-                nova_visita.hora_marcacao = conversor_horas_para_minutos(horas,minutos);
-                if (nova_visita.hora_marcacao >= 0 && nova_visita.hora_marcacao < 1440) break;
-                printf("Hora da marcação inválida. Por favor, insira um valor entre 0 e 1439 minutos.\n");
+                scanf("%d", &horario.minutos);
+                nova_visita.hora_marcacao = conversor_horas_para_minutos(horario.horas,horario.minutos);
+
+
+
+                if (nova_visita.hora_marcacao >= 0 && nova_visita.hora_marcacao <= 1440){
+                    break;
+                }else{
+                    printf("Hora da marcação inválida. Por favor, insira um valor entre 0 e 1439 minutos.\n");
+                }
+            }
+
+            while (1) {
+                // Entrada para duração
+                printf("\nIntroduza a duracao da visita, tendo um tempo maximo de 2 horas e mínimo de 20 minutos\n");
+                printf("\nIntroduza o número de horas:\n");
+                scanf("%d", &horario.horas);
+                printf("\nIntroduza o número de minutos:\n");
+                scanf("%d", &horario.minutos);
+                nova_visita.duracao = conversor_horas_para_minutos(horario.horas, horario.minutos);
+
+                // Função para verificar se a duracao e valida:
+
+                if (nova_visita.duracao > 20 && nova_visita.duracao <= 120){
+                    break;
+                }else{
+                    printf("\nDuração inválida. Por favor, insira uma duração máxima de 2 horas \n");
+                }
+
 
             }
+
+            horario_valido = verifica_disponibilidade_agente_visita(*iniLista_visita, nova_visita.id_agente ,nova_visita.hora_marcacao, nova_visita.duracao);
+
+            if(horario_valido != -1){
+                break;
+            }else{ printf("\nIntroduza  valores válidos !!!\n");}
+
+        }
+
 
             // Limpar o buffer do stdin antes de usar fgets para strings
             fflush(stdin);
@@ -380,6 +513,34 @@ int agendar_visita_cliente(LISTA_VISITA **iniLista_visita, LISTA_VISITA **fimLis
     }
 
     return 0;
+}
+
+void listar_todas_visitas(LISTA_VISITA *iniLista_visita) {
+    // Verifica se a lista de visitas está vazia
+    if (iniLista_visita == NULL) {
+        printf("Lista Vazia\n");
+        return;
+    }
+
+    // Ponteiro auxiliar para percorrer a lista de visitas
+    LISTA_VISITA *aux = iniLista_visita;
+
+    // Percorre a lista de visitas
+    while (aux != NULL) {
+        printf("-------------------------------------------------------------\n");
+        printf("Dia: %d\tMês: %d\tAno: %d\n", aux->visita.dia, aux->visita.mes, aux->visita.ano);
+        printf("ID Cliente: %d\tID Agente: %d\tID Propriedade: %d\n", aux->visita.id_cliente, aux->visita.id_agente, aux->visita.id_propriedade);
+        printf("Duração: %d minutos\tHora Marcação: %d minutos\n", aux->visita.duracao, aux->visita.hora_marcacao);
+        printf("Relatório: %s\n", aux->visita.relatorio);
+        printf("Detalhes Interesse Cliente: %s\n", aux->visita.detalhes_intresse_cliente);
+        printf("Cliente Compareceu: %s\n", aux->visita.cliente_compareceu ? "Sim" : "Não");
+        printf("Visita Terminou: %s\n", aux->visita.visita_terminou ? "Sim" : "Não");
+        printf("Casa Aberta: %s\n", aux->visita.casa_aberta ? "Sim" : "Não");
+        printf("-------------------------------------------------------------\n");
+
+        // Move para a próxima visita na lista
+        aux = aux->seguinte;
+    }
 }
 
 

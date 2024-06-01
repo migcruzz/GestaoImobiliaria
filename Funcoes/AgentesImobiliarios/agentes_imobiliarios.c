@@ -637,4 +637,39 @@ int verificar_agente_imobiliario_disponiveis(AGENTE agente_imobiliario[], int id
 
 }
 
+int verifica_agente_casa_responsavel(AGENTE agente_imobiliario[], LISTA_PROPRIEDADE *iniLista, int id_propriedade_verificar){
+
+    int agente_imobiliario_correto=-1;
+
+// Verifica se a lista de propriedades está vazia
+    if (iniLista == NULL) {
+        printf("Lista de propriedades vazia\n");
+        return agente_imobiliario_correto;
+    }
+
+    // Ponteiro auxiliar para percorrer a lista de propriedades
+    LISTA_PROPRIEDADE *aux = iniLista;
+
+    // Percorre a lista de propriedades
+    while (aux != NULL) {
+        // Verifica se encontrou a propriedade com o ID especificado
+        if (aux->propriedade.id_propriedade == id_propriedade_verificar) {
+            // Obtém o ID do agente imobiliário responsável por esta propriedade
+            agente_imobiliario_correto = aux->propriedade.id_agente_responsavel;
+            break;  // Sai do loop, pois encontrou a propriedade
+        }
+        // Move para a próxima propriedade na lista
+        aux = aux->seguinte;
+    }
+
+    // Verifica se a propriedade foi encontrada
+    if (agente_imobiliario_correto == -1) {
+        printf("Propriedade não encontrada\n");
+    }
+
+    return agente_imobiliario_correto;
+}
+
+
+
 

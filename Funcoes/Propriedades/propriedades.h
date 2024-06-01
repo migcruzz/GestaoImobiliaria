@@ -9,7 +9,7 @@
 
 int procuraMaiorID_ou_ID_Disponivel(LISTA_PROPRIEDADE **iniLista);
 
-int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista);
+int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista, AGENTE agente_imobiliario[]);
 
 void imprime_todas_propriedades (LISTA_PROPRIEDADE *iniLista);
 
@@ -17,7 +17,7 @@ void imprime_todas_propriedades_nao_populares(LISTA_PROPRIEDADE *iniLista);
 
 void imprime_todas_propriedades_populares(LISTA_PROPRIEDADE *iniLista);
 
-int editar_propriedade(LISTA_PROPRIEDADE **iniLista);
+int editar_propriedade(LISTA_PROPRIEDADE **iniLista, AGENTE agente_imobiliario[]);
 
 int remover_propriedade(LISTA_PROPRIEDADE **iniLista);
 
