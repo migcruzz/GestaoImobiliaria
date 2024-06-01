@@ -109,12 +109,15 @@ int verifica_dia_mes_ano(int dia, int mes, int ano){
 // Aqui tem de procurar em todos os agentes que têm essa propriedade e averiguar aqual é que somando os valores passados
 // tem a disponibilidade de oferecer visita:
 
-int verifica_disponibilidade_propriedade_visita(){
+int verifica_disponibilidade_propriedade_visita(LISTA_VISITA **iniLista_visita, AGENTE agente_imobiliario[],LISTA_PROPRIEDADE *iniLista_propriedade){
+
+
+
 
     return 0;
 }
 
-// Aqui tem de verificar em todas as propriedades
+// Aqui tem de verificar em todas as propriedades se o agente tem horários sobrepostos
 int verifica_disponibilidade_agente_visita(){
 
     return 0;
@@ -210,7 +213,7 @@ int agendar_visita_cliente(LISTA_VISITA **iniLista_visita, LISTA_VISITA **fimLis
         case 1:
 
             //listar agentes disponiveis
-
+            // Fazer verificação se o id introduzido pertence mesmo aos agentes imobiliarios disponiveis
             listar_agente_imobiliario_disponiveis(agente_imobiliario);
 
             // Entrada para ID do agente
@@ -218,7 +221,7 @@ int agendar_visita_cliente(LISTA_VISITA **iniLista_visita, LISTA_VISITA **fimLis
             scanf("%d", &nova_visita.id_agente);
 
             imprime_todas_propriedades_populares(iniLista_propriedade);
-
+            // Fazer verificação se o id introduzido pertence mesmo a propriedade listadas
             // Entrada para ID da propriedade
             printf("ID da Propriedade: ");
             scanf("%d", &nova_visita.id_propriedade);
@@ -231,15 +234,6 @@ int agendar_visita_cliente(LISTA_VISITA **iniLista_visita, LISTA_VISITA **fimLis
                 printf("Duração inválida. Por favor, insira um valor entre 1 e 240 minutos.\n");
             }
 
-
-            //// Corrigir horas e minutos e usar função que verifica:
-            // Entrada para hora de marcação
-            while (1) {
-                printf("Hora da Marcação (em minutos desde meia-noite, até 1440): ");
-                scanf("%d", &nova_visita.hora_marcacao);
-                if (nova_visita.hora_marcacao >= 0 && nova_visita.hora_marcacao < 1440) break;
-                printf("Hora da marcação inválida. Por favor, insira um valor entre 0 e 1439 minutos.\n");
-            }
 
             // Limpar o buffer do stdin antes de usar fgets para strings
             fflush(stdin);

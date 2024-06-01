@@ -89,7 +89,6 @@ int criar_agente_imobiliario(AGENTE agente_imobiliario[]) {
     }
 }
 
-
 void inserir_agentes_em_arquivo(AGENTE agente_imobiliario[]) {
     FILE *arquivo = fopen("../Armazenamento/Texto/Agentes_Imobiliarios.txt", "w");
     if (arquivo == NULL) {
@@ -141,8 +140,6 @@ void carregar_agentes_do_arquivo(AGENTE agente_imobiliario[]) {
 
     fclose(arquivo);
 }
-
-
 
 int editar_agente_imobiliario(AGENTE agente_imobiliario[]) {
     int id_agente;
@@ -303,7 +300,6 @@ int listar_agente_imobiliario_alfabeto(AGENTE agente_imobiliario[]){
     }
 }
 
-
 int listar_agente_imobiliario_idade(AGENTE agente_imobiliario[]) {
     int num_agentes = 0;
 
@@ -366,7 +362,6 @@ int listar_agente_imobiliario_idade(AGENTE agente_imobiliario[]) {
     }
 }
 
-
 void tornar_agente_indisponivel(AGENTE agente_imobiliario[]) {
     int num_agentes = 0;
     int id_agente=0;
@@ -414,7 +409,6 @@ void tornar_agente_indisponivel(AGENTE agente_imobiliario[]) {
     }
 }
 
-
 int remover_agente_imobiliario(AGENTE agente_imobiliario[], int id_procura) {
     for (int i = 0; i < MAX_AGENTES_IMOBILIARIOS; i++) {
         if (agente_imobiliario[i].id_agente == id_procura) {
@@ -428,7 +422,6 @@ int remover_agente_imobiliario(AGENTE agente_imobiliario[], int id_procura) {
     printf("Não existe agente com o ID especificado.\n");
     return -1;
 }
-
 
 int listar_agente_imobiliario(AGENTE agente_imobiliario[]) {
     int num_agentes = 0;
@@ -470,7 +463,6 @@ int listar_agente_imobiliario(AGENTE agente_imobiliario[]) {
 
     return 0;
 }
-
 
 int listar_agente_imobiliario_disponiveis(AGENTE agente_imobiliario[]) {
     int num_agentes = 0;
