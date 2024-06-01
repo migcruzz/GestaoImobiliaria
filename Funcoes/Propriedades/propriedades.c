@@ -50,6 +50,7 @@ int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista
     int tipo_comercial = -1;
     int tipo_imovel = -1;
     int popularidade = -1;
+    int agente_selecionado = -1;
 
 
     propriedade_nova.id_propriedade = procuraMaiorID_ou_ID_Disponivel(iniLista);
@@ -65,8 +66,16 @@ int criar_propriedade(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista
 
     listar_agente_imobiliario_disponiveis(agente_imobiliario);
 
-    printf("\nSelecione um agente:\n");
-    scanf("%d")
+    while(1){
+        int verificador =-1;
+        printf("\nSelecione um agente:\n");
+        scanf("%d",&agente_selecionado);
+       verificador = verificar_agente_imobiliario_disponiveis(agente_imobiliario,agente_selecionado);
+       if(verificador == 0){
+           propriedade_nova.id_agente_responsavel = agente_selecionado;
+           break;
+       }
+    }
 
     // Recolher dados do utilizador:
 

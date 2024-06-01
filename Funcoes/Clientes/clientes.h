@@ -15,5 +15,6 @@ void editar_cliente(CLIENTE clientes[]);
 int listar_cliente_alfabeto(CLIENTE clientes[]);
 int listar_cliente_nif(CLIENTE clientes[]);
 int remover_cliente(CLIENTE clientes[], int id_procura);
+void editar_cliente_logado(CLIENTE clientes[], int id_cliente_logado);
 
 #endif //PROGRAMA_CLIENTES_H

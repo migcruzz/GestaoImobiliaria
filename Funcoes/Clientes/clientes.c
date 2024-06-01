@@ -87,17 +87,19 @@ void carregar_clientes_do_arquivo(CLIENTE clientes[]) {
 
     int index = 0;
 
-    while (fscanf(arquivo, "%d\n", &clientes[index].id_cliente) != EOF) {
-        fscanf(arquivo, "%[^\n]\n", clientes[index].nome);
-        fscanf(arquivo, "%[^\n]\n", clientes[index].palavra_passe);
-        fscanf(arquivo, "%[^\n]\n", clientes[index].NIF);
-        fscanf(arquivo, "%[^\n]\n", clientes[index].telefone);
-        fscanf(arquivo, "%d\n", &clientes[index].role);
+    while (fscanf(arquivo, "%d %[^\n] %[^\n] %[^\n] %[^\n] %d\n", &clientes[index].id_cliente, clientes[index].nome, clientes[index].palavra_passe, clientes[index].NIF, clientes[index].telefone, &clientes[index].role) != EOF) {
         index++;
     }
 
     fclose(arquivo);
+
+    // Verificação dos dados carregados
+    printf("Clientes carregados do arquivo:\n");
+    for (int i = 0; i < index; i++) {
+        printf("ID: %d, Nome: %s, Palavra-passe: %s, NIF: %s, Telefone: %s, Role: %d\n", clientes[i].id_cliente, clientes[i].nome, clientes[i].palavra_passe, clientes[i].NIF, clientes[i].telefone, clientes[i].role);
+    }
 }
+
 
 
 void editar_cliente(CLIENTE clientes[]) {
@@ -149,6 +151,50 @@ void editar_cliente(CLIENTE clientes[]) {
 
     printf("Cliente editado com sucesso.\n");
 }
+
+void editar_cliente_logado(CLIENTE clientes[], int id_cliente_logado) {
+    // Encontrar o cliente com o ID correspondente ao cliente logado
+    int indice_cliente = -1;
+    for (int i = 0; i < MAX_CLIENTES; i++) {
+        if (clientes[i].id_cliente == id_cliente_logado) {
+            indice_cliente = i;
+            break;
+        }
+    }
+
+    if (indice_cliente == -1) {
+        printf("Erro: Cliente não encontrado.\n");
+        return;
+    }
+
+    // Limpar o buffer do teclado
+    fflush(stdin);
+
+    // Resto do código de edição...
+
+    printf("Nome: ");
+    fflush(stdin);
+    fgets(clientes[indice_cliente].nome, sizeof(clientes[indice_cliente].nome), stdin);
+    clientes[indice_cliente].nome[strcspn(clientes[indice_cliente].nome, "\n")] = '\0';
+
+    printf("Palavra-passe: ");
+    fflush(stdin);
+    fgets(clientes[indice_cliente].palavra_passe, sizeof(clientes[indice_cliente].palavra_passe), stdin);
+    clientes[indice_cliente].palavra_passe[strcspn(clientes[indice_cliente].palavra_passe, "\n")] = '\0';
+
+    printf("NIF: ");
+    fflush(stdin);
+    fgets(clientes[indice_cliente].NIF, sizeof(clientes[indice_cliente].NIF), stdin);
+    clientes[indice_cliente].NIF[strcspn(clientes[indice_cliente].NIF, "\n")] = '\0';
+
+    printf("Telefone: ");
+    fflush(stdin);
+    fgets(clientes[indice_cliente].telefone, sizeof(clientes[indice_cliente].telefone), stdin);
+    clientes[indice_cliente].telefone[strcspn(clientes[indice_cliente].telefone, "\n")] = '\0';
+
+    printf("Cliente editado com sucesso.\n");
+}
+
 
 int listar_cliente_alfabeto(CLIENTE clientes[]) {
     int num_clientes = 0;
@@ -275,5 +321,4 @@ int remover_cliente(CLIENTE clientes[], int id_procura) {
     printf("Não existe cliente com o ID especificado.\n");
     return -1;
 }
-
 

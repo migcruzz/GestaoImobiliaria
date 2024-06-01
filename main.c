@@ -12,14 +12,14 @@
 #include "VariaveisGlobais/variaveis_globais.h"
 
 int main() {
-    LISTA_CLIENTE *ini_lista_cliente;
-    LISTA_CLIENTE *fim_lista_cliente;
+    LISTA_CLIENTE *ini_lista_cliente = NULL;
+    LISTA_CLIENTE *fim_lista_cliente = NULL;
 
     LISTA_PROPRIEDADE *ini_lista_propriedade = NULL;
     LISTA_PROPRIEDADE *fim_lista_propriedade = NULL;
 
-    LISTA_VISITA *ini_lista_visita;
-    LISTA_VISITA *fim_lista_visita;
+    LISTA_VISITA *ini_lista_visita =NULL;
+    LISTA_VISITA *fim_lista_visita=NULL;
 
     ADMIN *administrador = NULL;
     AGENTE *agente_imobiliario = NULL;
@@ -44,6 +44,8 @@ int main() {
     int role;
     int login_resultado;
     int id_admin_logado= -1;
+    int id_agente_logado= -1;
+    int id_cliente_logado= -1;
     int id_clientes=0;
 
     while (1) {
@@ -58,10 +60,21 @@ int main() {
             printf("Função (1 para cliente, 2 para agente, 3 para admin): ");
             scanf("%d", &role);
 
-            login_resultado = login(administrador, agente_imobiliario, ini_lista_cliente, username, password, role);
+
+            login_resultado = login(administrador, agente_imobiliario, cliente, username, password, role);
 
             if (login_resultado == 0) {
                 printf("Login successful. Role: %d\n", role);
+
+                if (role == 1) {
+                    // Procurar o cliente com o nome de usuário especificado
+                    for (int i = 0; i < MAX_CLIENTES; i++) {
+                        if (strcmp(cliente[i].nome, username) == 0) {
+                            id_cliente_logado = cliente[i].id_cliente;
+                            break;
+                        }
+                    }
+                }else
                 if (role == 3) {
                     // Encontre o ID do administrador logado
                     for (int i = 0; i < MAX_ADMINISTRADORES; i++) {
@@ -70,6 +83,24 @@ int main() {
                             break;
                         }
                     }
+                }else if(role == 2 ){
+
+                    for (int i = 0; i < MAX_AGENTES_IMOBILIARIOS; i++) {
+                        if (strcmp(agente_imobiliario[i].nome, username) == 0) {
+                            id_agente_logado = agente_imobiliario[i].id_agente;
+                            break;
+                        }
+                    }
+
+                }if(role == 1 ){
+
+                    for (int i = 0; i < MAX_CLIENTES; i++) {
+                        if (strcmp(cliente[i].nome, username) == 0) {
+                            id_cliente_logado = cliente[i].id_cliente;
+                            break;
+                        }
+                    }
+
                 }
                 break; // Saia do loop se o login for bem-sucedido
             } else {
@@ -78,9 +109,69 @@ int main() {
         } while (login_resultado != 0);
 
         if (role == 1) {
-            printf("Escolha se pretende registar ou entrar");
+            while(1){
+                menuCliente();
+                int opcaoCliente;
+                scanf("%d", &opcaoCliente);
+                switch (opcaoCliente) {
+                    case 1:
+                        //Gerir TIPOS DE PROPRIEDADE
+                        break;
+                    case 2:
+                        //FATURACAO DE PROPRIEDADES
+                        break;
+
+                    case 5:
+                        editar_cliente_logado(cliente, id_cliente_logado);
+                        break;
+
+                    case 6:
+                        //GERIR CLIENTES
+                        inserir_clientes_em_arquivo(cliente);
+                        return 0;
+
+
+                }
+            }
 
         } else if (role == 2) {
+
+
+            while(1){
+                menuAgente();
+                int opcaoAgente;
+                scanf("%d", &opcaoAgente);
+                switch (opcaoAgente) {
+                    case 1:
+                        //Gerir TIPOS DE PROPRIEDADE
+                        break;
+                    case 2:
+                        //FATURACAO DE PROPRIEDADES
+                        break;
+
+                    case 5:
+                        editar_agente_imobiliario_logado(agente_imobiliario, id_agente_logado);
+                        break;
+                    case 6:
+                        //GERIR CLIENTES
+                        inserir_agentes_em_arquivo(agente_imobiliario);
+                        return 0;
+
+                    case 7:
+                        // Gerar um relatório por dia e por mês de contas
+
+                        break;
+
+                    case 8:
+                        //  Gerar um relatório de todos os agentes
+                        gerar_relatorio_agentes(agente_imobiliario);
+                        break;
+                    case 9:
+                        editar_administrador(administrador, id_admin_logado);
+                        break;
+
+                }
+            }
 
         } else if (role == 3) {
             while (1) {
@@ -158,12 +249,14 @@ int main() {
                             case 6:
                                 listar_agente_imobiliario_idade(agente_imobiliario);
                                 break;
-
                             case 7:
+                                listar_agente_imobiliario_disponiveis(agente_imobiliario);
+                                break;
+                            case 8:
                                 tornar_agente_indisponivel(agente_imobiliario);
                                 break;
 
-                            case 8:
+                            case 9:
                             default:
                                 break;
                         }
@@ -185,7 +278,7 @@ int main() {
                                 break;
 
                             case 3:
-                               //TODAS AS VISITAS DE UM DETERINADO TIPO DE PROPRIEDADE
+                                //TODAS AS VISITAS DE UM DETERINADO TIPO DE PROPRIEDADE
                                 break;
 
                             case 4:
@@ -210,7 +303,7 @@ int main() {
 
                         switch (opcaoSubCliente) {
                             case 1:
-                               //CRIAR CLIENTE
+                                //CRIAR CLIENTE
                                 criar_cliente(cliente);
                                 break;
 
@@ -220,7 +313,7 @@ int main() {
                                 break;
 
                             case 3:
-                               //REMOVER CLIENTE
+                                //REMOVER CLIENTE
                                 printf("Digite o ID do cliente que deseja remover: ");
                                 scanf("%d", &id_clientes);
 
@@ -249,11 +342,11 @@ int main() {
                     case 7:
                         // Gerar um relatório por dia e por mês de contas
 
-                    break;
+                        break;
 
                     case 8:
                         //  Gerar um relatório de todos os agentes
-
+                        gerar_relatorio_agentes(agente_imobiliario);
                         break;
                     case 9:
                         editar_administrador(administrador, id_admin_logado);

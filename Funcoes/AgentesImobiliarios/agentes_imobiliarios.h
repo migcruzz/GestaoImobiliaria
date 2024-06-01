@@ -22,6 +22,7 @@ void carregar_agentes_do_arquivo(AGENTE agente_imobiliario[]);
 
 int editar_agente_imobiliario(AGENTE agente_imobiliario[]) ;
 
+int editar_agente_imobiliario_logado(AGENTE agente_imobiliario[], int id_agente_logado);
 
 int remover_agente_imobiliario(AGENTE agente_imobiliario[], int id_procura) ;
 
@@ -35,5 +36,5 @@ int listar_agente_imobiliario_idade(AGENTE agente_imobiliario[]);
 
 int listar_agente_imobiliario_disponiveis(AGENTE agente_imobiliario[]);
 
-int verificar_agente_imobiliario_disponiveis(AGENTE agente_imobiliario[], int id_agente_verificar)
+int verificar_agente_imobiliario_disponiveis(AGENTE agente_imobiliario[], int id_agente_verificar);
 #endif //PROGRAMA_AGENTESIMOBILIARIOS_H

@@ -212,6 +212,14 @@ int agendar_visita_cliente(LISTA_VISITA **iniLista_visita, LISTA_VISITA **fimLis
 
         case 1:
 
+            /*
+            imprime_todas_propriedades_populares(iniLista_propriedade);
+            // Fazer verificação se o id introduzido pertence mesmo a propriedade listadas
+            // Entrada para ID da propriedade
+            printf("ID da Propriedade: ");
+            scanf("%d", &nova_visita.id_propriedade);
+
+
             //listar agentes disponiveis
             // Fazer verificação se o id introduzido pertence mesmo aos agentes imobiliarios disponiveis
             listar_agente_imobiliario_disponiveis(agente_imobiliario);
@@ -220,11 +228,7 @@ int agendar_visita_cliente(LISTA_VISITA **iniLista_visita, LISTA_VISITA **fimLis
             printf("ID do Agente: ");
             scanf("%d", &nova_visita.id_agente);
 
-            imprime_todas_propriedades_populares(iniLista_propriedade);
-            // Fazer verificação se o id introduzido pertence mesmo a propriedade listadas
-            // Entrada para ID da propriedade
-            printf("ID da Propriedade: ");
-            scanf("%d", &nova_visita.id_propriedade);
+
 
             // Entrada para duração
             while (1) {
@@ -253,7 +257,7 @@ int agendar_visita_cliente(LISTA_VISITA **iniLista_visita, LISTA_VISITA **fimLis
             nova_visita.ano = ano_atual();
 
             break;
-
+*/
         case 0:
 
             // Entrada para o ano mês e dia
@@ -287,12 +291,6 @@ int agendar_visita_cliente(LISTA_VISITA **iniLista_visita, LISTA_VISITA **fimLis
 
             }
 
-            listar_agente_imobiliario_disponiveis(agente_imobiliario);
-
-            // Entrada para ID do agente
-            printf("ID do Agente: ");
-            scanf("%d", &nova_visita.id_agente);
-
             imprime_todas_propriedades_nao_populares(iniLista_propriedade);
 
             // Entrada para ID da propriedade
@@ -300,6 +298,18 @@ int agendar_visita_cliente(LISTA_VISITA **iniLista_visita, LISTA_VISITA **fimLis
             scanf("%d", &nova_visita.id_propriedade);
 
 
+            // mudar para todos aqueles agentes que Têm a casa responsável escolhida acima;
+            listar_agente_imobiliario_disponiveis(agente_imobiliario);
+
+            //(alterar para apresntar apenas os que tem a casa atribuida).
+
+            // Entrada para ID do agente
+
+           /* printf("ID do Agente: ");
+            scanf("%d", &nova_visita.id_agente);*/
+
+
+            // Verificador se o agente tem disponibilidade, calculando assim as
             while (1) {
                 // Entrada para duração
                 printf("\nIntroduza a duracao da visita, tendo um tempo maximo de 2 horas e mínimo de 20 minutos\n");
