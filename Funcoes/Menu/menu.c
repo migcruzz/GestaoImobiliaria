@@ -50,23 +50,33 @@ void sair() {
 //Menu /agente imobiliario
 
 void menuAgente() {
-    printf("┌───────────────────────────────────────────────────────────────────────────┐\n");
-    printf("│                          Menu Agente Imobiliário                          │\n");
-    printf("├──────────────────────┬────────────────────────────────────────────────────┤\n");
-    printf("│   Opção              │   Descrição                                        │\n");
-    printf("├──────────────────────┼────────────────────────────────────────────────────┤\n");
-    printf("│   1                  │   Gerir tipos de propriedades                      │\n");
-    printf("├──────────────────────┼────────────────────────────────────────────────────┤\n");
-    printf("│   2                  │   Listar as visitas do dia por hora ascendente     │\n");
-    printf("├──────────────────────┼────────────────────────────────────────────────────┤\n");
-    printf("│   3                  │   Saber o histórico de visitas de uma propriedade  │\n");
-    printf("├──────────────────────┼────────────────────────────────────────────────────┤\n");
-    printf("│   4                  │   Simular a realização de uma visita               │\n");
-    printf("├──────────────────────┼────────────────────────────────────────────────────┤\n");
-    printf("│   5                  │   Editar Perfil                                    │\n");
-    printf("├──────────────────────┼────────────────────────────────────────────────────┤\n");
-    printf("│   6                  │   Sair                                             │\n");
-    printf("└──────────────────────┴────────────────────────────────────────────────────┘\n");
+    printf("┌────────────────────────────────────────────────────────────────────────────────────────────────────┐\n");
+    printf("│                                   Menu Agente Imobiliário                                          │\n");
+    printf("├──────────────────────┬─────────────────────────────────────────────────────────────────────────────┤\n");
+    printf("│   Opção              │   Descrição                                                                 │\n");
+    printf("├──────────────────────┼─────────────────────────────────────────────────────────────────────────────┤\n");
+    printf("│   1                  │   Gerir tipos de propriedades                                               │\n");
+    printf("├──────────────────────┼─────────────────────────────────────────────────────────────────────────────┤\n");
+    printf("│   2                  │   Listar as minhas visitas do dia por hora ascendente                       │\n");
+    printf("├──────────────────────┼─────────────────────────────────────────────────────────────────────────────┤\n");
+    printf("│   3                  │   Listar as minhas visitas de um determinado dia por hora ascendente        │\n");
+    printf("├──────────────────────┼─────────────────────────────────────────────────────────────────────────────┤\n");
+    printf("│   4                  │   Listar as visitas em que o cliente nao compareceu a um determinado dia    │\n");
+    printf("├──────────────────────┼─────────────────────────────────────────────────────────────────────────────┤\n");
+    printf("│   5                  │   Saber o histórico de visitas de uma propriedade                           │\n");
+    printf("├──────────────────────┼─────────────────────────────────────────────────────────────────────────────┤\n");
+    printf("│   6                  │   Simular a realização de uma visita                                        │\n");
+    printf("├──────────────────────┼─────────────────────────────────────────────────────────────────────────────┤\n");
+    printf("│   7                  │   Atender Visita                                                            │\n");
+    printf("├──────────────────────┼─────────────────────────────────────────────────────────────────────────────┤\n");
+    printf("│   8                  │   Gerar relatório de contas por mes de vendas                               │\n");
+    printf("├──────────────────────┼─────────────────────────────────────────────────────────────────────────────┤\n");
+    printf("│   9                  │   Editar Perfil                                                             │\n");
+    printf("├──────────────────────┼─────────────────────────────────────────────────────────────────────────────┤\n");
+    printf("│   10                 │   Sair                                                                      │\n");
+    printf("└──────────────────────┴─────────────────────────────────────────────────────────────────────────────┘\n");
+
+
 }
 
 void menuCliente() {
@@ -75,19 +85,11 @@ void menuCliente() {
     printf("├──────────────────────┬────────────────────────────────────────────────────┤\n");
     printf("│   Opção              │   Descrição                                        │\n");
     printf("├──────────────────────┼────────────────────────────────────────────────────┤\n");
-    printf("│   1                  │   Pesquisar propriedades                           │\n");
+    printf("│   1                  │   Marcar visita para uma propriedade               │\n");
     printf("├──────────────────────┼────────────────────────────────────────────────────┤\n");
-    printf("│   2                  │   Ver detalhes de uma propriedade                  │\n");
+    printf("│   2                  │   Editar Perfil                                    │\n");
     printf("├──────────────────────┼────────────────────────────────────────────────────┤\n");
-    printf("│   3                  │   Marcar visita para uma propriedade               │\n");
-    printf("├──────────────────────┼────────────────────────────────────────────────────┤\n");
-    printf("│   4                  │   Listar visitas agendadas                         │\n");
-    printf("├──────────────────────┼────────────────────────────────────────────────────┤\n");
-    printf("│   5                  │   Cancelar visita agendada                         │\n");
-    printf("├──────────────────────┼────────────────────────────────────────────────────┤\n");
-    printf("│   6                  │   Editar Perfil                                    │\n");
-    printf("├──────────────────────┼────────────────────────────────────────────────────┤\n");
-    printf("│   7                  │   Sair                                             │\n");
+    printf("│   3                  │   Sair                                             │\n");
     printf("└──────────────────────┴────────────────────────────────────────────────────┘\n");
 }
 
@@ -103,14 +105,14 @@ void menuAdmin(){
     printf("│     3      │ Gerir agentes                                                                │\n");
     printf("│     4      │ Listar visitas                                                               │\n");
     printf("│     5      │ Simular a realização de uma visita                                           │\n");
-    printf("│     6      │ Gerir Clientes                                                               │\n");
-    printf("│     7      │ Gerar um relatório por dia e por mês de contas                               │\n");
-    printf("│     8      │ Gerar um relatório de todos os agentes                                       │\n");
-    printf("│     9      │ Editar perfil                                                                │\n");
-    printf("│    10      │ Sair                                                                         │\n");
+    printf("│     6      │ Historico de Visitas de todos os agentes uma determinada propriedade         │\n");
+    printf("│     7      │ Visitas que realizaram cada agente este mes                                  │\n");
+    printf("│     8      │ Gerir Clientes                                                               │\n");
+    printf("│     9      │ Gerar um relatório por dia e por mês de contas                               │\n");
+    printf("│     10     │ Gerar um relatório de todos os agentes                                       │\n");
+    printf("│     11     │ Editar perfil                                                                │\n");
+    printf("│     12     │ Sair                                                                         │\n");
     printf("└────────────┴──────────────────────────────────────────────────────────────────────────────┘\n");
-
-
 
 }
 
@@ -123,10 +125,13 @@ void submenuvisitas() {
     printf("│ Opção │                         Descrição                            │\n");
     printf("├───────┼──────────────────────────────────────────────────────────────┤\n");
     printf("│   1   │ Visitas de hoje por hora ascendente                          │\n");
-    printf("│   2   │ Visitas de um dia (data) de um agente                        │\n");
-    printf("│   3   │ Todas as visitas de um determinado tipo de propriedade       │\n");
-    printf("│   4   │ Visitas do dia em que o cliente não compareceu               │\n");
-    printf("│   5   │ Sair                                                         │\n");
+    printf("│   2   │ Visitas de um determinado dia por hora ascendente            │\n");
+    printf("│   3   │ Visitas de hoje de um determinado agente                     │\n");
+    printf("│   4   │ Visitas de um determinado dia para um determinado agente     │\n");
+    printf("│   5   │ Visitas de hoje por tipo de propriedade                      │\n");
+    printf("│   6   │ Visitas de um determinado dia por tipo de propriedade        │\n");
+    printf("│   7   │ Visitas do dia em que o cliente não compareceu               │\n");
+    printf("│   8   │ Sair                                                         │\n");
     printf("└───────┴──────────────────────────────────────────────────────────────┘\n");
     printf("\n");
 }

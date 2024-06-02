@@ -15,8 +15,6 @@ int inserir_no_ficheiro_administrador(ADMIN administrador[]);
 
 void remove_newline(char *string);
 
-int gerar_relatorio_agentes(AGENTE agentes[]);
-
 
 
 

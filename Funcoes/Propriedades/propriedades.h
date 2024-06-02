@@ -27,6 +27,10 @@ void salvar_lista_propriedades_ficheiro_binario(LISTA_PROPRIEDADE *iniLista);
 
 void carregar_lista_do_arquivo_binario(LISTA_PROPRIEDADE **iniLista, LISTA_PROPRIEDADE **fimLista);
 
+void imprime_todas_propriedades_populares_negocio_por_concluir(LISTA_PROPRIEDADE *iniLista);
+
+void imprime_todas_propriedades_nao_populares_negocio_por_concluir(LISTA_PROPRIEDADE *iniLista);
+
 /*
 void salvar_lista_propriedades_ficheiro_texto(LISTA_PROPRIEDADE *iniLista);
 

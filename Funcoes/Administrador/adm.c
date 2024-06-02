@@ -175,7 +175,6 @@ int carregar_do_ficheiro_administrador(ADMIN administrador[]) {
 }
 
 
-
 int inserir_no_ficheiro_administrador(ADMIN administrador[]) {
     FILE *ficheiro_administrador = fopen("../Armazenamento/Texto/Admins.txt", "w");
     if (ficheiro_administrador == NULL) {
@@ -198,74 +197,3 @@ int inserir_no_ficheiro_administrador(ADMIN administrador[]) {
     return 0;
 }
 
-
-int gerar_relatorio_agentes(AGENTE agentes[]) {
-    int num_agentes = 0;
-
-    // Contagem do número de agentes imobiliários válidos
-    for (int i = 0; i < MAX_AGENTES_IMOBILIARIOS; i++) {
-        if (agentes[i].id_agente != 0) {
-            num_agentes++;
-        }
-    }
-
-    if (num_agentes != 0) {
-        // Alocação de memória para um novo array de agentes (ordenados)
-        AGENTE *agentes_ordenados = (AGENTE *)calloc(num_agentes, sizeof(AGENTE));
-
-        int indice_ordenados = 0;
-        for (int i = 0; i < MAX_AGENTES_IMOBILIARIOS; i++) {
-            if (agentes[i].id_agente != 0) {
-                agentes_ordenados[indice_ordenados++] = agentes[i];
-            }
-        }
-
-        // Ordenação dos agentes por NIF usando o algoritmo Bubble Sort
-        for (int i = 0; i < num_agentes - 1; i++) {
-            for (int j = 0; j < num_agentes - i - 1; j++) {
-                if (strcmp(agentes_ordenados[j].NIF, agentes_ordenados[j + 1].NIF) > 0) {
-                    AGENTE temp = agentes_ordenados[j];
-                    agentes_ordenados[j] = agentes_ordenados[j + 1];
-                    agentes_ordenados[j + 1] = temp;
-                }
-            }
-        }
-
-        // Abrir o arquivo para escrita
-        FILE *arquivo = fopen("../Armazenamento/Texto/Relatorios_Agentes.txt", "w");
-        if (arquivo == NULL) {
-            printf("Erro ao abrir o arquivo para escrita.\n");
-            free(agentes_ordenados);
-            return -1;
-        }
-
-        // Escrever os detalhes de cada agente no arquivo
-        fprintf(arquivo, "┌───────────────┬───────────────────┬───────────────────────┬──────────────┬───────────────────┬─────────────────────┬───────────────────────┐\n");
-        fprintf(arquivo, "│   ID          │        Nome        │          NIF          │    Morada    │     Telefone      │ Data de Nascimento │   Disponibilidade   │\n");
-        fprintf(arquivo, "├───────────────┼───────────────────┼───────────────────────┼──────────────┼───────────────────┼─────────────────────┼───────────────────────┤\n");
-        for (int i = 0; i < num_agentes; i++) {
-            fprintf(arquivo, "│   %-11d │ %-17s │ %-21s │ %-12s │ %-17s │ %2d/%2d/%-12d │ %-19s │\n",
-                    agentes_ordenados[i].id_agente,
-                    agentes_ordenados[i].nome,
-                    agentes_ordenados[i].NIF,
-                    agentes_ordenados[i].morada,
-                    agentes_ordenados[i].telefone,
-                    agentes_ordenados[i].dia_nascimento,
-                    agentes_ordenados[i].mes_nascimento,
-                    agentes_ordenados[i].ano_nascimento,
-                    (agentes_ordenados[i].disponibilidade == 1) ? "Disponível" : "Indisponível");
-            fprintf(arquivo, "├───────────────┼───────────────────┼───────────────────────┼──────────────┼───────────────────┼─────────────────────┼───────────────────────┤\n");
-        }
-
-        // Fechar o arquivo
-        fclose(arquivo);
-
-        free(agentes_ordenados);
-        printf("Relatório gerado com sucesso em 'Relatorios_Agentes.txt'.\n");
-
-        return 0;
-    } else {
-        printf("\nNão existem agentes!\n");
-        return -1;
-    }
-}

@@ -39,4 +39,6 @@ int listar_agente_imobiliario_disponiveis(AGENTE agente_imobiliario[]);
 int verificar_agente_imobiliario_disponiveis(AGENTE agente_imobiliario[], int id_agente_verificar);
 
 int verifica_agente_casa_responsavel(AGENTE agente_imobiliario[], LISTA_PROPRIEDADE *iniLista, int id_propriedade_verificar);
+
+int gerar_relatorio_agentes(AGENTE agentes[]);
 #endif //PROGRAMA_AGENTESIMOBILIARIOS_H

@@ -53,18 +53,19 @@ typedef struct propriedade{
 
 // Lista Ligada
 typedef struct visita{
-    int dia; //
-    int mes; //
-    int ano;  //
+    int dia;
+    int mes;
+    int ano;
     int id_cliente;
     int id_agente;
-    int id_propriedade; //
-    int duracao;    //                          // em minutos tendo em atenção que um dia tem 1440 minutos.
-    int hora_marcacao;   //                     // em minutos tendo em atenção que um dia tem 1440 minutos.
+    int id_propriedade;
+    int duracao;                        // em minutos tendo em atenção que um dia tem 1440 minutos.
+    int horario_marcacao;   //                     // em minutos tendo em atenção que um dia tem 1440 minutos.
     char relatorio [3000]; // Apenas para agentes
     char detalhes_intresse_cliente [3000]; //
     int cliente_compareceu; // Apenas para o agente
-    int propriedade_vendida;  // Apenas Agente                 // 1 terminou 0 nao acabou
+    int propriedade_vendida; // Apenas Agente                 // 1 terminou 0 nao acabou
+    int visita_terminada;
     int casa_aberta; //
 }VISITA;
 
@@ -94,3 +95,4 @@ typedef struct lista_visita{
 }LISTA_VISITA;
 
 #endif //PROGRAMA_TIPOSDADOS_H
+

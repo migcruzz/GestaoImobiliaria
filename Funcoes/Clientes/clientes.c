@@ -101,7 +101,6 @@ void carregar_clientes_do_arquivo(CLIENTE clientes[]) {
 }
 
 
-
 void editar_cliente(CLIENTE clientes[]) {
     int id_cliente;
 

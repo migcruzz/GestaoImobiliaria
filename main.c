@@ -54,6 +54,7 @@ int main() {
 
     carregar_clientes_do_arquivo(cliente);
     carregar_do_ficheiro_administrador(administrador);
+    carregar_visitas(&ini_lista_visita);
     carregar_agentes_do_arquivo(agente_imobiliario);
     carregar_lista_do_arquivo_binario(&ini_lista_propriedade, &fim_lista_propriedade);
 
@@ -132,31 +133,19 @@ int main() {
                 int opcaoCliente = obterOpcaoMenu();
                 switch (opcaoCliente) {
                     case 1:
-                        //Gerir TIPOS DE PROPRIEDADE
-                        break;
-                    case 2:
-                        //FATURACAO DE PROPRIEDADES
-                        break;
-
-                    case 3:
+                        //AGENDAR VISITA
                         agendar_visita_cliente(&ini_lista_visita, &fim_lista_visita, id_cliente_logado,agente_imobiliario,ini_lista_propriedade);
                         break;
-
-                    case 4:
-
-                        listar_todas_visitas(ini_lista_visita);
-
-                        break;
-
-                    case 5:
+                    case 2:
+                       //EDITAR PERFIL
                         editar_cliente_logado(cliente, id_cliente_logado);
                         break;
 
-                    case 6:
-                        //GERIR CLIENTES
+                    case 3:
                         inserir_clientes_em_arquivo(cliente);
+                        inserir_visitas_em_arquivo(ini_lista_visita);
                         return 0;
-
+                        break;
 
                 }
             }
@@ -172,30 +161,41 @@ int main() {
                         //Gerir TIPOS DE PROPRIEDADE
                         break;
                     case 2:
-                        //FATURACAO DE PROPRIEDADES
+                        //Listar as visitas do dia por hora ascendente
+                        listar_visitas_de_hoje_por_hora_ascendente_agente_logado(ini_lista_visita, id_agente_logado);
+                        break;
+
+
+                    case 3:
+                        listar_visitas_de_dia_ascendente_agente_logado(ini_lista_visita,id_agente_logado);
+                        break;
+
+                    case 4:
+                        listar_visitas_cliente_nao_compareceu_agente_logado(ini_lista_visita, id_agente_logado);
                         break;
 
                     case 5:
-                        editar_agente_imobiliario_logado(agente_imobiliario, id_agente_logado);
+                        historico_visitas_logado(ini_lista_visita,id_agente_logado);
                         break;
+
                     case 6:
-                        //GERIR CLIENTES
-                        inserir_agentes_em_arquivo(agente_imobiliario);
-                        return 0;
+                        //Simular a realizacao de uma visita
+                        simular_agendar_visita_cliente(&ini_lista_visita,&fim_lista_visita,id_cliente_logado,agente_imobiliario,ini_lista_propriedade);
+                        break;
 
                     case 7:
-                        // Gerar um relatório por dia e por mês de contas
-
+                        //Simular a realizacao de uma visita
+                        atender_visitas(&ini_lista_visita,id_agente_logado);
                         break;
 
-                    case 8:
+                    case 9:
+                        editar_agente_imobiliario_logado(agente_imobiliario, id_agente_logado);
+                        break;
+
+                    case 10:
                         //  Gerar um relatório de todos os agentes
                         gerar_relatorio_agentes(agente_imobiliario);
-                        break;
-                    case 9:
-                        editar_administrador(administrador, id_admin_logado);
-                        break;
-
+                        return 0;
                 }
             }
 
@@ -236,6 +236,7 @@ int main() {
                         break;
                     case 2:
                         //FATURACAO DE PROPRIEDADES
+
                         break;
 
                     case 3:
@@ -267,10 +268,10 @@ int main() {
                                 listar_agente_imobiliario_alfabeto(agente_imobiliario);
                                 break;
 
-
                             case 6:
                                 listar_agente_imobiliario_idade(agente_imobiliario);
                                 break;
+
                             case 7:
                                 listar_agente_imobiliario_disponiveis(agente_imobiliario);
                                 break;
@@ -292,21 +293,32 @@ int main() {
                         switch (opcaoSubVisitas) {
                             case 1:
                                 //VISITAS DE HOJE POR HORA ASCENDENTE
+                                listar_visitas_de_hoje_por_hora_ascendente(ini_lista_visita);
                                 break;
 
                             case 2:
                                 //VISITAS DE UM DIA(DATA) DE UM AGENTE
+                                ordenar_visitas_por_hora_ascendente(&ini_lista_visita);
                                 break;
 
                             case 3:
                                 //TODAS AS VISITAS DE UM DETERINADO TIPO DE PROPRIEDADE
+                                listar_visitas_de_hoje_por_agente(ini_lista_visita);
                                 break;
 
                             case 4:
                                 //VISITAS DO DIA EM QUE O CLIENTE NAO COMPARECEU
+
+                                ordenar_visitas_por_dia_agente(&ini_lista_visita);
                                 break;
 
                             case 5:
+                                listar_visitas_de_hoje_por_tipo_propriedade(ini_lista_visita);
+                                break;
+                            case 6:
+
+                                listar_visitas_por_dia_tipo_propriedade(ini_lista_visita);
+                            case 8:
                             default:
                                 break;
                         }
@@ -314,9 +326,18 @@ int main() {
 
                     case 5:
                         //SIMULAR REALIZAÇÃO DE UMA VISITA
+                        simular_agendar_visita_cliente(&ini_lista_visita,&fim_lista_visita,id_cliente_logado,agente_imobiliario,ini_lista_propriedade);
                         break;
 
                     case 6:
+                        //HISTORICO DE TODOS OS AGENTES
+                        historico_visitas(ini_lista_visita);
+                        break;
+
+                    case 7:
+                        listar_visitas_por_agente(ini_lista_visita,agente_imobiliario);
+                        break;
+                    case 8:
                         //GERIR CLIENTES
                         submenucliente();
                         int opcaoSubCliente = obterOpcaoMenu();
@@ -358,25 +379,24 @@ int main() {
                         break;
 
 
-                    case 7:
+                    case 9:
                         // Gerar um relatório por dia e por mês de contas
 
                         break;
 
-                    case 8:
+                    case 10:
                         //  Gerar um relatório de todos os agentes
                         gerar_relatorio_agentes(agente_imobiliario);
                         break;
-                    case 9:
+                    case 11:
                         editar_administrador(administrador, id_admin_logado);
                         break;
 
-                    case 10:
+                    case 12:
                         inserir_agentes_em_arquivo(agente_imobiliario);
                         inserir_no_ficheiro_administrador(administrador);
                         inserir_clientes_em_arquivo(cliente);
                         salvar_lista_propriedades_ficheiro_binario(ini_lista_propriedade);
-                        goto return_to_login;  // Volta para o início do login
                 }
 
                 if (opcao == 10) {
