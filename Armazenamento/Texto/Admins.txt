@@ -1,2 +1,0 @@
-rui;32131;3;1;rui
-miguel;123456;3;3;miguel

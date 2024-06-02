@@ -525,9 +525,9 @@ void listar_todas_visitas(LISTA_VISITA *iniLista_visita) {
         printf("Duração:  %d:%d \tHora Marcação: %d:%d\n", duracao_visita.horas,duracao_visita.minutos,visita.horas,visita.minutos );
         printf("Relatório: %s\n", aux->visita.relatorio);
         printf("Detalhes Interesse Cliente: %s\n", aux->visita.detalhes_intresse_cliente);
-        printf("Cliente Compareceu: %s\n", aux->visita.cliente_compareceu ? "Sim" : "Não");
-        printf("Visita Terminou: %s\n", aux->visita.propriedade_vendida ? "Sim" : "Não");
-        printf("Casa Aberta: %s\n", aux->visita.casa_aberta ? "Sim" : "Não");
+        printf("Cliente Compareceu: %s\n", aux->visita.cliente_compareceu == 1 ? "Sim" : "Não");
+        printf("Visita Terminou: %s\n", aux->visita.propriedade_vendida == 1 ? "Sim" : "Não");
+        printf("Casa Aberta: %s\n", aux->visita.casa_aberta == 1 ? "Sim" : "Não");
         printf("-------------------------------------------------------------\n");
 
         // Move para a próxima visita na lista
@@ -556,9 +556,9 @@ void listar_visitas_por_dia_agente(LISTA_VISITA *iniLista_visita, int dia, int m
             printf("Duração:  %d:%d \tHora Marcação: %d:%d\n", duracao_visita.horas, duracao_visita.minutos, visita.horas, visita.minutos);
             printf("Relatório: %s\n", aux->visita.relatorio);
             printf("Detalhes Interesse Cliente: %s\n", aux->visita.detalhes_intresse_cliente);
-            printf("Cliente Compareceu: %s\n", aux->visita.cliente_compareceu ? "Sim" : "Não");
-            printf("Visita Terminou: %s\n", aux->visita.propriedade_vendida ? "Sim" : "Não");
-            printf("Casa Aberta: %s\n", aux->visita.casa_aberta ? "Sim" : "Não");
+            printf("Cliente Compareceu: %s\n", aux->visita.cliente_compareceu == 1 ? "Sim" : "Não");
+            printf("Visita Terminou: %s\n", aux->visita.propriedade_vendida == 1 ? "Sim" : "Não");
+            printf("Casa Aberta: %s\n", aux->visita.casa_aberta == 1 ? "Sim" : "Não");
             printf("-------------------------------------------------------------\n");
         }
         aux = aux->seguinte;
@@ -632,9 +632,9 @@ void listar_visitas_de_hoje_por_hora_ascendente(LISTA_VISITA *iniLista_visita) {
             printf("Duração: %d:%d \tHora Marcação: %d:%d\n", duracao_visita.horas, duracao_visita.minutos, visita.horas, visita.minutos);
             printf("Relatório: %s\n", atual->visita.relatorio);
             printf("Detalhes Interesse Cliente: %s\n", atual->visita.detalhes_intresse_cliente);
-            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu ? "Sim" : "Não");
-            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida ? "Sim" : "Não");
-            printf("Casa Aberta: %s\n", atual->visita.casa_aberta ? "Sim" : "Não");
+            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu == 1 ? "Sim" : "Não");
+            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida == 1 ? "Sim" : "Não");
+            printf("Casa Aberta: %s\n", atual->visita.casa_aberta == 1 ? "Sim" : "Não");
             printf("-------------------------------------------------------------\n");
         }
         atual = atual->seguinte;
@@ -716,9 +716,9 @@ void ordenar_visitas_por_hora_ascendente(LISTA_VISITA **iniLista_visita) {
             printf("Duração: %d:%d \tHora Marcação: %d:%d\n", duracao_visita.horas, duracao_visita.minutos, visita.horas, visita.minutos);
             printf("Relatório: %s\n", atual->visita.relatorio);
             printf("Detalhes Interesse Cliente: %s\n", atual->visita.detalhes_intresse_cliente);
-            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu ? "Sim" : "Não");
-            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida ? "Sim" : "Não");
-            printf("Casa Aberta: %s\n", atual->visita.casa_aberta ? "Sim" : "Não");
+            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu == 1 ? "Sim" : "Não");
+            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida == 1 ? "Sim" : "Não");
+            printf("Casa Aberta: %s\n", atual->visita.casa_aberta == 1 ? "Sim" : "Não");
             printf("-------------------------------------------------------------\n");
         }
         atual = atual->seguinte;
@@ -788,9 +788,9 @@ void listar_visitas_de_hoje_por_hora_ascendente_agente_logado(LISTA_VISITA *iniL
             printf("Duração: %d:%d \tHora Marcação: %d:%d\n", duracao_visita.horas, duracao_visita.minutos, visita.horas, visita.minutos);
             printf("Relatório: %s\n", atual->visita.relatorio);
             printf("Detalhes Interesse Cliente: %s\n", atual->visita.detalhes_intresse_cliente);
-            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu ? "Sim" : "Não");
-            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida ? "Sim" : "Não");
-            printf("Casa Aberta: %s\n", atual->visita.casa_aberta ? "Sim" : "Não");
+            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu == 1 ? "Sim" : "Não");
+            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida == 1 ? "Sim" : "Não");
+            printf("Casa Aberta: %s\n", atual->visita.casa_aberta == 1 ? "Sim" : "Não");
             printf("-------------------------------------------------------------\n");
         }
         atual = atual->seguinte;
@@ -871,9 +871,9 @@ void listar_visitas_de_dia_ascendente_agente_logado(LISTA_VISITA *iniLista_visit
             printf("Duração: %d:%d \tHora Marcação: %d:%d\n", duracao_visita.horas, duracao_visita.minutos, visita.horas, visita.minutos);
             printf("Relatório: %s\n", atual->visita.relatorio);
             printf("Detalhes Interesse Cliente: %s\n", atual->visita.detalhes_intresse_cliente);
-            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu ? "Sim" : "Não");
-            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida ? "Sim" : "Não");
-            printf("Casa Aberta: %s\n", atual->visita.casa_aberta ? "Sim" : "Não");
+            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu == 1 ? "Sim" : "Não");
+            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida == 1 ? "Sim" : "Não");
+            printf("Casa Aberta: %s\n", atual->visita.casa_aberta == 1 ? "Sim" : "Não");
             printf("-------------------------------------------------------------\n");
         }
         atual = atual->seguinte;
@@ -922,9 +922,9 @@ void listar_visitas_cliente_nao_compareceu_agente_logado(LISTA_VISITA *iniLista_
             printf("Duração: %d:%d \tHora Marcação: %d:%d\n", duracao_visita.horas, duracao_visita.minutos, visita.horas, visita.minutos);
             printf("Relatório: %s\n", atual->visita.relatorio);
             printf("Detalhes Interesse Cliente: %s\n", atual->visita.detalhes_intresse_cliente);
-            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu ? "Sim" : "Não");
-            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida ? "Sim" : "Não");
-            printf("Casa Aberta: %s\n", atual->visita.casa_aberta ? "Sim" : "Não");
+            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu == 1 ? "Sim" : "Não");
+            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida == 1 ? "Sim" : "Não");
+            printf("Casa Aberta: %s\n", atual->visita.casa_aberta == 1 ? "Sim" : "Não");
             printf("-------------------------------------------------------------\n");
         }
         atual = atual->seguinte;
@@ -1005,9 +1005,9 @@ void listar_visitas_de_hoje_por_hora_ascendente_casa_aberta_agente_logado_vistit
             printf("Duração: %d:%d \tHora Marcação: %d:%d\n", duracao_visita.horas, duracao_visita.minutos, visita.horas, visita.minutos);
             printf("Relatório: %s\n", atual->visita.relatorio);
             printf("Detalhes Interesse Cliente: %s\n", atual->visita.detalhes_intresse_cliente);
-            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu ? "Sim" : "Não");
-            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida ? "Sim" : "Não");
-            printf("Casa Aberta: %s\n", atual->visita.casa_aberta ? "Sim" : "Não");
+            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu == 1 ? "Sim" : "Não");
+            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida == 1 ? "Sim" : "Não");
+            printf("Casa Aberta: %s\n", atual->visita.casa_aberta == 1 ? "Sim" : "Não");
             printf("O Cliente %d tem de esperar %d horas e %d minutos\n", atual->visita.id_cliente, total_tempo_espera.horas, total_tempo_espera.minutos);
             printf("-------------------------------------------------------------\n");
         }
@@ -1146,9 +1146,9 @@ int relatorio_contas_mes(LISTA_VISITA **iniLista_visita, LISTA_PROPRIEDADE **ini
                            visita.horas, visita.minutos);
                     printf("Relatório: %s\n", atual->visita.relatorio);
                     printf("Detalhes Interesse Cliente: %s\n", atual->visita.detalhes_intresse_cliente);
-                    printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu ? "Sim" : "Não");
-                    printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida ? "Sim" : "Não");
-                    printf("Casa Aberta: %s\n", atual->visita.casa_aberta ? "Sim" : "Não");
+                    printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu == 1 ? "Sim" : "Não");
+                    printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida == 1 ? "Sim" : "Não");
+                    printf("Casa Aberta: %s\n", atual->visita.casa_aberta == 1 ? "Sim" : "Não");
                     printf("Foi feita a visita no dia %d , no mês %d, do ano %d\n", atual->visita.dia, atual ->visita.mes, atual -> visita.ano);
                     printf("-------------------------------------------------------------\n");
                     printf("-------------------------------------------------------------\n");
@@ -1273,9 +1273,9 @@ void listar_visitas_de_hoje_por_agente(LISTA_VISITA *iniLista_visita) {
             printf("Duração: %d:%d \tHora Marcação: %d:%d\n", duracao_visita.horas, duracao_visita.minutos, visita.horas, visita.minutos);
             printf("Relatório: %s\n", atual->visita.relatorio);
             printf("Detalhes Interesse Cliente: %s\n", atual->visita.detalhes_intresse_cliente);
-            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu ? "Sim" : "Não");
-            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida ? "Sim" : "Não");
-            printf("Casa Aberta: %s\n", atual->visita.casa_aberta ? "Sim" : "Não");
+            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu == 1 ? "Sim" : "Não");
+            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida == 1 ? "Sim" : "Não");
+            printf("Casa Aberta: %s\n", atual->visita.casa_aberta == 1 ? "Sim" : "Não");
             printf("-------------------------------------------------------------\n");
         }
         atual = atual->seguinte;
@@ -1366,9 +1366,9 @@ void ordenar_visitas_por_dia_agente(LISTA_VISITA **iniLista_visita) {
             printf("Duração: %d:%d \tHora Marcação: %d:%d\n", duracao_visita.horas, duracao_visita.minutos, visita.horas, visita.minutos);
             printf("Relatório: %s\n", atual->visita.relatorio);
             printf("Detalhes Interesse Cliente: %s\n", atual->visita.detalhes_intresse_cliente);
-            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu ? "Sim" : "Não");
-            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida ? "Sim" : "Não");
-            printf("Casa Aberta: %s\n", atual->visita.casa_aberta ? "Sim" : "Não");
+            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu == 1 ? "Sim" : "Não");
+            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida == 1 ? "Sim" : "Não");
+            printf("Casa Aberta: %s\n", atual->visita.casa_aberta == 1 ? "Sim" : "Não");
             printf("-------------------------------------------------------------\n");
         }
         atual = atual->seguinte;
@@ -1414,9 +1414,9 @@ void listar_visitas_por_dia_tipo_propriedade(LISTA_VISITA *iniLista_visita) {
             printf("Duração: %d:%d \tHora Marcação: %d:%d\n", duracao_visita.horas, duracao_visita.minutos, visita.horas, visita.minutos);
             printf("Relatório: %s\n", atual->visita.relatorio);
             printf("Detalhes Interesse Cliente: %s\n", atual->visita.detalhes_intresse_cliente);
-            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu ? "Sim" : "Não");
-            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida ? "Sim" : "Não");
-            printf("Casa Aberta: %s\n", atual->visita.casa_aberta ? "Sim" : "Não");
+            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu == 1 ? "Sim" : "Não");
+            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida == 1 ? "Sim" : "Não");
+            printf("Casa Aberta: %s\n", atual->visita.casa_aberta == 1 ? "Sim" : "Não");
             printf("-------------------------------------------------------------\n");
         }
         atual = atual->seguinte;
@@ -1458,9 +1458,9 @@ void listar_visitas_de_hoje_por_tipo_propriedade(LISTA_VISITA *iniLista_visita) 
             printf("Duração: %d:%d \tHora Marcação: %d:%d\n", duracao_visita.horas, duracao_visita.minutos, visita.horas, visita.minutos);
             printf("Relatório: %s\n", atual->visita.relatorio);
             printf("Detalhes Interesse Cliente: %s\n", atual->visita.detalhes_intresse_cliente);
-            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu ? "Sim" : "Não");
-            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida ? "Sim" : "Não");
-            printf("Casa Aberta: %s\n", atual->visita.casa_aberta ? "Sim" : "Não");
+            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu == 1 ? "Sim" : "Não");
+            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida == 1 ? "Sim" : "Não");
+            printf("Casa Aberta: %s\n", atual->visita.casa_aberta == 1 ? "Sim" : "Não");
             printf("-------------------------------------------------------------\n");
         }
         atual = atual->seguinte;
@@ -1565,9 +1565,9 @@ void historico_visitas(LISTA_VISITA *iniLista_visita) {
             printf("Duração: %d minutos\n", atual->visita.duracao);
             printf("Relatório: %s\n", atual->visita.relatorio);
             printf("Detalhes Interesse Cliente: %s\n", atual->visita.detalhes_intresse_cliente);
-            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu ? "Sim" : "Não");
-            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida ? "Sim" : "Não");
-            printf("Casa Aberta: %s\n", atual->visita.casa_aberta ? "Sim" : "Não");
+            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu == 1 ? "Sim" : "Não");
+            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida == 1 ? "Sim" : "Não");
+            printf("Casa Aberta: %s\n", atual->visita.casa_aberta == 1 ? "Sim" : "Não");
         }
         atual = atual->seguinte;
     }
@@ -1611,9 +1611,9 @@ void historico_visitas_logado(LISTA_VISITA *iniLista_visita, int id_agente_logad
             printf("Duração: %d minutos\n", atual->visita.duracao);
             printf("Relatório: %s\n", atual->visita.relatorio);
             printf("Detalhes Interesse Cliente: %s\n", atual->visita.detalhes_intresse_cliente);
-            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu ? "Sim" : "Não");
-            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida ? "Sim" : "Não");
-            printf("Casa Aberta: %s\n", atual->visita.casa_aberta ? "Sim" : "Não");
+            printf("Cliente Compareceu: %s\n", atual->visita.cliente_compareceu == 1 ? "Sim" : "Não");
+            printf("Visita Terminou: %s\n", atual->visita.propriedade_vendida == 1 ? "Sim" : "Não");
+            printf("Casa Aberta: %s\n", atual->visita.casa_aberta == 1 ? "Sim" : "Não");
         }
         atual = atual->seguinte;
     }

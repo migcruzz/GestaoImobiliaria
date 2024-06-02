@@ -222,9 +222,9 @@ void imprime_todas_propriedades(LISTA_PROPRIEDADE *iniLista) {
                prop->propriedade.nome,
                prop->propriedade.morada,
                prop->propriedade.preco,
-               prop->propriedade.popular ? "Sim" : "Não",
+               prop->propriedade.popular == 1 ? "Sim" : "Não",
                prop->propriedade.id_agente_responsavel,
-               prop->propriedade.negocio_concluido ? "Sim" : "Não");
+               prop->propriedade.negocio_concluido == 1 ? "Sim" : "Não");
     }
     printf("└────┴──────────────────┴──────────────────────┴────────┴─────────┴───────────────────────────────┴───────────────┘\n");
 
@@ -273,9 +273,9 @@ void imprime_todas_propriedades_populares_negocio_por_concluir(LISTA_PROPRIEDADE
                    prop->propriedade.nome,
                    prop->propriedade.morada,
                    prop->propriedade.preco,
-                   prop->propriedade.popular ? "Sim" : "Não",
+                   prop->propriedade.popular == 1 ? "Sim" : "Não",
                    prop->propriedade.id_agente_responsavel,
-                   prop->propriedade.negocio_concluido ? "Sim" : "Não");
+                   prop->propriedade.negocio_concluido == 1 ? "Sim" : "Não");
         }
     }
     printf("└────┴──────────────────┴──────────────────────┴────────┴─────────┴───────────────────────────────┴───────────────┘\n");
@@ -324,9 +324,9 @@ void imprime_todas_propriedades_nao_populares_negocio_por_concluir(LISTA_PROPRIE
                    prop->propriedade.nome,
                    prop->propriedade.morada,
                    prop->propriedade.preco,
-                   prop->propriedade.popular ? "Sim" : "Não",
+                   prop->propriedade.popular == 1 ? "Sim" : "Não",
                    prop->propriedade.id_agente_responsavel,
-                   prop->propriedade.negocio_concluido ? "Sim" : "Não");
+                   prop->propriedade.negocio_concluido == 1 ? "Sim" : "Não");
         }
     }
     printf("└────┴──────────────────┴──────────────────────┴────────┴─────────┴───────────────────────────────┴───────────────┘\n");
@@ -375,9 +375,9 @@ void imprime_todas_propriedades_nao_populares(LISTA_PROPRIEDADE *iniLista) {
                    prop->propriedade.nome,
                    prop->propriedade.morada,
                    prop->propriedade.preco,
-                   prop->propriedade.popular ? "Sim" : "Não",
+                   prop->propriedade.popular == 1 ? "Sim" : "Não",
                    prop->propriedade.id_agente_responsavel,
-                   prop->propriedade.negocio_concluido ? "Sim" : "Não");
+                   prop->propriedade.negocio_concluido == 1 ? "Sim" : "Não");
         }
     }
     printf("└────┴──────────────────┴──────────────────────┴────────┴─────────┴───────────────────────────────┴───────────────┘\n");
@@ -426,9 +426,9 @@ void imprime_todas_propriedades_populares(LISTA_PROPRIEDADE *iniLista) {
                    prop->propriedade.nome,
                    prop->propriedade.morada,
                    prop->propriedade.preco,
-                   prop->propriedade.popular ? "Sim" : "Não",
+                   prop->propriedade.popular == 1 ? "Sim" : "Não",
                    prop->propriedade.id_agente_responsavel,
-                   prop->propriedade.negocio_concluido ? "Sim" : "Não");
+                   prop->propriedade.negocio_concluido == 1 ? "Sim" : "Não");
         }
     }
     printf("└────┴──────────────────┴──────────────────────┴────────┴─────────┴───────────────────────────────┴───────────────┘\n");
