@@ -34,8 +34,8 @@ int conversor_horas_para_minutos(int hora, int minutos_antes){
 TEMPO conversor_minutos_para_horas(int minutos){
     TEMPO conversao;
     if(minutos <= 1440 && minutos >=0){
-        conversao.horas = minutos % 60;
-        conversao.minutos =minutos - (conversao.horas);
+        conversao.horas = minutos / 60;
+        conversao.minutos =minutos % 60;
     }else{
         printf("\nErro na conversão de dados !!!\n");
         conversao.horas = -1;
@@ -474,9 +474,12 @@ int agendar_visita_cliente(LISTA_VISITA **iniLista_visita, LISTA_VISITA **fimLis
             fflush(stdin);
 
             // Entrada para relatório
+
+            /*
             printf("Relatório (até 3000 caracteres): ");
             fgets(nova_visita.relatorio, sizeof(nova_visita.relatorio), stdin);
             remove_newline1(nova_visita.relatorio);
+             */
 
             // Entrada para detalhes de interesse do cliente
             printf("Detalhes de Interesse do Cliente (até 3000 caracteres): ");
@@ -522,19 +525,27 @@ void listar_todas_visitas(LISTA_VISITA *iniLista_visita) {
         return;
     }
 
+    TEMPO visita, duracao_visita;
+
+
+
     // Ponteiro auxiliar para percorrer a lista de visitas
     LISTA_VISITA *aux = iniLista_visita;
 
     // Percorre a lista de visitas
     while (aux != NULL) {
+
+        visita = conversor_minutos_para_horas(aux ->visita.hora_marcacao);
+        duracao_visita = conversor_minutos_para_horas(aux ->visita.duracao);
+
         printf("-------------------------------------------------------------\n");
         printf("Dia: %d\tMês: %d\tAno: %d\n", aux->visita.dia, aux->visita.mes, aux->visita.ano);
         printf("ID Cliente: %d\tID Agente: %d\tID Propriedade: %d\n", aux->visita.id_cliente, aux->visita.id_agente, aux->visita.id_propriedade);
-        printf("Duração: %d minutos\tHora Marcação: %d minutos\n", aux->visita.duracao, aux->visita.hora_marcacao);
+        printf("Duração:  %d:%d \tHora Marcação: %d:%d\n", duracao_visita.horas,duracao_visita.minutos,visita.horas,visita.minutos );
         printf("Relatório: %s\n", aux->visita.relatorio);
         printf("Detalhes Interesse Cliente: %s\n", aux->visita.detalhes_intresse_cliente);
         printf("Cliente Compareceu: %s\n", aux->visita.cliente_compareceu ? "Sim" : "Não");
-        printf("Visita Terminou: %s\n", aux->visita.visita_terminou ? "Sim" : "Não");
+        printf("Visita Terminou: %s\n", aux->visita.propriedade_vendida ? "Sim" : "Não");
         printf("Casa Aberta: %s\n", aux->visita.casa_aberta ? "Sim" : "Não");
         printf("-------------------------------------------------------------\n");
 
